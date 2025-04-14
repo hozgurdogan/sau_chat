@@ -101,4 +101,7 @@ Bu proje [MIT Lisansı](https://opensource.org/licenses/MIT) altında lisanslanm
 
 ## İletişim
 
-Proje sahibi: [İsim/İletişim Bilgileri]
+Proje sahipleri: 
+ - Mehmet Ok
+ - Hasan Özgür Doğan
+ - Beyza Selin Çilli
