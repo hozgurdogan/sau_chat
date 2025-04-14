@@ -1,0 +1,213 @@
+Son Güncelleme Tarihi: 29.07.2024 
+Bölüm Staj Komisyonu 
+1 
+ 
+ 
+T.C. 
+SAKARYA ÜNİVERSİTESİ 
+BİLGİSAYAR VE BİLİŞİM BİLİMLERİ FAKÜLTESİ 
+BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ 
+ZORUNLU İŞYERİ STAJI UYGULAMA ESASLARI 
+ 
+AMAÇ VE KAPSAM: Bilgisayar Mühendisliği öğrencilerinin yapacakları zorunlu işyeri stajlarının 
+temel ilkeleri Bilgisayar ve Bilişim Bilimleri Fakültesi’nin hazırlamış olduğu Zorunlu İşyeri Staj 
+Yönergesi ile belirlenmiş olup aşağıdaki esaslar, ilgili yönergede yer alan her bölümün kendi 
+gereksinimlerine uygun bir kılavuz hazırlayabileceği ilkesine uygun olarak hazırlanmıştır. 
+ 
+ 
+1. 
+STAJLARIN TANIMI 
+1.1. Bilgisayar Mühendisliği Bölümü öğrencilerinin öğrenimleri süresince kesintisiz olarak 20’şer 
+günlük (iş günü) iki kısımdan oluşmak üzere toplam 40 iş günü (8 hafta) staj yapmaları 
+zorunludur. 
+1.2. Bilgisayar Mühendisliği bölümünde YAZILIM STAJI ve DONANIM STAJI olarak adlandırılan iki 
+adet zorunlu staj vardır. 
+1.3. Bilgisayar Mühendisliği Bölümü YAZILIM STAJI 4 Hafta (20 işgünü) olup yapılan stajın içeriği 
+aşağıdaki maddelerden herhangi birine uymak zorundadır. Eğer stajın içeriği bu konulardan 
+hiç birine uymuyor ise bunun için Bölüm Staj Komisyonunun onayı gerekir. 
+✓ Mobil Uygulamalar 
+✓ Gömülü Sistem Programlama 
+✓ Biyometri (iz, yüz, parmak izi, vs.) Uygulamaları 
+✓ BS/YBS ((Yönetim) Bilişim Sistemleri) Uygulamaları (ERP, SAP, e-ticaret, vs.) 
+✓ Yazılım Performans Testleri ve Analizi 
+✓ Veri Madenciliği Uygulamaları 
+✓ Animasyon, Bilgisayar Grafikleri ve Oyun Programlama Uygulamaları 
+✓ Veritabanı Uygulamaları 
+✓ Veritabanı Analizi, Optimizasyonu ve Yönetimi 
+✓ Bilgisayar Görmesi ve Yapay Zekâ Uygulamaları 
+✓ Web Programlama 
+✓ Sistem Programlama 
+✓ Bilgisayar Güvenliği ve Kriptoloji 
+✓ Bilgisayar Destekli Kontrol Sistemleri 
+✓ Siber Güvenlik 
+
+
+Son Güncelleme Tarihi: 29.07.2024 
+Bölüm Staj Komisyonu 
+2 
+ 
+ 
+1.4. Bilgisayar Mühendisliği Bölümü DONANIM STAJI 4 Hafta (20 işgünü) olup yapılan stajın içeriği 
+aşağıdaki maddelerden herhangi birine uymak zorundadır. Eğer stajın içeriği bu konulardan 
+hiç birine uymuyor ise bunun için Bölüm Staj Komisyonunun onayı gerekir. 
+✓ Bilgisayar Organizasyonu, Bilgisayar Mimarileri 
+✓ Entegre Devre tasarımları ve imalatı, VLSI 
+✓ VHDL, SystemC, Verilog vb. 
+✓ Gömülü sistem tasarımı ve uygulamaları. 
+✓ Mikro-denetleyiciler, mikro-işlemciler 
+✓ Endüstriyel Otomasyon sistemleri, PLC 
+✓ Robotik uygulamalar 
+✓ İz-yüz-parmak-göz-lastik tanıma sistemleri 
+✓ Otomobil, otobüs vb. araç özellik kontrolleri (mesafe, fren, ıslak yol, klima) 
+✓ Veri iletişimi, Bilgisayar Ağları, Ağ Güvenliği 
+✓ Fabrika cihaz takip-kontrol sistemleri 
+✓ Kamera takip, radar, bilgisayarlı güvenlik sistemleri 
+✓ Araç takip-kontrol sistemleri 
+✓ Tıp-telefon-ticari-endüstri-askeri alanlarda sayısal işaret işleme 
+✓ Bilgisayar donanım performans testleri 
+✓ Cep ve mobil sistem teknolojileri 
+✓ Monitör, dokunmatik ekranlar, LCD TV, plazma TV 
+✓ Siber Güvenlik 
+ 
+2. 
+STAJ YERLERİ İÇİN ÖNGÖRÜLEN KRİTERLER 
+2.1. Stajların dördüncü ve altıncı yarıyıl sonunda olmak üzere iki ayrı dönemde ve iki farklı 
+kuruluşta yapılması tavsiye olunur. Dördüncü yarıyılını tamamlamış olan yani beşinci 
+yarıyıldan ders almaya hak kazanan öğrenciler takip eden yaz döneminde ancak bir staj 
+yapabilirler. Altıncı yarıyılını tamamlayan yani yedinci yarıyıldan ders almaya hak kazanan 
+öğrenciler ise Bölüm Staj Komisyonu’nun onaylaması halinde iki stajlarını da aynı yaz 
+döneminde yapabilirler. 
+2.2. Stajların yapılma sırası önemli değildir. Öğrenci dilediği staja öncelik verebilir. 
+2.3. Bir iş yerinde staj yapılabilmesi için işyerinde stajyeri denetlemek üzere ilgili bir mühendislik 
+bölümünden (bilgisayar, elektrik, elektronik, endüstri, mekatronik) mezun ve en az lisans 
+derecesine sahip çalışan(lar)ın olması zorunludur. Yukarıda belirtilen mühendislik alanlarının 
+dışındaki bölümler için komisyon onayı alınmalıdır. 
+2.4. Bir işyerinde staj yapılıp yapılamayacağı Bölüm Staj Komisyonu tarafından belirlenir. Bu 
+nedenle öğrenciler Staj Kabul Formlarını iş yerine onaylatmadan önce staj yapacakları yer ile 
+ilgili Bölüm Staj Komisyonu’nun sözlü olarak onayını almalıdırlar. 
+2.5. Öğrencilerin kendi çabalarıyla, özellikle ileride çalışmayı düşündükleri kurumlarda staj yeri 
+bulmaları önerilmektedir. 
+2.6. Bazı kurumlar, staj yaptırmak üzere bölümümüzün öğrencilerine kontenjan ayırmaktadırlar. 
+Bu iş yerleri ve hangi özellikte stajyerler istedikleri bölüm web sayfasında veya bölüm 
+
+
+Son Güncelleme Tarihi: 29.07.2024 
+Bölüm Staj Komisyonu 
+3 
+ 
+ 
+panolarında ilan edilmektedir. Ancak bu kurumların sağladığı yerler tüm öğrencilerimiz için 
+yeterli olmamaktadır. 
+2.7. Öğrenciler yurt dışında kendi imkânları ile buldukları yerlerde Bölüm Staj Komisyonu’nun 
+onayını alarak veya Erasmus Staj Hareketliliğinin sağladığı kontenjanlar ile yurt dışında staj 
+yapabilirler. Staj Esaslarında belirtilen tüm kurallar bu stajlar için de geçerlidir. . 
+2.8. Bölüm Staj Komisyonu’nun gerektiğinde staj yerlerinde öğrencilerin çalışmalarını denetleme 
+hakkı saklıdır. 
+ 
+3. 
+STAJ DEFTERLERİNİN DOLDURULMASI 
+3.1. Staj defteri, yazı ve resim kurallarına uygun şekilde özgün cümlelerle el yazısı ile doldurulur. 
+3.2. Staj defterleri, yurt içinde yapılan stajlarda Türkçe, yurt dışında yapılan stajlarda ise İngilizce 
+olarak doldurulur. Yurt dışında yapılan stajlarda defter İngilizceden başka bir dil ile 
+doldurulmuş ise Türkçe çevirisi de eklenmelidir. 
+3.3. Staj defteri, günlük yapılan işler temel alınarak yazılabileceği gibi (her gün yapılan işler ayrı 
+ayrı yazılır), bir işin tamamı temel alınarak da yazılabilir (staj boyunca yapılmış olan işler ayrı 
+ayrı anlatılır). 
+3.4. Staj defterlerinde pratik olarak gerçekleştirilmiş olan işlerin anlatımına ağırlık verilmeli, o işin 
+anlaşılması için gerekli olan teorik bilgilere sadece kısaca değinilmelidir. 
+3.5. Staj defterinin ilk bir veya iki sayfası staj çalışmasının yapıldığı işletmenin tanıtımı, 
+organizasyon yapısı, aktiviteleri, sektör içindeki yeri, birimleri, staj yapılan birimde çalışan 
+teknik personel durumu hakkında kısa bilgi verilir. Tanıtım sayfalarından sonra, staj süresince 
+yapılan işler ve ilgili temek bilgiler, kullanılan cihazlar ve özellikleri, yapılan testler ve ölçümler 
+ve katkı verilen çalışmalar özetlenir. Defterin son sayfasında, staj çalışmasının öğrenciye 
+kazandırdığı bilgi ve deneyim açıklanır. Ayrıca, staj sırasında varsa karşılaşılan zorluklara 
+değinilir. 
+3.6. Staj defterinin doldurulması sırasında sayfa sayılarının alt veya üst sınırları yoktur. Defter, 
+yapılan çalışmanın stajın amaçlarına uygun olarak yapıldığını gösterebilecek nitelikte 
+doldurulmalıdır. 
+3.7. Staj defterine ilave olarak verilmek istenen diğer bölümler (program kodu, grafik, resim, vb.) 
+ek dosya olarak verilebilir. 
+3.8. “Staj Değerlendirme Formu (SDF)” staj bitiminde işletme tarafından doldurulur ve mühürlü 
+olarak onaylanır. Onaylayan işletme yetkilisinin adı, mühendislik ünvanı (Örn: Bilgisayar Müh.), 
+görevi açıkça belirtilir. Staj Değerlendirme Formu öğrenci tarafından yine defter yükleme 
+tarihleri içerisinde sisteme yüklenir. Staj defterlerinin değerlendirilebilmesi için SDF’nin 
+mutlaka sisteme yüklenmiş olması gerekir. Belgenin posta vb. yollar ile fiziksel olarak 
+komisyona iletilmesi gibi bir durum söz konusu değildir. 
+3.9. Staj defterinin resmiyet kazanması için aşağıdaki tüm işlemler eksiksiz yapılmış olmalıdır: 
+✓ Staj defterinin ilk sayfasında yer alan staj yapan öğrenciye ait resim güncel olmalıdır. 
+✓ Defterin ilk sayfasında, iş veren veya yetkilisinin ad, soyad, imza ve kaşesi tam olmalıdır 
+3.10. Defterin her sayfasında “Yapılan İş” ve “Tarih” alanları doldurulmalı, stajı yaptıran (işi veren ve 
+takip eden) yetkili kişi tarafından imzalanmalıdır. Bu kişi, konuyla ilgili bir bölümden 
+(bilgisayar, elektrik, elektronik, endüstri, mekatronik) mezun ve en az lisans derecesine sahip 
+
+
+Son Güncelleme Tarihi: 29.07.2024 
+Bölüm Staj Komisyonu 
+4 
+ 
+ 
+olmalıdır. Yukarıda belirtilen mühendislik alanlarının dışındaki bölümler için komisyon onayı 
+alınmalıdır. 
+✓ Defterin son sayfası ise kurumun bölüm müdürü tarafından da imzalanmalı ve 
+mühürlenmelidir (Stajı yaptıran kişi ile bölüm müdürü aynı kişi olabilir). 
+✓ Staj defterine ilave olarak verilmek istenen diğer bölümler (program kodu, grafik, resim, vb.) 
+ek dosya olarak verilebilir. Ek dosyaya ait tüm sayfalar da stajı kontrol eden kişi tarafından 
+imzalanır ve son sayfası mühürlenir. 
+ 
+4. 
+STAJ ÇALIŞMALARININ DEĞERLENDİRİLMESİ 
+4.1. Staj defterleri, staj bitiminden sonra 10 iş günü süre içerisinde staj takip sistemine 
+(staj.sabis.sakarya.edu.tr) yüklenmesi gerekmektedir. Aksi takdirde defter değerlendirmeye 
+alınmayacaktır. 
+4.2. İşletme tarafından doldurulan Staj Değerlendirme Formunda bulunan değerlendirme puanları 
+ile birlikte staj komisyonu tarafından yapılan inceleme neticesinde öğrencinin staj notu verilir. 
+4.3. Öğrencilerden teslim alınan staj defterleri en az beş yıl boyunca staj arşivinde saklanır. 
+4.4. ÇAP yapan öğrenciler, ÇAP yaptıkları diğer bölümde kabul olan staj(lar)ının içeriği bölümümüz 
+YAZILIM ve DONANIM staj içeriklerinden bir tanesine uyması ve bu sürenin en az dört haftayı 
+doldurması halinde ilgili stajdan muaf olabilirler. Bunun için öğrenciler her akademik yılın ilk 
+dört haftası içerisinde aşağıdaki bilgi ve belgeleri içeren dilekçe ile bölüm sekreterliğine 
+başvururlar: 
+✓ Öğrencinin ÇAP yaptığı diğer bölümde kabul olan staj defterlerinin fotokopisi ve ilgili 
+stajlarının kabul olduğunu gösteren resmi evrak (ÇAP yapılan bölümün 
+staj 
+komisyonundan temin edilebilir) 
+✓ Öğrencinin ÇAP yaptığı diğer bölümde kabul olan staj içeriğinin YAZILIM ve DONANIM 
+stajlarının içeriklerinden hangisi ile örtüştüğü 
+✓ Staj derslerinin hangisinden muaf olmak istedikleri 
+4.5. Yatay/Dikey geçişle bölümümüze gelen öğrencilerin önceki stajları 4 haftayı doldurmak üzere 
+Bölüm Staj Komisyonu tarafından onaylanması halinde staj derslerinden en fazla bir 
+tanesinden muaf olabilirler. Bunun için öğrenciler her akademik yılın ilk dört haftası içerisinde 
+aşağıdaki bilgi ve belgeleri içeren dilekçe ile bölüm sekreterliğine başvururlar: 
+✓ Geçiş yaptığı üniversitenin transkriptinde yaptığı staj(lar) gözüküyor ise geçiş yaptığı 
+üniversitenin transkripti 
+✓ Geçiş yaptığı üniversitenin transkriptinde yaptığı staj(lar) gözükmüyor ise yaptığı stajları, 
+tarihleri, sürelerini ve hangi işletmelerde yapıldığını gösteren ve geçiş 
+yaptığı 
+üniversiteden alınmış resmi evrak  (imzalı ve mühürlü) 
+✓ Staj derslerinin hangisinden muaf olmak istedikleri 
+4.6. Stajlar aşağıdaki dört konuya bakılarak YT olur/olmaz 
+✓ Stajın içeriğinin yapılan staj türüne uygunluğu (bkz. Madde 1.3 ve 1.4) 
+✓ Staj defter düzeni (imza, mühür, giriş, gelişme, sonuç, özgün cümleler, ek dosyalar, vs.) 
+✓ mülStaj Değerlendirme Formu 
+✓ Staj Değerlendirmesi 
+ 
+
+
+Son Güncelleme Tarihi: 29.07.2024 
+Bölüm Staj Komisyonu 
+5 
+ 
+ 
+5. 
+STAJ NOTLARININ GİRİLMESİ 
+5.1. Sisteme yüklenen staj defterleri, staj komisyonu tarafından staj defterinin sisteme yüklendiği 
+tarihten itibaren 20 iş günü içerisinde sisteme yüklenen defter üzerinden değerlendirilir. 
+5.2. Stajını tamamlayan öğrenci, STAJ I dersini staj bitimini takip eden akademik yılın 6. yarıyılında, 
+Staj II dersini ise staj bitimini takip eden akademik yılın 7. yarıyılında seçer. 
+5.3. Öğrenci değişim programları ile (Mevlana, Erasmus, Farabi, vs.) eğitim-öğretim amacı ile kısa 
+süreli olarak başka bir üniversiteye giden ve öğrencinin gittiği yarıyıl Staj I/Staj II derslerinin 
+seçilmesi gereken yarıyıllar ile çakışıyor ise staj yaparken aşağıdaki koşullara dikkat 
+edilmelidir: 
+✓ Staj Defterleri ve Staj Değerlendirme Formu, üniversitemizin Fakülte Staj Yönergesi ve 
+Bölüm Staj Esaslarına uygun olarak hazırlanır. 
+✓ Öğrenciler Staj I/Staj II derslerini ilgili dönemde yine üniversitemizden seçer.

@@ -1,0 +1,182 @@
+SAKARYA ÜNİVERSİTESİ BİLGİSAYAR VE 
+BİLİŞİM BİLİMLERİ FAKÜLTESİ ZORUNLU 
+İŞYERİ STAJI YÖNERGESİ 
+       ( Senatonun 01.07.2024 tarihli 681 sayılı ve “9” no’ lu kararı ile güncellenmiştir.) 
+BİRİNCİ BÖLÜM 
+AMAÇ, KAPSAM, DAYANAK VE TANIMLAR 
+ 
+I- AMAÇ : Bu Yönerge; Sakarya Üniversitesi Lisans ve Ön lisans Eğitim-Öğretim ve Sınav 
+Yönetmeliğinin ilgili maddeleri uyarınca, Bilgisayar ve Bilişim Bilimleri Fakültesine bağlı lisans 
+programlarında öğrenim gören öğrencilerinin teorik bilgilerini pratikte pekiştirmek amacıyla 
+yapmak zorunda oldukları uygulama çalışmalarında, uyulması gereken ortak ilkeleri 
+belirlemektir. 
+ 
+II- KAPSAM : Bu Yönerge; Bilgisayar ve Bilişim Bilimleri Fakültesine bağlı lisans 
+programlarında öğrenim gören öğrencilerinin yurt içi ve yurt dışındaki işyerinde yapacakları 
+stajlarla ilgili faaliyet ve esasları kapsar. 
+ 
+III. DAYANAK : Bu yönerge, 2547 sayılı Yükseköğretim Kanunu, 5510 sayılı kanunun 5/b, 
+87/e  maddeleri, 3308 Sayılı Mesleki Eğitim Kanunu,  Sosyal Sigorta işlemleri yönetmeliği 11/6. 
+Maddesi ve Sakarya Üniversitesi Lisans ve Ön lisans Eğitim-Öğretim ve Sınav Yönetmeliği 
+hükümlerine göre hazırlanmıştır. 
+ 
+IV. TANIMLAR :Bu yönergede geçen: 
+a) Üniversite 
+: Sakarya Üniversitesini, 
+b) Fakülte 
+: Bilgisayar ve Bilişim Bilimleri Fakültesi, 
+c) Stajyer 
+: Staj yapan öğrenciyi, 
+d) Bölüm 
+: İlgili bölümleri, 
+e) Staj Komisyonu 
+: İlgili bölümlerde staj işlemlerini yürüten komisyonu, 
+f) Staj yeri/iş yeri 
+: Öğrencinin staj yaptığı yurt içi veya yurt dışı kurum / kuruluşu 
+g) Staj takip sistemi : staj.sabis.sakarya.edu.tr internet adresinde bulunan sistemi  
+ifade eder. 
+ 
+İKİNCİ BÖLÜM  
+GENEL İLKELER 
+ 
+STAJ ÇALIŞMALARININ ZORUNLULUĞU : 
+Madde-1  :  Her öğrenci, pratik çalışma deneyimi kazanmak ve uygulama yeteneklerini 
+geliştirmek amacıyla Sakarya Üniversitesi Lisans ve Ön lisans Eğitim-Öğretim ve Sınav 
+Yönetmeliği’ne göre mezun olabilmek için bu yönerge ile bölüm staj uygulama esasları 
+hükümleri uyarınca yapılması gereken stajları başarı ile tamamlamak zorundadır. 
+ 
+FAKÜLTE STAJ KOMİSYONUNUN OLUŞTURULMASI VE GÖREVLERİ 
+Madde-2: Staj işlemleri Fakülte düzeyinde Fakülte Staj Komisyonu’nca düzenlenir. Fakülte Staj 
+Komisyonu, Fakülte Yönetim Kurulu’nca görevlendirilen 1 öğretim üyesi başkanlığında, Bölüm 
+Staj Komisyonu Başkanlarından oluşur. Görevlerinde Fakülte Dekanına karşı sorumludur. 
+Fakülte Staj Komisyonu’nun görev süresi 3 yıldır. 
+Komisyonun Görevleri 
+a) Fakülte Staj Esaslarının bölümlerce uyum içinde yürütülmesini sağlamak 
+b) Fakülte öğrencilerine çeşitli kurum ve kuruluşlarca tahsis edilen staj yerlerini ilan etmek, 
+yapılan başvuruları değerlendirmek ve bu yerlere öğrencilerin dağıtımını yapmak,
+
+
+c) Bölüm Staj Komisyonlarının yaptıkları staj değerlendirmelerine yapılacak itirazları 
+inceleyerek Fakülte Yönetim Kurulu’na sunulmak üzere karara bağlamak, 
+d) Fakülte genelinde stajlarla ilgili yönergede belirtilmeyen diğer problemlere çözüm bulmak. 
+ 
+BÖLÜM STAJ KOMİSYONUNUN OLUŞTURULMASI VE GÖREVLERİ 
+Madde-3  :  Bölüm  Staj  Komisyonu,  Bölüm  Başkanının  önerisi  üzerine  Fakülte  Yönetim 
+Kurulu’nca 3 yıl için görevlendirilen 1 başkan ve en az 2 üyeden oluşur. Üyeler tekrar 
+seçilebilirler. 
+Komisyonun Görevleri 
+a) Bölüm öğrencilerinin yapacağı tüm staj çalışmaları, bu Yönerge ve Bölüm Staj Uygulama 
+Esasları çerçevesi içinde Bölüm Staj Komisyonu’nca planlanır, uygulamaya konulur ve 
+denetlenir. Bölüm Staj Komisyonları her öğrencinin staj defterlerini inceleme ve/veya sözlü sınav 
+sonucunda yapılan stajın kabul ya da reddi konusunda karar verir. 
+b) Bölüm Staj Komisyonu, öğrencilerinin istenilen nitelikte staj yeri bulabilmelerini 
+kolaylaştırmak için iş yerleri nezdinde gerekli her türlü temas ve girişimde bulunur. Ancak uygun 
+staj yerlerinin bulunma yükümlülük ve sorumluluğu tümüyle öğrenciye aittir. Bulunan yerin 
+uygunluğu staj komisyonun onayı ile kesinlik kazanır. 
+c)  Her bölüm kendi gereksinimlerine uygun bir staj kılavuzu  hazırlar ve bölüm web sayfasından 
+ilan eder. Bu Kılavuzda; 
+- Stajların tanımı 
+- Stajların amacı ve beklentileri 
+- Her staj aşamasında uygun staj yerleri için öngörülen kriterler 
+- Staj yeri seçimi staj için başvuru ve bölüm onayı 
+- Staj defterinin biçimi yazım kuralları, içeriği onaylanması ve teslim süresi 
+- Staj çalışmasının işyerince değerlendirilmesi ve değerlendirme sonuçlarının bölüme 
+iletilmesi 
+- Yapılan stajın bölümce değerlendirilip not durum belgesine işlenmesi 
+Konuları tüm koşul ve kuralları ile açıklanır. Kılavuz ekinde Staj Kabul Formu Staj defteri ve 
+staj değerlendirme formu örnekleri yer alır. 
+ 
+STAJ SÜRESİ 
+Madde-4 : Bilgisayar ve Bilişim Bilimleri Fakültesi öğrencileri öğrenim süresi boyunca her 
+bölümün özelliklerine göre düzenlenen staj programlarına uygun olarak, kesintisiz olarak 
+20’şer günlük (iş günü) iki kısımdan oluşmak üzere, 40 iş günü (8 hafta) staj yapmak 
+zorundadırlar. Aynı işletmede stajların  tamamının  yapılması  Bölüm  Staj  Komisyonunca karara 
+bağlanır.  İlk stajın  yapılabilmesi için öğrencinin  kendi  bölümünün  programı çerçevesinde, en 
+az ilk dört yarıyılın tüm derslerini almış olması gerekir. 
+Madde-5 : Stajlar öğretim ve sınav dönemlerini kapsayan süreler dışında ve Fakülte Staj 
+Komisyonu  tarafından  belirlenen  tarihler  arasında  yapılır.  Özel durumlarda öğrenim yılı içinde 
+staj yapılabilmesi için öğrencinin 8 yarıyıllık öğrenimini tamamlaması gereklidir. 
+Madde-6 Olağanüstü hallerde toplam staj süreleri ve stajın yapılma şartları Fakülte Staj 
+Komisyonun gerekçeli önerileri üzerine Fakülte Yönetim Kurulu tarafından belirlenir. 
+ 
+STAJ YAPILACAK İŞYERLERİNİN BELİRLENMESİ 
+Madde-7 : Stajlar bölümlerin öngördüğü konularda ve belirlenen şartlarda resmi veya özel 
+kurumlarda yapılır. Ancak, herhangi bir kurumda staj yapabilmek için stajın yapıldığı konuda 
+uzman en az bir mühendisin o kurumda çalışıyor olması gerekir. 
+Madde-8 : Stajyer öğrencilerin bölümlerinin uygun gördüğü yerlerde staja başlayabilmeleri için 
+ilgili kurumun onaylayacağı ve staj tarihleri belirtilen Staj Kabul Formunun taranmış kopyası 
+Sabis Staj Sistemine(staj.sabis.sakarya.edu.tr) yüklenerek komisyon tarafından onaylanmalıdır. 
+Aksi halde öğrenciler stajlarına başlayamazlar ve sigorta işlemleri yapılamaz. Fakülte tarafından 
+her stajyer öğrenci için 5510 Sayılı Sosyal Sigortalar ve Genel Sağlık Sigortası Kanunu 
+kapsamında “İş Kazası ve Meslek Hastalığı Sigortası” yaptırılır. 
+
+
+ 
+İŞYERLERİNİN SORUMLULUĞU 
+Madde-9 : İş yeri yetkililerinin staj çalışmasına katılan stajyer öğrencileri mesleki pratiklerini 
+geliştirecek biçimde yönlendirmeleri beklenir. İş yerleri staj çalışmalarında İş Güvenliği 
+kurallarını uygulamak ve sağlamakla sorumludur. 
+ 
+STAJ YAPAN ÖĞRENCİLERİN SORUMLULUĞU 
+Madde-10 : Staj yapan her öğrenci staj yaptığı işyerinin çalışma ve güvenlik kurallarına, düzen 
+ve disiplinine uymak ve işyerinde kullandığı her türlü mekan, alet, malzeme, makine, araç ve 
+gereçleri özenle kullanmakla yükümlüdür. Bu yükümlülüklerinin yerine getirilmemesinden 
+doğacak her türlü sorumluluk öğrenciye aittir. Bu durumda olan öğrenci hakkında ayrıca 2547 
+Sayılı Yükseköğretim Kanunun54.maddesi gereğince öğrenci disiplin işlemi yapılır. 
+ 
+STAJ SÜRESİNCE YAPILACAK İŞLER 
+Madde-11  : Staj  defteri,  öğrencinin eğitim gördüğü bölümün eğitim verdiği dilde, yazı ve resim  
+kurallarına  uygun şekilde  özgün cümlelerle mürekkepli kalemle yazılır. Defterde bulunan 
+talimatlara uyulur ve bütün ilgili yerler doldurulur. Yurtdışında yapılan stajlara ait defterler 
+İngilizce doldurulabilir. Ancak bölümün eğitim verdiği dil dışında yazılan defterler için bölümün 
+eğitim verdiği dile çeviri yapılması gerekmektedir. Öğrenci staj defterinde, Bölüm Staj 
+Yönergesinde istenen bütün hususları, yönergede belirtilen sıraya göre açıklamak zorundadır. 
+Madde-12 : Öğrenci, staj defterlerini işyerinde, staj süresi içerisinde doldurur. Çalışma süresinin 
+sonunda, bütün sayfaların işyerindeki sorumlu mühendis tarafından imzalanması ve ilk ve son 
+sayfalarını işyeri yetkilisi tarafından onaylı ve mühürlü olması gerekmektedir. 
+ 
+STAJ ÇALIŞMALARININ DEĞERLENDİRİLMESİ 
+Madde-13 : Staj defterleri, staj bitiminden sonra 10 iş günü süre içerisinde staj takip sistemine 
+(staj.sabis.sakarya.edu.tr) yüklenmesi gerekmektedir. Aksi takdirde defter değerlendirmeye 
+alınmayacaktır. 
+Sisteme yüklenen staj defterleri, staj komisyonu tarafından staj defterinin sisteme yüklendiği 
+tarihten itibaren 20 iş günü içerisinde sisteme yüklenen defter üzerinden değerlendirilir. Ayrıca 
+sözlü değerlendirme yapılan bölümlerde, değerlendirme stajın yapıldığı dönemi takip eden 
+akademik yılın başlangıcından itibaren 10 iş günü içerisinde yapılabilir. Mezun durumdaki 
+öğrenciler için komisyon sözlü sınavı daha erken bir tarihte gerçekleştirebilir. 
+Madde-14 : “Staj Değerlendirme Formu (SDF)” staj bitiminde işletme tarafından doldurulur 
+ve kaşeli olarak onaylanır. Onaylayan işletme yetkilisinin adı, unvanı, görevi açıkça belirtilir. Staj 
+Değerlendirme Formu öğrenci tarafından yine defter yükleme tarihleri içerisinde sisteme 
+yüklenir. Staj defterlerinin değerlendirilebilmesi için SDF’nin mutlaka sisteme yüklenmiş olması 
+gerekir. Belgenin posta vb. yollar ile fiziksel olarak komisyona iletilmesi gibi bir durum söz 
+konusu değildir. 
+Madde-15 : İşletme tarafından doldurulan Staj Değerlendirme Formunda bulunan değerlendirme 
+puanları ile birlikte staj komisyonu tarafından yapılan inceleme neticesinde öğrencinin staj notu 
+verilir. 
+Madde-16 : Yapılan değerlendirmeler sonucunda stajı “Başarılı” olan öğrencilerin not durum 
+belgelerinde “YT” notuna dönüştürülür. “Başarısız-YZ” olan öğrenciler stajının tamamını tekrar 
+yapmak zorundadır. Değerlendirme sonuçları sisteme staj komisyonu tarafından girilir ve öğrenci 
+tarafından sistem üzerinden öğrenilebilir. 
+Madde-17 : Fakülteye yatay geçiş veya dikey geçiş yolu ile gelen öğrencilerin geldikleri Fakülte 
+veya Yüksekokulda yapmış oldukları stajın kabul edilmesi (en fazla 20 iş günü) ilgili Bölümün 
+İntibak Komisyonunun kararına bağlıdır. Yapılan Stajın kabul edilebilmesi için öğrencinin 
+yapılan stajın adı, yeri ve tarihini gösteren belge ile bölüm intibak komisyonuna başvurması 
+gerekmektedir. 
+
+
+Madde-18 : Öğrenci Erasmus Staj Hareketliliği kapsamında veya yurtdışında kendi imkanları ile 
+bulduğu işletmelerde staj yapabilir. Yurt dışı staj başvurularında Bölüm Staj komisyonunun onayı 
+gerekir. Yurt dışı stajları Bölüm Staj Uygulama Esasları ve bu yönerge hükümlerine göre 
+yapılmalıdır. 
+Madde-19 : Bölümler bu yönerge hükümlerine aykırı olmamak kaydı ile yürütülen eğitim ve 
+öğretim programının ihtiyaç ve özelliklerine cevap verilecek şekilde kendi staj uygulama 
+esaslarını belirler ve “Bölüm Staj Uygulama Esasları” şeklinde Fakülte Kurulu’nun onayına 
+sunarlar. 
+ 
+Yürürlük : 
+ 
+Madde-20 : Bu Yönerge Üniversite Senatosunca kabul edildiği tarihte yürürlüğe girer. 
+ 
+Yürütme : 
+ 
+Madde-21 : Bu yönerge hükümlerini, Bilgisayar ve Bilişim Bilimleri Fakültesi Dekanı yürütür.
