@@ -1,4 +1,4 @@
-# SAÜChat - Sakarya Üniversitesi Yönerge ve Yönetmelikler Bilgi Sistemi
+# SAUChat - Sakarya Üniversitesi Yönerge ve Yönetmelikler Bilgi Sistemi
 
 ## Proje Hakkında
 
