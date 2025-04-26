@@ -127,7 +127,43 @@ def query_vector_db(query: str,
         print(f"Sorgu sırasında hata oluştu: {str(e)}")
         return []
 
-def retrieve_relevant_context(query: str, db_path: str, top_k: int = 5) -> str:
+# def retrieve_relevant_context(query: str, db_path: str, top_k: int = 5) -> str:
+#     """
+#     Verilen sorguya en benzer içerikleri getirir ve tek bir metin olarak birleştirir.
+    
+#     Args:
+#         query (str): Kullanıcı sorusu/sorgusu
+#         db_path (str): Veritabanı klasör yolu
+#         top_k (int): Kaç sonuç getirileceği
+        
+#     Returns:
+#         str: Birleştirilmiş ve ilgili içeriklerden oluşan metin
+#     """
+#     try:
+#         # Veritabanını yükle
+#         index, documents, ids = load_vector_db(db_path)
+#         if not index:
+#             return "Veritabanı yüklenemedi."
+        
+#         # Sorgu yap
+#         results = query_vector_db(query, index, documents, ids, top_k=top_k)
+        
+#         if not results:
+#             return "Sorguya uygun sonuç bulunamadı."
+        
+#         # Sonuçları birleştir ve kaynaklarıyla birlikte formatla
+#         combined_text = ""
+#         for i, result in enumerate(results):
+#             source_info = f"Kaynak: {result['source']}" if result.get('source') else ""
+#             combined_text += f"\n\n--- BÖLÜM {i+1} {source_info} ---\n\n"
+#             combined_text += result["text"]
+        
+#         return combined_text
+    
+#     except Exception as e:
+#         return f"Hata oluştu: {str(e)}"
+
+def retrieve_relevant_context(query: str, db_path: str, top_k: int = 5, return_sources: bool = False) -> str:
     """
     Verilen sorguya en benzer içerikleri getirir ve tek bir metin olarak birleştirir.
     
@@ -135,33 +171,48 @@ def retrieve_relevant_context(query: str, db_path: str, top_k: int = 5) -> str:
         query (str): Kullanıcı sorusu/sorgusu
         db_path (str): Veritabanı klasör yolu
         top_k (int): Kaç sonuç getirileceği
+        return_sources (bool): Eğer True ise, kaynak bilgilerini de içeren bir sözlük döndürür
         
     Returns:
-        str: Birleştirilmiş ve ilgili içeriklerden oluşan metin
+        Union[str, Dict[str, Any]]: Birleştirilmiş metin veya metin ve kaynakları içeren sözlük
     """
     try:
         # Veritabanını yükle
         index, documents, ids = load_vector_db(db_path)
         if not index:
-            return "Veritabanı yüklenemedi."
+            return "Veritabanı yüklenemedi." if not return_sources else {"text": "Veritabanı yüklenemedi.", "sources": []}
         
         # Sorgu yap
         results = query_vector_db(query, index, documents, ids, top_k=top_k)
         
         if not results:
-            return "Sorguya uygun sonuç bulunamadı."
+            return "Sorguya uygun sonuç bulunamadı." if not return_sources else {"text": "Sorguya uygun sonuç bulunamadı.", "sources": []}
         
         # Sonuçları birleştir ve kaynaklarıyla birlikte formatla
         combined_text = ""
+        sources = []
+        
         for i, result in enumerate(results):
             source_info = f"Kaynak: {result['source']}" if result.get('source') else ""
+            if source_info and result.get('source') not in sources:
+                sources.append(result.get('source'))
+                
             combined_text += f"\n\n--- BÖLÜM {i+1} {source_info} ---\n\n"
             combined_text += result["text"]
+        
+        if return_sources:
+            return {
+                "text": combined_text,
+                "sources": sources
+            }
         
         return combined_text
     
     except Exception as e:
-        return f"Hata oluştu: {str(e)}"
+        error_msg = f"Hata oluştu: {str(e)}"
+        if return_sources:
+            return {"text": error_msg, "sources": []}
+        return error_msg
 
 def main():
     """
