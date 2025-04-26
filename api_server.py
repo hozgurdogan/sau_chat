@@ -58,7 +58,8 @@ async def startup_event():
     global llm_model
     
     # Model dosyası yolunu kontrol et
-    model_path = "D:/models/gguf/llama-3-GGUF/llama3-8B-trendyol-rag-merged-Q8_0.gguf"
+    # model_path = "D:/models/gguf/llama-3-GGUF/llama3-8B-trendyol-rag-merged-Q8_0.gguf"
+    model_path = "/content/drive/MyDrive/llama_chat/gguf/llama3-8B-trendyol-rag-merged-Q8_0.gguf"
     
     if not os.path.exists(model_path):
         print(f"UYARI: Model dosyası bulunamadı: {model_path}")
