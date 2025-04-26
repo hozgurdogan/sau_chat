@@ -225,6 +225,6 @@ if __name__ == "__main__":
     uvicorn.run(
         "api_server:app",
         host="0.0.0.0",  # Tüm IP adreslerinden erişime izin ver
-        port=8000,
+        port=5000,
         reload=True  # Geliştirme sırasında otomatik yeniden yükleme
     )
