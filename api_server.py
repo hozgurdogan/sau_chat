@@ -2,18 +2,26 @@
 
 import os
 import sys
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends,UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import Dict, Optional, List
 import uvicorn
 from llama_cpp import Llama
 
-# Kendi modülümüzü import et
+import tempfile
+import shutil
+import json
+
+# Kendi modüllerimizi import et
 try:
     from vector_db_helpers import retrieve_relevant_context
-except ImportError:
-    print("vector_db_helpers modülü bulunamadı. Lütfen modülün doğru konumda olduğundan emin olun.")
+    from pdf_text_extract import extract_text_from_pdf, save_text_to_file
+    from data_preprocess import process_text_file, convert_chunks_to_dict, clean_text, simple_chunk_text
+    from faiss_index_process import add_to_faiss_index, DEFAULT_MODEL as FAISS_MODEL
+except ImportError as e:
+    print(f"Gerekli modüller yüklenirken hata oluştu: {e}")
+    print("Lütfen pdf_text_extract, data_preprocess ve faiss_index_process modüllerinin doğru konumda olduğundan emin olun.")
     sys.exit(1)
 
 # FastAPI uygulaması oluştur
@@ -219,12 +227,81 @@ async def health_check():
         "message": "SAÜChat API çalışıyor",
         "llm_loaded": llm_model is not None
     }
+    
+# PDF yükleme ve işleme endpoint'i
+@app.post("/upload-pdf")
+async def upload_pdf(
+    file: UploadFile = File(..., description="İndekslenecek PDF dosyası"),
+    db_path: str = Depends(check_vector_db)
+):
+    """
+    Yüklenen PDF dosyasını işler ve vektör veritabanına ekler.
+
+    - **file**: Yüklenecek PDF dosyası.
+    """
+    if not file.filename.lower().endswith(".pdf"):
+        raise HTTPException(status_code=400, detail="Geçersiz dosya türü. Lütfen PDF dosyası yükleyin.")
+
+    # Geçici bir dizin oluştur
+    with tempfile.TemporaryDirectory() as temp_dir:
+        temp_pdf_path = os.path.join(temp_dir, file.filename)
+        temp_txt_path = os.path.join(temp_dir, f"{os.path.splitext(file.filename)[0]}.txt")
+        temp_chunks_path = os.path.join(temp_dir, "temp_processed_chunks.json")
+
+        try:
+            # 1. PDF dosyasını geçici olarak kaydet
+            with open(temp_pdf_path, "wb") as buffer:
+                shutil.copyfileobj(file.file, buffer)
+            print(f"PDF geçici olarak kaydedildi: {temp_pdf_path}")
+
+            # 2. PDF'den metin çıkar
+            extracted_text = extract_text_from_pdf(temp_pdf_path)
+            if not extracted_text:
+                raise HTTPException(status_code=500, detail="PDF dosyasından metin çıkarılamadı.")
+            print("PDF'den metin çıkarıldı.")
+
+            # 3. Metni temizle ve parçalara ayır (data_preprocess.py'deki mantığı kullanarak)
+            cleaned_text = clean_text(extracted_text)
+            chunks = simple_chunk_text(cleaned_text) # Varsayılan chunk_size ve overlap ile
+            if not chunks:
+                 raise HTTPException(status_code=500, detail="Metin parçalara ayrılamadı.")
+
+            chunk_dicts = convert_chunks_to_dict(chunks, file.filename) # Kaynak olarak orijinal dosya adını kullan
+            print(f"{len(chunk_dicts)} adet metin parçası oluşturuldu.")
+
+            # 4. Parçaları geçici JSON dosyasına kaydet
+            with open(temp_chunks_path, 'w', encoding='utf-8') as f:
+                json.dump(chunk_dicts, f, ensure_ascii=False, indent=2)
+            print(f"Parçalar geçici JSON'a kaydedildi: {temp_chunks_path}")
+
+            # 5. FAISS veritabanına ekle
+            print("FAISS veritabanına ekleme işlemi başlatılıyor...")
+            success = add_to_faiss_index(temp_chunks_path, db_path, model_name=FAISS_MODEL)
+
+            if not success:
+                raise HTTPException(status_code=500, detail="Veriler FAISS veritabanına eklenirken hata oluştu.")
+            print("Veriler FAISS veritabanına başarıyla eklendi.")
+
+            return {"message": f"'{file.filename}' başarıyla işlendi ve veritabanına eklendi.", "added_chunks": len(chunk_dicts)}
+
+        except HTTPException as http_exc:
+            # HTTPException'ları doğrudan yükselt
+            raise http_exc
+        except Exception as e:
+            print(f"PDF işleme hatası: {str(e)}")
+            raise HTTPException(status_code=500, detail=f"PDF işlenirken bir hata oluştu: {str(e)}")
+        finally:
+            # Geçici dosyaları temizle (hata olsa bile)
+             # shutil.rmtree(temp_dir) # with bloğu bunu otomatik yapar
+             print(f"Geçici dizin temizlendi: {temp_dir}")
+
 
 # Uygulamayı başlat (direkt olarak çalıştırılırsa)
 if __name__ == "__main__":
+    # API sunucusunun portunu 8000 olarak değiştiriyoruz, çakışmayı önlemek için
     uvicorn.run(
         "api_server:app",
-        host="0.0.0.0",  # Tüm IP adreslerinden erişime izin ver
-        port=5000,
-        reload=True  # Geliştirme sırasında otomatik yeniden yükleme
+        host="0.0.0.0",
+        port=8000, # Port 8000 olarak değiştirildi
+        reload=True
     )
