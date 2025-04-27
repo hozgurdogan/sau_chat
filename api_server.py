@@ -206,9 +206,10 @@ async def chat_endpoint(
     try:
         # 1. Vektör veritabanından ilgili bağlamı al
         print(f"Sorgu için ilgili bağlam aranıyor: '{query_data.query}' (top_k={query_data.top_k})")
+        # 'index' parametresini 'faiss_index' olarak değiştirin (veya vector_db_helpers'daki doğru parametre adıyla)
         context, sources = retrieve_relevant_context(
             query=query_data.query,
-            index=current_index,
+            faiss_index=current_index, # <--- Değişiklik burada: index -> faiss_index
             documents=current_documents,
             ids=current_ids,
             top_k=query_data.top_k,
@@ -217,7 +218,8 @@ async def chat_endpoint(
 
         print(f"Bulunan kaynaklar: {sources}")
 
-        # 2. LLM için prompt oluştur (api_server2.py'deki yapıya benzer)
+        # 2. LLM için prompt oluştur
+        # ... (rest of the function remains the same) ...
         if not context:
             print("İlgili bağlam bulunamadı.")
             # Bilgi bulunamadığında kullanılacak prompt
@@ -270,7 +272,8 @@ Cevap:"""
     except Exception as e:
         print(f"Sohbet işlenirken hata oluştu: {str(e)}")
         import traceback
-        traceback.print_exc()
+        traceback.print_exc() # Hatanın tam izini sunucu loglarına yazdır
+        # Hata mesajını daha spesifik hale getir
         raise HTTPException(status_code=500, detail=f"Sohbet işlenirken beklenmeyen bir hata oluştu: {str(e)}")
 
 
