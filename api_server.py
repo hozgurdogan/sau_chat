@@ -9,12 +9,12 @@ Ayrıca PDF dosyalarını yükleyip vektör veritabanına eklemek için bir endp
 import os
 import sys
 import json
-import argparse
+# import argparse # argparse kaldırıldı
 import uvicorn
 import tempfile
 import shutil
 from fastapi import FastAPI, HTTPException, Depends, UploadFile, File, Body
-from fastapi.middleware.cors import CORSMiddleware # CORS eklendi
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import List, Dict, Optional, Union, Any
 from contextlib import asynccontextmanager
@@ -38,20 +38,13 @@ except ImportError as e:
     print("Lütfen vector_db_helpers, pdf_text_extract, data_preprocess ve faiss_index_process modüllerinin doğru konumda olduğundan emin olun.")
     sys.exit(1)
 
-# --- Global Değişkenler ve Ayarlar ---
-# Model ve veritabanı yolları için argümanları işle
-parser = argparse.ArgumentParser(description="SAÜChat API Sunucusu")
-parser.add_argument("--model_path", type=str, default="D:\\models\\gguf\\llama-3-GGUF\\llama3-8B-trendyol-rag-merged-Q8_0.gguf",
-                    help="GGUF formatındaki LLaMA model dosyasının yolu")
-parser.add_argument("--db_path", type=str, default="vector_db",
-                    help="FAISS vektör veritabanının bulunduğu klasör")
-parser.add_argument("--n_gpu_layers", type=int, default=-1, # Varsayılan olarak tüm katmanları GPU'ya yükle
-                    help="GPU'ya yüklenecek katman sayısı (-1: tümü, 0: hiçbiri)")
-parser.add_argument("--n_ctx", type=int, default=4096, # Modelin bağlam penceresi
-                    help="Modelin maksimum bağlam penceresi boyutu")
-args = parser.parse_args()
+# --- Konfigürasyon Ayarları (Ortam Değişkenleri veya Varsayılanlar) ---
+MODEL_PATH = os.environ.get("MODEL_PATH", "D:\\models\\gguf\\llama-3-GGUF\\llama3-8B-trendyol-rag-merged-Q8_0.gguf")
+DB_PATH = os.environ.get("DB_PATH", "vector_db")
+N_GPU_LAYERS = int(os.environ.get("N_GPU_LAYERS", -1)) # Ortam değişkenleri string döner, int'e çevir
+N_CTX = int(os.environ.get("N_CTX", 4096)) # Ortam değişkenleri string döner, int'e çevir
 
-# Global model ve veritabanı nesneleri
+# --- Global Değişkenler ---
 llm: Optional[Llama] = None
 faiss_index: Optional[Any] = None
 documents: Optional[List[Dict[str, Any]]] = None
@@ -66,35 +59,35 @@ async def lifespan(app: FastAPI):
     global llm, faiss_index, documents, ids, is_llm_loaded, is_db_loaded
 
     # LLaMA modelini yükle
-    print(f"LLaMA modeli yükleniyor: {args.model_path}")
-    if not os.path.exists(args.model_path):
-        print(f"UYARI: Model dosyası bulunamadı: {args.model_path}")
+    print(f"LLaMA modeli yükleniyor: {MODEL_PATH}") # args.model_path -> MODEL_PATH
+    if not os.path.exists(MODEL_PATH): # args.model_path -> MODEL_PATH
+        print(f"UYARI: Model dosyası bulunamadı: {MODEL_PATH}") # args.model_path -> MODEL_PATH
         llm = None
         is_llm_loaded = False
     else:
         try:
             llm = Llama(
-                model_path=args.model_path,
-                n_ctx=args.n_ctx,
-                n_gpu_layers=args.n_gpu_layers,
-                verbose=True # Model yükleme detaylarını göster
+                model_path=MODEL_PATH, # args.model_path -> MODEL_PATH
+                n_ctx=N_CTX,           # args.n_ctx -> N_CTX
+                n_gpu_layers=N_GPU_LAYERS, # args.n_gpu_layers -> N_GPU_LAYERS
+                verbose=True
             )
             is_llm_loaded = True
             print("LLaMA modeli başarıyla yüklendi.")
         except Exception as e:
             print(f"LLaMA modeli yüklenirken hata oluştu: {e}")
-            llm = None # Hata durumunda None olarak bırak
+            llm = None
             is_llm_loaded = False
 
     # Vektör veritabanını yükle
-    print(f"Vektör veritabanı yükleniyor: {args.db_path}")
-    if not os.path.exists(args.db_path):
-         print(f"UYARI: Vektör veritabanı klasörü bulunamadı: {args.db_path}")
+    print(f"Vektör veritabanı yükleniyor: {DB_PATH}") # args.db_path -> DB_PATH
+    if not os.path.exists(DB_PATH): # args.db_path -> DB_PATH
+         print(f"UYARI: Vektör veritabanı klasörü bulunamadı: {DB_PATH}") # args.db_path -> DB_PATH
          faiss_index, documents, ids = None, None, None
          is_db_loaded = False
     else:
         try:
-            faiss_index, documents, ids = load_vector_db(args.db_path)
+            faiss_index, documents, ids = load_vector_db(DB_PATH) # args.db_path -> DB_PATH
             if faiss_index is not None and documents is not None and ids is not None:
                 is_db_loaded = True
                 print("Vektör veritabanı başarıyla yüklendi.")
@@ -106,9 +99,8 @@ async def lifespan(app: FastAPI):
             faiss_index, documents, ids = None, None, None
             is_db_loaded = False
 
-    yield # Uygulama çalışırken burada bekler
+    yield
 
-    # Uygulama kapanırken kaynakları serbest bırak
     print("API sunucusu kapatılıyor.")
     llm = None
     faiss_index = documents = ids = None
@@ -119,14 +111,14 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="SAÜChat API",
     description="Sakarya Üniversitesi Yönetmelik ve Yönergeleri için RAG tabanlı API",
-    version="1.1.0", # Sürüm güncellendi
-    lifespan=lifespan # Uygulama ömrü yöneticisini ekle
+    version="1.1.1", # Sürüm güncellendi
+    lifespan=lifespan
 )
 
-# CORS ayarları (api_server2.py'den alındı)
+# CORS ayarları
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Tüm kaynaklara izin ver (production'da sınırlandırılabilir)
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -147,15 +139,15 @@ def get_vector_db():
 
 def get_db_path():
     """Vektör veritabanı yolunu döndürür."""
-    # Bu sadece yolu döndürür, varlık kontrolü lifespan'da yapıldı.
-    return args.db_path
+    return DB_PATH # args.db_path -> DB_PATH
 
 # --- Pydantic Modelleri ---
 class ChatQuery(BaseModel):
-    query: str = Field(..., min_length=1, description="Kullanıcının sorduğu soru.") # min_length eklendi
+    query: str = Field(..., min_length=1, description="Kullanıcının sorduğu soru.")
     top_k: int = Field(3, ge=1, le=10, description="Vektör veritabanından alınacak en ilgili belge sayısı.")
     temperature: float = Field(0.1, ge=0.0, le=1.0, description="Modelin yanıt üretirken kullanacağı sıcaklık değeri (yaratıcılık).")
-    max_tokens: int = Field(512, ge=50, le=args.n_ctx, description="Modelin üreteceği maksimum token sayısı.")
+    # max_tokens için N_CTX kullanıldı
+    max_tokens: int = Field(512, ge=50, le=N_CTX, description="Modelin üreteceği maksimum token sayısı.")
 
 class ChatResponse(BaseModel):
     model_answer: str = Field(..., description="Modelin ürettiği yanıt.")
@@ -166,8 +158,8 @@ class HealthStatus(BaseModel):
     status: str
     llm_loaded: bool
     db_loaded: bool
-    model_path: Optional[str] = None # Opsiyonel yapıldı
-    db_path: Optional[str] = None # Opsiyonel yapıldı
+    model_path: Optional[str] = None
+    db_path: Optional[str] = None
 
 class UploadResponse(BaseModel):
     message: str
@@ -187,14 +179,19 @@ async def health_check():
     if not is_llm_loaded and not is_db_loaded:
         status_code = "error"
 
+    # MODEL_PATH ve DB_PATH kullanıldı
+    model_status_path = MODEL_PATH if os.path.exists(MODEL_PATH) else f"Bulunamadı: {MODEL_PATH}"
+    db_status_path = DB_PATH if os.path.exists(DB_PATH) else f"Bulunamadı: {DB_PATH}"
+
     return HealthStatus(
         status=status_code,
         llm_loaded=is_llm_loaded,
         db_loaded=is_db_loaded,
-        model_path=args.model_path if os.path.exists(args.model_path) else f"Bulunamadı: {args.model_path}",
-        db_path=args.db_path if os.path.exists(args.db_path) else f"Bulunamadı: {args.db_path}"
+        model_path=model_status_path,
+        db_path=db_status_path
     )
 
+# ... ( /chat ve /upload-pdf endpointleri aynı kalabilir, çünkü artık global konfigürasyon değişkenlerini kullanıyorlar) ...
 @app.post("/chat", response_model=ChatResponse, summary="Sohbet Sorgusu")
 async def chat_endpoint(
     query_data: ChatQuery,
@@ -353,6 +350,7 @@ async def upload_pdf(
             print(f"Toplam {len(all_chunk_dicts)} parça geçici JSON'a kaydedildi: {temp_chunks_path}")
 
             print("FAISS veritabanına ekleme işlemi başlatılıyor...")
+            # db_path burada Depends'den geliyor
             success = add_to_faiss_index(temp_chunks_path, db_path, model_name=FAISS_MODEL)
 
             if not success:
@@ -363,6 +361,7 @@ async def upload_pdf(
 
             print("Vektör veritabanı belleğe yeniden yükleniyor...")
             try:
+                # db_path burada Depends'den geliyor
                 faiss_index, documents, ids = load_vector_db(db_path)
                 if faiss_index is not None and documents is not None and ids is not None:
                     is_db_loaded = True # Durumu güncelle
@@ -399,6 +398,23 @@ async def upload_pdf(
 
 # --- Uygulamayı Başlat ---
 if __name__ == "__main__":
+    # argparse kodunu buraya ekleyebiliriz, eğer doğrudan çalıştırma senaryosu için
+    # komut satırı argümanları hala isteniyorsa, ancak uvicorn'u etkilemez.
+    # Örneğin:
+    # local_parser = argparse.ArgumentParser(description="SAÜChat API Sunucusu (Doğrudan Çalıştırma)")
+    # local_parser.add_argument("--host", default="0.0.0.0", help="Sunucu adresi")
+    # local_parser.add_argument("--port", type=int, default=8000, help="Sunucu portu")
+    # local_parser.add_argument("--reload", action="store_true", help="Otomatik yeniden başlatmayı etkinleştir")
+    # local_args = local_parser.parse_args()
+    #
+    # uvicorn.run(
+    #     "api_server:app",
+    #     host=local_args.host,
+    #     port=local_args.port,
+    #     reload=local_args.reload,
+    #     log_level="info"
+    # )
+    # Şimdilik basit tutalım:
     uvicorn.run(
         "api_server:app",
         host="0.0.0.0",
