@@ -28,7 +28,8 @@ except ImportError:
 
 # Kendi modüllerimizi import et
 try:
-    from vector_db_helpers import retrieve_relevant_context, load_vector_db, check_vector_db_exists
+    # check_vector_db_exists kaldırıldı, çünkü vector_db_helpers.py içinde tanımlı değil ve kullanılmıyor gibi görünüyor.
+    from vector_db_helpers import retrieve_relevant_context, load_vector_db
     from pdf_text_extract import extract_text_from_pdf
     from data_preprocess import convert_chunks_to_dict, clean_text, simple_chunk_text
     from faiss_index_process import add_to_faiss_index, DEFAULT_MODEL as FAISS_MODEL
