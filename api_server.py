@@ -39,7 +39,7 @@ except ImportError as e:
     sys.exit(1)
 
 # --- Konfigürasyon Ayarları (Ortam Değişkenleri veya Varsayılanlar) ---
-MODEL_PATH = os.environ.get("MODEL_PATH", "D:\\models\\gguf\\llama-3-GGUF\\llama3-8B-trendyol-rag-merged-Q8_0.gguf")
+MODEL_PATH = os.environ.get("MODEL_PATH", "/content/drive/MyDrive/llama_chat/gguf/llama3-8B-trendyol-rag-merged-Q8_0.gguf")
 DB_PATH = os.environ.get("DB_PATH", "vector_db")
 N_GPU_LAYERS = int(os.environ.get("N_GPU_LAYERS", -1)) # Ortam değişkenleri string döner, int'e çevir
 N_CTX = int(os.environ.get("N_CTX", 4096)) # Ortam değişkenleri string döner, int'e çevir
