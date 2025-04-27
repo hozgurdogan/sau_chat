@@ -196,43 +196,47 @@ async def health_check():
 async def chat_endpoint(
     query_data: ChatQuery,
     current_llm: Llama = Depends(get_llm),
-    db_components: tuple = Depends(get_vector_db) # DB bileşenlerini al
+    # db_components bağımlılığı kaldırıldı
+    db_path: str = Depends(get_db_path) # Sadece db_path bağımlılığı kullanılıyor
 ):
     """
     Kullanıcı sorgusunu alır, ilgili bağlamı bulur ve LLM ile yanıt üretir.
     """
-    current_index, current_documents, current_ids = db_components
+    # current_index, current_documents, current_ids artık burada tanımlanmıyor
 
     try:
-        # 1. Vektör veritabanından ilgili bağlamı al
+        # 1. Vektör veritabanından ilgili bağlamı ve kaynakları al
         print(f"Sorgu için ilgili bağlam aranıyor: '{query_data.query}' (top_k={query_data.top_k})")
-        # 'index' parametresini 'faiss_index' olarak değiştirin (veya vector_db_helpers'daki doğru parametre adıyla)
-        context, sources = retrieve_relevant_context(
+
+        # retrieve_relevant_context fonksiyonunu doğru parametrelerle çağır
+        # index, documents, ids parametreleri kaldırıldı.
+        # return_sources=True olarak ayarlandı, çünkü fonksiyon bu şekilde çağrıldığında
+        # bir sözlük {'text': ..., 'sources': ...} döndürüyor.
+        retrieval_result = retrieve_relevant_context(
             query=query_data.query,
-            faiss_index=current_index, # <--- Değişiklik burada: index -> faiss_index
-            documents=current_documents,
-            ids=current_ids,
+            db_path=db_path, # Fonksiyon db_path'i kullanarak veritabanını kendi yükleyecek
             top_k=query_data.top_k,
-            include_sources=True # Kaynakları da al
+            return_sources=True # Hem metni hem kaynakları almak için True yap
         )
 
-        print(f"Bulunan kaynaklar: {sources}")
+        # Fonksiyondan dönen sözlüğü işle
+        context = retrieval_result.get("text", "Bağlam alınamadı.")
+        sources = retrieval_result.get("sources", [])
 
-        # 2. LLM için prompt oluştur
-        # ... (rest of the function remains the same) ...
-        if not context:
-            print("İlgili bağlam bulunamadı.")
-            # Bilgi bulunamadığında kullanılacak prompt
-            prompt = f"""Sen Sakarya Üniversitesi'nin yardımsever bir bilgi asistanısın.
+        # Hata mesajı kontrolü (fonksiyon hata durumunda metin içinde dönebilir)
+        if "Hata oluştu:" in context or "Veritabanı yüklenemedi" in context or "Sorguya uygun sonuç bulunamadı" in context:
+             print(f"Bağlam alınırken hata veya sonuç yok: {context}")
+             # Eğer hata varsa veya sonuç yoksa, LLM'e bunu bildirelim
+             prompt = f"""Sen Sakarya Üniversitesi'nin yardımsever bir bilgi asistanısın.
 
 Kullanıcı Sorusu: {query_data.query}
 
-Bu konuda veritabanımda maalesef yeterli bilgi bulunmuyor. Kullanıcıya bu durumu nazikçe açıkla.
+Bu konuda veritabanımda maalesef yeterli bilgi bulunmuyor veya bilgi alınırken bir sorun oluştu. Kullanıcıya bu durumu nazikçe açıkla.
 
 Cevap:"""
-            context = "İlgili bilgi bulunamadı." # Yanıtta döndürmek için
-            sources = [] # Kaynak yok
+             sources = [] # Kaynak yok
         else:
+            print(f"Bulunan kaynaklar: {sources}")
             print(f"Oluşturulan bağlam:\n{context[:500]}...") # Bağlamın başını yazdır
             # Bilgi bulunduğunda kullanılacak prompt
             prompt = f"""<CONTEXT>
@@ -253,8 +257,8 @@ Cevap:"""
             prompt,
             max_tokens=query_data.max_tokens,
             temperature=query_data.temperature,
-            stop=["Kullanıcı Sorusu:", "\n\n", "---", "<CONTEXT>"], # Durdurma kelimeleri güncellendi
-            echo=False # Prompt'u yanıtta tekrarlama
+            stop=["Kullanıcı Sorusu:", "\n\n", "---", "<CONTEXT>"],
+            echo=False
         )
 
         model_answer = output['choices'][0]['text'].strip()
@@ -262,18 +266,16 @@ Cevap:"""
 
         return ChatResponse(
             model_answer=model_answer,
-            retrieved_context=context, # Bulunamasa bile "İlgili bilgi bulunamadı." döner
+            retrieved_context=context, # Alınan bağlamı veya hata mesajını döndür
             sources=sources
         )
 
     except HTTPException as http_exc:
-        # Bağımlılık hatalarını (model/db yüklenemedi) tekrar yükselt
         raise http_exc
     except Exception as e:
         print(f"Sohbet işlenirken hata oluştu: {str(e)}")
         import traceback
-        traceback.print_exc() # Hatanın tam izini sunucu loglarına yazdır
-        # Hata mesajını daha spesifik hale getir
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Sohbet işlenirken beklenmeyen bir hata oluştu: {str(e)}")
 
 
