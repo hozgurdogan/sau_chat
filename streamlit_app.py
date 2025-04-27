@@ -1,325 +1,162 @@
-# import streamlit as st
-# import requests
-# import json
-# import os
-# import sys
-# from typing import Dict, Any
-
-# # Sayfa yapılandırması
-# st.set_page_config(
-#     page_title="SAÜChat - Sakarya Üniversitesi Yönetmelik Asistanı",
-#     page_icon="🎓",
-#     layout="wide"
-# )
-
-# # API URL (yerel veya uzak sunucu için ayarlanabilir)
-# API_URL = "http://localhost:8000/chat"
-
-# def send_query_to_api(query: str, top_k: int = 3, temperature: float = 0.1, max_tokens: int = 512) -> Dict[str, Any]:
-#     """
-#     Kullanıcı sorgusunu API'ye gönderir ve sonucu alır
-    
-#     Args:
-#         query: Kullanıcının sorgusu
-#         top_k: Döndürülecek belge sayısı
-#         temperature: Model yaratıcılık seviyesi
-#         max_tokens: Maksimum yanıt uzunluğu
-        
-#     Returns:
-#         API yanıtı (retrieved_context, model_answer ve sources içeren sözlük)
-#     """
-#     try:
-#         payload = {
-#             "query": query,
-#             "top_k": top_k,
-#             "temperature": temperature,
-#             "max_tokens": max_tokens
-#         }
-#         response = requests.post(API_URL, json=payload)
-        
-#         # HTTP hatalarını kontrol et
-#         if response.status_code != 200:
-#             error_detail = response.json().get("detail", "Bilinmeyen hata")
-#             return {
-#                 "error": f"API Hatası ({response.status_code}): {error_detail}",
-#                 "status": "error"
-#             }
-            
-#         return response.json()
-    
-#     except requests.RequestException as e:
-#         return {
-#             "error": f"Sunucu bağlantı hatası: {str(e)}. API sunucusunun çalıştığından emin olun.",
-#             "status": "error"
-#         }
-#     except Exception as e:
-#         return {
-#             "error": f"Beklenmeyen hata: {str(e)}",
-#             "status": "error"
-#         }
-
-# # Uygulama başlığı ve açıklaması
-# st.title("🎓 SAÜChat: Yönetmelik Asistanı")
-# st.markdown("""
-# Bu uygulama, Sakarya Üniversitesi'nin resmi yönerge ve yönetmelikleri hakkında bilgi almanızı sağlar.
-# Sorularınızı Türkçe olarak sorun, cevapları alın!
-# """)
-
-# # Sidebar bilgileri ve ayarlar
-# with st.sidebar:
-#     st.image("https://www.sakarya.edu.tr/img/logo_tr.png", width=200)
-#     st.title("SAÜChat")
-#     st.info("""
-#     Bu uygulama, Sakarya Üniversitesi'nin resmi yönerge ve yönetmeliklerinden bilgileri almanızı sağlar.
-#     LLaMA 3 tabanlı yapay zeka destekli bir bilgi erişim sistemidir.
-#     """)
-    
-#     # Ayarlar
-#     st.subheader("Ayarlar")
-#     top_k = st.slider("Kaynak belge sayısı", min_value=1, max_value=10, value=3, step=1)
-#     temperature = st.slider("Yaratıcılık seviyesi", min_value=0.0, max_value=1.0, value=0.1, step=0.1)
-#     max_tokens = st.slider("Maksimum yanıt uzunluğu", min_value=100, max_value=2000, value=512, step=50)
-    
-#     # API bağlantı testi
-#     if st.button("API Bağlantısını Test Et"):
-#         try:
-#             health_check = requests.get("http://localhost:8000/health")
-#             if health_check.status_code == 200:
-#                 data = health_check.json()
-#                 llm_status = "✅ LLM modeli yüklü" if data.get("llm_loaded", False) else "❌ LLM modeli yüklü değil"
-#                 st.success(f"✅ API sunucusu aktif!\n\n{llm_status}")
-#             else:
-#                 st.error("❌ API sunucusu yanıt veriyor ancak hata döndürüyor.")
-#         except:
-#             st.error("❌ API sunucusuna bağlanılamıyor. Sunucunun çalıştığından emin olun.")
-
-# # Oturum durumunu başlat
-# if "messages" not in st.session_state:
-#     st.session_state.messages = []
-
-# # Geçmiş mesajları göster
-# for message in st.session_state.messages:
-#     # Kullanıcı mesajları
-#     if message["role"] == "user":
-#         with st.chat_message("user"):
-#             st.markdown(message["content"])
-#     # Asistan mesajları
-#     elif message["role"] == "assistant":
-#         with st.chat_message("assistant"):
-#             if "error" in message:
-#                 st.error(message["error"])
-#             else:
-#                 # Asıl yanıtı göster
-#                 st.markdown(message["model_answer"])
-#                 # İlgili bağlam bilgilerini göster
-#                 with st.expander("İlgili yönetmelik bilgileri"):
-#                     st.markdown(message["retrieved_context"])
-                
-#                 # Kaynak bilgileri varsa göster
-#                 if message.get("sources") and len(message["sources"]) > 0:
-#                     with st.expander("Bilgi kaynakları"):
-#                         for source in message["sources"]:
-#                             st.info(source)
-
-# # Kullanıcı girdisi
-# user_query = st.chat_input("Sorunuzu yazın...")
-
-# if user_query:
-#     # Kullanıcı mesajını göster
-#     with st.chat_message("user"):
-#         st.markdown(user_query)
-    
-#     # Kullanıcı mesajını kaydet
-#     st.session_state.messages.append({"role": "user", "content": user_query})
-    
-#     # API'ye sorguyu gönder
-#     with st.spinner("Bilgiler aranıyor ve yanıtınız hazırlanıyor..."):
-#         response = send_query_to_api(
-#             user_query, 
-#             top_k=top_k,
-#             temperature=temperature,
-#             max_tokens=max_tokens
-#         )
-    
-#     # Yanıtı göster
-#     with st.chat_message("assistant"):
-#         if "error" in response:
-#             st.error(response["error"])
-#             # Hata mesajını kaydet
-#             st.session_state.messages.append({
-#                 "role": "assistant",
-#                 "error": response["error"]
-#             })
-#         else:
-#             # Asıl yanıtı göster
-#             st.markdown(response["model_answer"])
-#             # İlgili bağlam bilgilerini göster
-#             with st.expander("İlgili yönetmelik bilgileri"):
-#                 st.markdown(response["retrieved_context"])
-            
-#             # Kaynak bilgileri varsa göster
-#             if response.get("sources") and len(response["sources"]) > 0:
-#                 with st.expander("Bilgi kaynakları"):
-#                     for source in response["sources"]:
-#                         st.info(source)
-            
-#             # Asistan yanıtını kaydet
-#             st.session_state.messages.append({
-#                 "role": "assistant",
-#                 "model_answer": response["model_answer"],
-#                 "retrieved_context": response["retrieved_context"],
-#                 "sources": response.get("sources")
-#             })
-
-# # Footer
-# st.markdown("---")
-# st.markdown("**SAÜChat** - Sakarya Üniversitesi Yönerge ve Yönetmelikler Bilgi Sistemi © 2025")
-
-
-
 import streamlit as st
 import requests
 import json
 import os
-import sys
-from typing import Dict, Any
+from typing import Dict, Any, List
 
-# Sayfa yapılandırması
+# --- Sayfa Yapılandırması ---
 st.set_page_config(
-    page_title="SAÜChat - Sakarya Üniversitesi Yönetmelik Asistanı",
+    page_title="SAÜChat - Yönetmelik Asistanı",
     page_icon="🎓",
     layout="wide"
 )
 
-# API URL'leri
-CHAT_API_URL = "http://localhost:8000/chat"
-UPLOAD_API_URL = "http://localhost:8000/upload-pdf"
-HEALTH_API_URL = "http://localhost:8000/health"
+# --- API URL'leri ---
+# Bu URL'leri gerektiğinde ortam değişkenlerinden veya bir config dosyasından almak daha iyidir.
+BASE_API_URL = os.environ.get("API_URL", "http://localhost:8000")
+CHAT_API_URL = f"{BASE_API_URL}/chat"
+UPLOAD_API_URL = f"{BASE_API_URL}/upload-pdf"
+HEALTH_API_URL = f"{BASE_API_URL}/health"
 
-def send_query_to_api(query: str, top_k: int = 3, temperature: float = 0.1, max_tokens: int = 512) -> Dict[str, Any]:
-    """
-    Kullanıcı sorgusunu API'ye gönderir ve sonucu alır
-    """
+# --- API İstemci Fonksiyonları ---
+
+def check_api_health() -> Dict[str, Any]:
+    """API sağlık durumunu kontrol eder."""
     try:
-        payload = {
-            "query": query,
-            "top_k": top_k,
-            "temperature": temperature,
-            "max_tokens": max_tokens
-        }
-        response = requests.post(CHAT_API_URL, json=payload)
-
-        if response.status_code != 200:
-            error_detail = response.json().get("detail", "Bilinmeyen hata")
-            return {
-                "error": f"API Hatası ({response.status_code}): {error_detail}",
-                "status": "error"
-            }
-
-        return response.json()
-
+        response = requests.get(HEALTH_API_URL, timeout=5) # Timeout ekle
+        if response.status_code == 200:
+            return {"status": "success", "data": response.json()}
+        else:
+            return {"status": "error", "code": response.status_code, "detail": response.text}
     except requests.RequestException as e:
-        return {
-            "error": f"Sunucu bağlantı hatası: {str(e)}. API sunucusunun çalıştığından emin olun.",
-            "status": "error"
-        }
+        return {"status": "error", "detail": f"Sunucu bağlantı hatası: {e}"}
     except Exception as e:
-        return {
-            "error": f"Beklenmeyen hata: {str(e)}",
-            "status": "error"
-        }
+        return {"status": "error", "detail": f"Beklenmeyen hata: {e}"}
 
-def upload_pdf_to_api(uploaded_file):
-    """
-    Yüklenen PDF dosyasını API'ye gönderir.
-    """
-    if uploaded_file is None:
-        return {"error": "Yüklenecek dosya seçilmedi.", "status": "error"}
+def send_query_to_api(query: str, top_k: int, temperature: float, max_tokens: int) -> Dict[str, Any]:
+    """Kullanıcı sorgusunu API'ye gönderir ve sonucu alır."""
+    payload = {
+        "query": query,
+        "top_k": top_k,
+        "temperature": temperature,
+        "max_tokens": max_tokens
+    }
+    try:
+        response = requests.post(CHAT_API_URL, json=payload, timeout=120) # Daha uzun timeout
+        response.raise_for_status() # HTTP 2xx olmayan durumlar için hata fırlat
+        return {"status": "success", "data": response.json()}
+    except requests.exceptions.Timeout:
+         return {"status": "error", "detail": "API isteği zaman aşımına uğradı."}
+    except requests.exceptions.RequestException as e:
+        error_detail = f"API bağlantı hatası: {e}."
+        if e.response is not None:
+            try:
+                api_error = e.response.json().get("detail", e.response.text)
+                error_detail += f" API Yanıtı: {api_error}"
+            except json.JSONDecodeError:
+                error_detail += f" API Yanıtı (JSON değil): {e.response.text}"
+        return {"status": "error", "detail": error_detail}
+    except Exception as e:
+        return {"status": "error", "detail": f"Beklenmeyen hata: {e}"}
+
+def upload_pdf_to_api(uploaded_files: List[st.runtime.uploaded_file_manager.UploadedFile]) -> Dict[str, Any]:
+    """Yüklenen PDF dosyalarını API'ye gönderir."""
+    if not uploaded_files:
+        return {"status": "error", "detail": "Yüklenecek dosya seçilmedi."}
+
+    files_payload = []
+    for uploaded_file in uploaded_files:
+        # Dosyayı başa sar (önemli olabilir)
+        uploaded_file.seek(0)
+        files_payload.append(('files', (uploaded_file.name, uploaded_file, uploaded_file.type)))
 
     try:
-        files = {'file': (uploaded_file.name, uploaded_file, uploaded_file.type)}
-        response = requests.post(UPLOAD_API_URL, files=files)
-
-        if response.status_code != 200:
-            error_detail = response.json().get("detail", "Bilinmeyen hata")
-            return {
-                "error": f"API Hatası ({response.status_code}): {error_detail}",
-                "status": "error"
-            }
-
-        return response.json()
-
-    except requests.RequestException as e:
-        return {
-            "error": f"Sunucu bağlantı hatası: {str(e)}. API sunucusunun çalıştığından emin olun.",
-            "status": "error"
-        }
+        response = requests.post(UPLOAD_API_URL, files=files_payload, timeout=300) # Yükleme için daha uzun timeout
+        response.raise_for_status()
+        return {"status": "success", "data": response.json()}
+    except requests.exceptions.Timeout:
+         return {"status": "error", "detail": "Dosya yükleme isteği zaman aşımına uğradı."}
+    except requests.exceptions.RequestException as e:
+        error_detail = f"Dosya yükleme hatası: {e}."
+        if e.response is not None:
+            try:
+                api_error = e.response.json().get("detail", e.response.text)
+                error_detail += f" API Yanıtı: {api_error}"
+            except json.JSONDecodeError:
+                error_detail += f" API Yanıtı (JSON değil): {e.response.text}"
+        return {"status": "error", "detail": error_detail}
     except Exception as e:
-        return {
-            "error": f"Dosya yüklenirken beklenmeyen hata: {str(e)}",
-            "status": "error"
-        }
+        return {"status": "error", "detail": f"Dosya yüklenirken beklenmeyen hata: {e}"}
 
+# --- Streamlit Arayüzü ---
 
-# Uygulama başlığı ve açıklaması
+# Başlık
 st.title("🎓 SAÜChat: Yönetmelik Asistanı")
-st.markdown("""
-Bu uygulama, Sakarya Üniversitesi'nin resmi yönerge ve yönetmelikleri hakkında bilgi almanızı sağlar.
-Sorularınızı Türkçe olarak sorun, cevapları alın! Ayrıca yeni yönetmelik PDF'lerini sisteme ekleyebilirsiniz.
-""")
+st.markdown("Sakarya Üniversitesi yönetmelikleri hakkında sorularınızı sorun veya yeni PDF'ler ekleyin.")
 
-# Sidebar bilgileri ve ayarlar
+# Sidebar
 with st.sidebar:
     st.image("https://www.sakarya.edu.tr/img/logo_tr.png", width=200)
-    st.title("SAÜChat")
-    st.info("""
-    Bu uygulama, Sakarya Üniversitesi'nin resmi yönerge ve yönetmeliklerinden bilgileri almanızı sağlar.
-    LLaMA 3 tabanlı yapay zeka destekli bir bilgi erişim sistemidir.
-    """)
+    st.title("Ayarlar ve İşlemler")
+    st.info("Bu asistan, SAÜ yönetmelikleri hakkında bilgi vermek üzere tasarlanmıştır.")
 
-    # Ayarlar
+    # Sohbet Ayarları
     st.subheader("Sohbet Ayarları")
-    top_k = st.slider("Kaynak belge sayısı", min_value=1, max_value=10, value=3, step=1)
-    temperature = st.slider("Yaratıcılık seviyesi", min_value=0.0, max_value=1.0, value=0.1, step=0.1)
-    max_tokens = st.slider("Maksimum yanıt uzunluğu", min_value=100, max_value=2000, value=512, step=50)
+    top_k = st.slider("Kaynak Belge Sayısı", 1, 10, 3, 1, help="Yanıt için kaç adet ilgili belge kullanılacak?")
+    temperature = st.slider("Yaratıcılık", 0.0, 1.0, 0.1, 0.05, help="Düşük değerler daha kesin, yüksek değerler daha yaratıcı yanıtlar üretir.")
+    max_tokens = st.slider("Maks. Yanıt Uzunluğu", 100, 2000, 512, 50, help="Modelin üreteceği maksimum kelime/token sayısı.")
 
-    st.divider() # Ayırıcı
+    st.divider()
 
-    # PDF Yükleme Bölümü
+    # PDF Yükleme
     st.subheader("Yeni Yönetmelik Ekle")
-    uploaded_file = st.file_uploader("İndekslenecek PDF dosyasını seçin", type="pdf")
+    uploaded_files = st.file_uploader(
+        "PDF Dosyalarını Seçin",
+        type="pdf",
+        accept_multiple_files=True,
+        help="İndekslenmesini istediğiniz bir veya daha fazla PDF dosyası yükleyin."
+    )
 
-    if uploaded_file is not None:
-        st.write(f"Yüklenen dosya: **{uploaded_file.name}**")
-        if st.button("PDF'i İndeksle"):
-            with st.spinner(f"'{uploaded_file.name}' işleniyor ve veritabanına ekleniyor..."):
-                upload_response = upload_pdf_to_api(uploaded_file)
+    if uploaded_files:
+        st.write(f"{len(uploaded_files)} dosya seçildi:")
+        for f in uploaded_files:
+            st.caption(f"- {f.name}") # Daha küçük yazı tipi
 
-            if "error" in upload_response:
-                st.error(f"Hata: {upload_response['error']}")
+        if st.button("Seçili PDF'leri İndeksle", key="upload_button"):
+            with st.spinner(f"{len(uploaded_files)} dosya işleniyor ve veritabanına ekleniyor... Bu işlem biraz sürebilir."):
+                upload_result = upload_pdf_to_api(uploaded_files)
+
+            if upload_result["status"] == "success":
+                st.success(upload_result["data"].get("message", "Dosyalar başarıyla işlendi."))
+                st.info(f"İşlenen dosya sayısı: {upload_result['data'].get('processed_files', 'N/A')}")
+                st.info(f"Eklenen toplam parça: {upload_result['data'].get('added_chunks', 'N/A')}")
+                if upload_result["data"].get("errors"):
+                    st.warning("Bazı dosyalarda hatalar oluştu:")
+                    for err in upload_result["data"]["errors"]:
+                        st.error(f"- {err}")
             else:
-                st.success(upload_response.get("message", "Dosya başarıyla işlendi."))
-                st.info(f"Eklenen parça sayısı: {upload_response.get('added_chunks', 'N/A')}")
-                # Başarılı yükleme sonrası dosya seçiciyi temizle (isteğe bağlı)
-                # uploaded_file = None # Streamlit'te bu doğrudan yapılamaz, state yönetimi gerekir
+                st.error(f"Yükleme Hatası: {upload_result['detail']}")
+            # Yükleme sonrası seçimi temizlemek için state yönetimi gerekir, şimdilik manuel.
 
-    st.divider() # Ayırıcı
+    st.divider()
 
-    # API bağlantı testi
-    if st.button("API Bağlantısını Test Et"):
-        try:
-            health_check = requests.get(HEALTH_API_URL)
-            if health_check.status_code == 200:
-                data = health_check.json()
-                llm_status = "✅ LLM modeli yüklü" if data.get("llm_loaded", False) else "❌ LLM modeli yüklü değil"
-                st.success(f"✅ API sunucusu aktif!\n\n{llm_status}")
-            else:
-                st.error("❌ API sunucusu yanıt veriyor ancak hata döndürüyor.")
-        except requests.RequestException:
-            st.error("❌ API sunucusuna bağlanılamıyor. Sunucunun çalıştığından emin olun.")
-        except Exception as e:
-            st.error(f"❌ Test sırasında hata: {e}")
+    # API Sağlık Kontrolü
+    st.subheader("API Durumu")
+    if st.button("API Durumunu Kontrol Et", key="health_check_button"):
+        with st.spinner("API durumu kontrol ediliyor..."):
+            health_result = check_api_health()
+        if health_result["status"] == "success":
+            data = health_result["data"]
+            st.success("✅ API sunucusu aktif!")
+            llm_status = "✅ LLM Yüklü" if data.get("llm_loaded") else "❌ LLM Yüklü Değil"
+            db_status = "✅ DB Yüklü" if data.get("db_loaded") else "❌ DB Yüklü Değil"
+            st.markdown(f"{llm_status}\n{db_status}")
+            st.caption(f"Model: {data.get('model_path', 'N/A')}")
+            st.caption(f"Veritabanı: {data.get('db_path', 'N/A')}")
+        else:
+            st.error(f"❌ API Bağlantı Hatası: {health_result['detail']}")
 
+# --- Sohbet Arayüzü ---
 
 # Oturum durumunu başlat
 if "messages" not in st.session_state:
@@ -327,83 +164,71 @@ if "messages" not in st.session_state:
 
 # Geçmiş mesajları göster
 for message in st.session_state.messages:
-    # Kullanıcı mesajları
-    if message["role"] == "user":
-        with st.chat_message("user"):
-            st.markdown(message["content"])
-    # Asistan mesajları
-    elif message["role"] == "assistant":
-        with st.chat_message("assistant"):
-            if "error" in message:
-                st.error(message["error"])
-            else:
-                # Asıl yanıtı göster
-                st.markdown(message["model_answer"])
-                # İlgili bağlam bilgilerini göster
-                with st.expander("İlgili yönetmelik bilgileri"):
-                    st.markdown(message["retrieved_context"])
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+        # Asistan yanıtıysa ve ek bilgiler varsa göster
+        if message["role"] == "assistant" and "details" in message:
+            with st.expander("Detaylar ve Kaynaklar"):
+                st.markdown("**İlgili Bilgiler:**")
+                st.markdown(message["details"]["retrieved_context"])
+                st.markdown("**Kaynaklar:**")
+                if message["details"]["sources"]:
+                    for source in message["details"]["sources"]:
+                        st.caption(os.path.basename(source) if source else "Bilinmeyen")
+                else:
+                    st.caption("Kaynak bulunamadı.")
 
-                # Kaynak bilgileri varsa göster
-                if message.get("sources") and len(message["sources"]) > 0:
-                    with st.expander("Bilgi kaynakları"):
-                        for source in message["sources"]:
-                            # Kaynak adını daha okunabilir hale getir
-                            display_source = os.path.basename(source) if source else "Bilinmeyen Kaynak"
-                            st.info(display_source)
-
-# Kullanıcı girdisi
-user_query = st.chat_input("Sorunuzu yazın...")
+# Kullanıcı girdisi al
+user_query = st.chat_input("Sorunuzu buraya yazın...")
 
 if user_query:
-    # Kullanıcı mesajını göster
+    # Kullanıcı mesajını ekle ve göster
+    st.session_state.messages.append({"role": "user", "content": user_query})
     with st.chat_message("user"):
         st.markdown(user_query)
 
-    # Kullanıcı mesajını kaydet
-    st.session_state.messages.append({"role": "user", "content": user_query})
-
-    # API'ye sorguyu gönder
-    with st.spinner("Bilgiler aranıyor ve yanıtınız hazırlanıyor..."):
-        response = send_query_to_api(
-            user_query,
-            top_k=top_k,
-            temperature=temperature,
-            max_tokens=max_tokens
-        )
-
-    # Yanıtı göster
+    # API'ye sorguyu gönder ve yanıtı bekle
     with st.chat_message("assistant"):
-        if "error" in response:
-            st.error(response["error"])
-            # Hata mesajını kaydet
+        with st.spinner("Yanıtınız hazırlanıyor..."):
+            api_response = send_query_to_api(user_query, top_k, temperature, max_tokens)
+
+        if api_response["status"] == "success":
+            response_data = api_response["data"]
+            assistant_response = response_data.get("model_answer", "Üzgünüm, bir yanıt alamadım.")
+            retrieved_context = response_data.get("retrieved_context", "Bağlam bilgisi alınamadı.")
+            sources = response_data.get("sources", [])
+
+            # Yanıtı göster
+            st.markdown(assistant_response)
+
+            # Yanıtı ve detayları oturum durumuna ekle
             st.session_state.messages.append({
                 "role": "assistant",
-                "error": response["error"]
+                "content": assistant_response,
+                "details": {
+                    "retrieved_context": retrieved_context,
+                    "sources": sources
+                }
             })
+
+            # Detayları expander içinde göster (isteğe bağlı, yukarıdaki döngüde de gösteriliyor)
+            # with st.expander("Detaylar ve Kaynaklar"):
+            #     st.markdown("**İlgili Bilgiler:**")
+            #     st.markdown(retrieved_context)
+            #     st.markdown("**Kaynaklar:**")
+            #     if sources:
+            #         for source in sources:
+            #             st.caption(os.path.basename(source) if source else "Bilinmeyen")
+            #     else:
+            #         st.caption("Kaynak bulunamadı.")
+
         else:
-            # Asıl yanıtı göster
-            st.markdown(response["model_answer"])
-            # İlgili bağlam bilgilerini göster
-            with st.expander("İlgili yönetmelik bilgileri"):
-                st.markdown(response["retrieved_context"])
-
-            # Kaynak bilgileri varsa göster
-            sources = response.get("sources")
-            if sources and len(sources) > 0:
-                with st.expander("Bilgi kaynakları"):
-                    for source in sources:
-                         # Kaynak adını daha okunabilir hale getir
-                        display_source = os.path.basename(source) if source else "Bilinmeyen Kaynak"
-                        st.info(display_source)
-
-            # Asistan yanıtını kaydet
-            st.session_state.messages.append({
-                "role": "assistant",
-                "model_answer": response["model_answer"],
-                "retrieved_context": response["retrieved_context"],
-                "sources": sources
-            })
+            # Hata mesajını göster
+            error_message = f"Hata: {api_response['detail']}"
+            st.error(error_message)
+            # Hata mesajını oturum durumuna ekle (içerik olarak)
+            st.session_state.messages.append({"role": "assistant", "content": error_message})
 
 # Footer
 st.markdown("---")
-st.markdown("**SAÜChat** - Sakarya Üniversitesi Yönerge ve Yönetmelikler Bilgi Sistemi © 2025")
+st.caption("SAÜChat © 2025 - Sakarya Üniversitesi Bilgi İşlem Daire Başkanlığı (Konsept)")
