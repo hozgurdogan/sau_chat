@@ -163,6 +163,58 @@ def query_vector_db(query: str,
 #     except Exception as e:
 #         return f"Hata oluştu: {str(e)}"
 
+# def retrieve_relevant_context(query: str, db_path: str, top_k: int = 5, return_sources: bool = False) -> str:
+#     """
+#     Verilen sorguya en benzer içerikleri getirir ve tek bir metin olarak birleştirir.
+    
+#     Args:
+#         query (str): Kullanıcı sorusu/sorgusu
+#         db_path (str): Veritabanı klasör yolu
+#         top_k (int): Kaç sonuç getirileceği
+#         return_sources (bool): Eğer True ise, kaynak bilgilerini de içeren bir sözlük döndürür
+        
+#     Returns:
+#         Union[str, Dict[str, Any]]: Birleştirilmiş metin veya metin ve kaynakları içeren sözlük
+#     """
+#     try:
+#         # Veritabanını yükle
+#         index, documents, ids = load_vector_db(db_path)
+#         if not index:
+#             return "Veritabanı yüklenemedi." if not return_sources else {"text": "Veritabanı yüklenemedi.", "sources": []}
+        
+#         # Sorgu yap
+#         results = query_vector_db(query, index, documents, ids, top_k=top_k)
+        
+#         if not results:
+#             return "Sorguya uygun sonuç bulunamadı." if not return_sources else {"text": "Sorguya uygun sonuç bulunamadı.", "sources": []}
+        
+#         # Sonuçları birleştir ve kaynaklarıyla birlikte formatla
+#         combined_text = ""
+#         sources = []
+        
+#         for i, result in enumerate(results):
+#             source_info = f"Kaynak: {result['source']}" if result.get('source') else ""
+#             if source_info and result.get('source') not in sources:
+#                 sources.append(result.get('source'))
+                
+#             combined_text += f"\n\n--- BÖLÜM {i+1} {source_info} ---\n\n"
+#             combined_text += result["text"]
+        
+#         if return_sources:
+#             return {
+#                 "text": combined_text,
+#                 "sources": sources
+#             }
+        
+#         return combined_text
+    
+#     except Exception as e:
+#         error_msg = f"Hata oluştu: {str(e)}"
+#         if return_sources:
+#             return {"text": error_msg, "sources": []}
+#         return error_msg
+
+
 def retrieve_relevant_context(query: str, db_path: str, top_k: int = 5, return_sources: bool = False) -> str:
     """
     Verilen sorguya en benzer içerikleri getirir ve tek bir metin olarak birleştirir.
@@ -179,40 +231,46 @@ def retrieve_relevant_context(query: str, db_path: str, top_k: int = 5, return_s
     try:
         # Veritabanını yükle
         index, documents, ids = load_vector_db(db_path)
-        if not index:
-            return "Veritabanı yüklenemedi." if not return_sources else {"text": "Veritabanı yüklenemedi.", "sources": []}
+        
+        if index is None or documents is None or ids is None:
+            error_msg = "Veritabanı yüklenemedi. Lütfen veritabanı dosyalarını kontrol edin."
+            return {"text": error_msg, "sources": []} if return_sources else error_msg
         
         # Sorgu yap
         results = query_vector_db(query, index, documents, ids, top_k=top_k)
         
         if not results:
-            return "Sorguya uygun sonuç bulunamadı." if not return_sources else {"text": "Sorguya uygun sonuç bulunamadı.", "sources": []}
+            no_results_msg = "Sorguya uygun sonuç bulunamadı."
+            return {"text": no_results_msg, "sources": []} if return_sources else no_results_msg
         
         # Sonuçları birleştir ve kaynaklarıyla birlikte formatla
         combined_text = ""
-        sources = []
+        sources = set()  # Kaynakları tekrarsız bir şekilde tutmak için set kullanıyoruz
         
         for i, result in enumerate(results):
-            source_info = f"Kaynak: {result['source']}" if result.get('source') else ""
-            if source_info and result.get('source') not in sources:
-                sources.append(result.get('source'))
-                
+            source_info = f"Kaynak: {result.get('source', 'Bilinmiyor')}"
+            
+            # Kaynağı yalnızca bir kez ekle
+            sources.add(result.get('source', 'Bilinmiyor'))
+            
+            # Metni ve kaynağı birleştir
             combined_text += f"\n\n--- BÖLÜM {i+1} {source_info} ---\n\n"
-            combined_text += result["text"]
+            combined_text += result.get("text", "Metin bulunamadı.")
         
         if return_sources:
+            # Kaynakları listeye dönüştür ve döndür
             return {
                 "text": combined_text,
-                "sources": sources
+                "sources": list(sources)
             }
         
         return combined_text
     
     except Exception as e:
+        # Hata durumunda uygun mesaj döndür
         error_msg = f"Hata oluştu: {str(e)}"
-        if return_sources:
-            return {"text": error_msg, "sources": []}
-        return error_msg
+        return {"text": error_msg, "sources": []} if return_sources else error_msg
+
 
 def main():
     """
