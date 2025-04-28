@@ -384,6 +384,75 @@ Cevap:"""
         print(f"Hata: {e}")
         raise HTTPException(status_code=500, detail=f"İşlem sırasında hata oluştu: {str(e)}")
 
+# Anonim kullanıcılar için sohbet endpoint'i
+@app.post("/anon-chat", response_model=ChatResponse, summary="Anonim Sohbet Sorgusu")
+async def anon_chat_endpoint(
+    query_data: ChatQuery,
+    current_llm: Llama = Depends(get_llm),
+    db_path: str = Depends(get_db_path)
+):
+    """
+    Anonim kullanıcı sorgusunu alır, ilgili bağlamı bulur ve LLM ile yanıt üretir.
+    Oturum açmamış kullanıcılar için sohbet geçmişi kaydedilmez.
+    """
+    try:
+        # 1. Vektör veritabanından ilgili bağlamı ve kaynakları al
+        print(f"[Anonim] Sorgu için ilgili bağlam aranıyor: '{query_data.query}' (top_k={query_data.top_k})")
+
+        retrieval_result = retrieve_relevant_context(
+            query=query_data.query,
+            db_path=db_path,
+            top_k=query_data.top_k,
+            return_sources=True
+        )
+
+        context = retrieval_result.get("text", "Bağlam alınamadı.")
+        sources = retrieval_result.get("sources", [])
+
+        if "Hata oluştu:" in context or "Veritabanı yüklenemedi" in context or "Sorguya uygun sonuç bulunamadı" in context:
+             print(f"[Anonim] Bağlam alınırken hata veya sonuç yok: {context}")
+             prompt = f"""Sen Sakarya Üniversitesi'nin yardımsever bir bilgi asistanısın.
+
+Kullanıcı Sorusu: {query_data.query}
+
+Bu konuda veritabanımda maalesef yeterli bilgi bulunmuyor veya bilgi alınırken bir sorun oluştu. Kullanıcıya bu durumu nazikçe açıkla.
+
+Cevap:"""
+             sources = []
+        else:
+            print(f"[Anonim] Bulunan kaynaklar: {sources}")
+            print(f"[Anonim] Oluşturulan bağlam:\n{context[:500]}...")
+            prompt = f"""<CONTEXT>
+{context}
+</CONTEXT>
+
+Sen Sakarya Üniversitesi'nin resmi yönetmelikleri konusunda uzman bir asistansın. Yalnızca yukarıdaki <CONTEXT> içinde verilen bilgilere dayanarak kullanıcı sorusunu yanıtla. Cevabın net, doğru ve yalnızca verilen bağlamdaki bilgilerle sınırlı olsun. Eğer cevap bağlamda yoksa veya emin değilsen, bunu belirt.
+
+Kullanıcı Sorusu: {query_data.query}
+
+Cevap:"""
+
+        # 2. LLM ile yanıt üret
+        print(f"[Anonim] LLM ile yanıt üretiliyor (temperature={query_data.temperature}, max_tokens={query_data.max_tokens})...")
+        response = current_llm(
+            prompt,
+            max_tokens=query_data.max_tokens,
+            temperature=query_data.temperature,
+            echo=False
+        )
+        model_answer = response["choices"][0]["text"].strip()
+
+        # 3. Yanıtı döndür
+        return ChatResponse(
+            model_answer=model_answer,
+            retrieved_context=context,
+            sources=sources
+        )
+
+    except Exception as e:
+        print(f"[Anonim] Hata: {e}")
+        raise HTTPException(status_code=500, detail=f"İşlem sırasında hata oluştu: {str(e)}")
+
 # PDF yükleme ve işleme endpoint'i (api_server.py'deki çoklu dosya ve yeniden yükleme mantığı korundu)
 @app.post("/upload-pdf", response_model=UploadResponse, summary="PDF Dosyalarını Yükle ve İndeksle")
 async def upload_pdf(

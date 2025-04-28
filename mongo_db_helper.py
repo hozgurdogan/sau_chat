@@ -1,11 +1,11 @@
 import pymongo
 from pymongo import MongoClient
-import datetime
+import datetime as dt
+from datetime import datetime, timedelta
 import hashlib
 import os
 import uuid
 from typing import List, Dict, Optional, Any
-from datetime import datetime, timedelta
 from bson.objectid import ObjectId
 
 # MongoDB bağlantı bilgileri - güvenlik için çevre değişkenlerinden alınmalı
@@ -35,7 +35,7 @@ def create_user(username: str, email: str, password: str) -> bool:
         "username": username,
         "email": email,
         "password": hash_password(password),
-        "created_at": datetime.datetime.utcnow(),
+        "created_at": datetime.now(),
         "last_login": None
     }
     
@@ -51,7 +51,7 @@ def authenticate_user(username: str, password: str) -> Optional[dict]:
         # Son giriş zamanını güncelle
         db.users.update_one(
             {"_id": user["_id"]},
-            {"$set": {"last_login": datetime.datetime.utcnow()}}
+            {"$set": {"last_login": datetime.now()}}
         )
         return {
             "username": user["username"],

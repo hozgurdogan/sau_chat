@@ -479,7 +479,32 @@ if user_query:
             st.warning("Sınırsız sohbet için lütfen giriş yapın. Giriş yapmadığınız sürece sohbet geçmişiniz kaybolabilir.")
             
         with st.spinner("Yanıtınız hazırlanıyor..."):
-            api_response = send_query_to_api(user_query, top_k, temperature, max_tokens)
+            # Kullanıcı giriş yapmış mı kontrol et
+            if st.session_state.is_logged_in:
+                api_response = send_query_to_api(user_query, top_k, temperature, max_tokens)
+            else:
+                # Giriş yapılmadıysa, anonim kullanıcı olarak istek gönder
+                payload = {
+                    "query": user_query,
+                    "top_k": top_k,
+                    "temperature": temperature,
+                    "max_tokens": max_tokens
+                }
+                try:
+                    response = requests.post(f"{BASE_API_URL}/anon-chat", json=payload, timeout=300)
+                    response.raise_for_status()
+                    api_response = {"status": "success", "data": response.json()}
+                except requests.exceptions.RequestException as e:
+                    error_detail = f"API bağlantı hatası: {e}."
+                    if e.response is not None:
+                        try:
+                            api_error = e.response.json().get("detail", e.response.text)
+                            error_detail += f" API Yanıtı: {api_error}"
+                        except json.JSONDecodeError:
+                            error_detail += f" API Yanıtı (JSON değil): {e.response.text}"
+                    api_response = {"status": "error", "detail": error_detail}
+                except Exception as e:
+                    api_response = {"status": "error", "detail": f"Beklenmeyen hata: {e}"}
 
         if api_response["status"] == "success":
             response_data = api_response["data"]
