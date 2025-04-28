@@ -1,0 +1,14 @@
+fastapi==0.115.12
+uvicorn==0.34.2
+llama-cpp-python==0.3.8
+streamlit==1.44.1
+pyngrok==7.2.5
+faiss-cpu==1.11.0
+PyPDF2==3.0.1
+PyMuPDF==1.25.5
+python-multipart==0.0.20
+pymongo==4.7.1
+python-jose==3.3.0
+passlib==1.7.4
+requests==2.32.3
+tqdm==4.66.4 

@@ -13,11 +13,15 @@ import json
 import uvicorn
 import tempfile
 import shutil
-from fastapi import FastAPI, HTTPException, Depends, UploadFile, File, Body
+from fastapi import FastAPI, HTTPException, Depends, UploadFile, File, Body, Form, Cookie, Response, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel, Field
 from typing import List, Dict, Optional, Union, Any
 from contextlib import asynccontextmanager
+from jose import JWTError, jwt
+import time
+import datetime
 
 # LLaMA modelini yüklemek için llama-cpp-python kütüphanesini import et
 try:
@@ -33,6 +37,10 @@ try:
     from pdf_text_extract import extract_text_from_pdf
     from data_preprocess import convert_chunks_to_dict, clean_text, simple_chunk_text
     from faiss_index_process import add_to_faiss_index, DEFAULT_MODEL as FAISS_MODEL
+    from mongo_db_helper import (
+        authenticate_user, create_user, save_chat_message,
+        get_user_chats, get_chat_messages, delete_chat
+    )
 except ImportError as e:
     print(f"Gerekli modüller yüklenirken hata oluştu: {e}")
     print("Lütfen vector_db_helpers, pdf_text_extract, data_preprocess ve faiss_index_process modüllerinin doğru konumda olduğundan emin olun.")
@@ -43,6 +51,14 @@ MODEL_PATH = os.environ.get("MODEL_PATH", "/content/drive/MyDrive/llama_chat/ggu
 DB_PATH = os.environ.get("DB_PATH", "vector_db")
 N_GPU_LAYERS = int(os.environ.get("N_GPU_LAYERS", -1)) # Ortam değişkenleri string döner, int'e çevir
 N_CTX = int(os.environ.get("N_CTX", 4096)) # Ortam değişkenleri string döner, int'e çevir
+
+# JWT için gizli anahtar ve ayarlar
+SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "sauchat_secret_key_change_in_production")
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24  # 1 gün
+
+# OAuth2 şeması
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 # --- Global Değişkenler ---
 llm: Optional[Llama] = None
@@ -167,6 +183,35 @@ class UploadResponse(BaseModel):
     added_chunks: int
     errors: List[str]
 
+# Kullanıcı modelleri
+class UserRegister(BaseModel):
+    username: str = Field(..., min_length=3, max_length=50)
+    email: str = Field(..., regex=r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
+    password: str = Field(..., min_length=6)
+
+class UserLogin(BaseModel):
+    username: str
+    password: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class UserInfo(BaseModel):
+    username: str
+    email: str
+
+# Sohbet geçmişi modelleri
+class ChatHistory(BaseModel):
+    chat_id: str
+    first_message: str
+    timestamp: datetime.datetime
+    message_count: int
+
+class ChatMessageHistory(BaseModel):
+    user_message: str
+    bot_response: str
+    timestamp: datetime.datetime
 
 # --- API Endpointleri ---
 
@@ -191,42 +236,59 @@ async def health_check():
         db_path=db_status_path
     )
 
-# ... ( /chat ve /upload-pdf endpointleri aynı kalabilir, çünkü artık global konfigürasyon değişkenlerini kullanıyorlar) ...
+# JWT ile ilgili fonksiyonlar
+def create_access_token(data: dict, expires_delta: datetime.timedelta = None):
+    to_encode = data.copy()
+    if expires_delta:
+        expire = datetime.datetime.utcnow() + expires_delta
+    else:
+        expire = datetime.datetime.utcnow() + datetime.timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+async def get_current_user(token: str = Depends(oauth2_scheme)):
+    credentials_exception = HTTPException(
+        status_code=401,
+        detail="Geçersiz kimlik bilgileri",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username: str = payload.get("sub")
+        if username is None:
+            raise credentials_exception
+    except JWTError:
+        raise credentials_exception
+    return {"username": username}
+
 @app.post("/chat", response_model=ChatResponse, summary="Sohbet Sorgusu")
 async def chat_endpoint(
     query_data: ChatQuery,
     current_llm: Llama = Depends(get_llm),
-    # db_components bağımlılığı kaldırıldı
-    db_path: str = Depends(get_db_path) # Sadece db_path bağımlılığı kullanılıyor
+    db_path: str = Depends(get_db_path),
+    current_user: dict = Depends(get_current_user)
 ):
     """
     Kullanıcı sorgusunu alır, ilgili bağlamı bulur ve LLM ile yanıt üretir.
+    Oturum açmış kullanıcılar için sohbet geçmişini kaydeder.
     """
-    # current_index, current_documents, current_ids artık burada tanımlanmıyor
-
     try:
         # 1. Vektör veritabanından ilgili bağlamı ve kaynakları al
         print(f"Sorgu için ilgili bağlam aranıyor: '{query_data.query}' (top_k={query_data.top_k})")
 
-        # retrieve_relevant_context fonksiyonunu doğru parametrelerle çağır
-        # index, documents, ids parametreleri kaldırıldı.
-        # return_sources=True olarak ayarlandı, çünkü fonksiyon bu şekilde çağrıldığında
-        # bir sözlük {'text': ..., 'sources': ...} döndürüyor.
         retrieval_result = retrieve_relevant_context(
             query=query_data.query,
-            db_path=db_path, # Fonksiyon db_path'i kullanarak veritabanını kendi yükleyecek
+            db_path=db_path,
             top_k=query_data.top_k,
-            return_sources=True # Hem metni hem kaynakları almak için True yap
+            return_sources=True
         )
 
-        # Fonksiyondan dönen sözlüğü işle
         context = retrieval_result.get("text", "Bağlam alınamadı.")
         sources = retrieval_result.get("sources", [])
 
-        # Hata mesajı kontrolü (fonksiyon hata durumunda metin içinde dönebilir)
         if "Hata oluştu:" in context or "Veritabanı yüklenemedi" in context or "Sorguya uygun sonuç bulunamadı" in context:
              print(f"Bağlam alınırken hata veya sonuç yok: {context}")
-             # Eğer hata varsa veya sonuç yoksa, LLM'e bunu bildirelim
              prompt = f"""Sen Sakarya Üniversitesi'nin yardımsever bir bilgi asistanısın.
 
 Kullanıcı Sorusu: {query_data.query}
@@ -234,11 +296,10 @@ Kullanıcı Sorusu: {query_data.query}
 Bu konuda veritabanımda maalesef yeterli bilgi bulunmuyor veya bilgi alınırken bir sorun oluştu. Kullanıcıya bu durumu nazikçe açıkla.
 
 Cevap:"""
-             sources = [] # Kaynak yok
+             sources = []
         else:
             print(f"Bulunan kaynaklar: {sources}")
-            print(f"Oluşturulan bağlam:\n{context[:500]}...") # Bağlamın başını yazdır
-            # Bilgi bulunduğunda kullanılacak prompt
+            print(f"Oluşturulan bağlam:\n{context[:500]}...")
             prompt = f"""<CONTEXT>
 {context}
 </CONTEXT>
@@ -249,35 +310,39 @@ Kullanıcı Sorusu: {query_data.query}
 
 Cevap:"""
 
-        print("LLM için prompt oluşturuldu.")
-
-        # 3. LLM ile yanıt üret
-        print("LLM ile yanıt üretiliyor...")
-        output = current_llm(
+        # 2. LLM ile yanıt üret
+        print(f"LLM ile yanıt üretiliyor (temperature={query_data.temperature}, max_tokens={query_data.max_tokens})...")
+        response = current_llm(
             prompt,
             max_tokens=query_data.max_tokens,
             temperature=query_data.temperature,
-            stop=["Kullanıcı Sorusu:", "\n\n", "---", "<CONTEXT>"],
             echo=False
         )
+        model_answer = response["choices"][0]["text"].strip()
+        
+        # 3. Sohbet geçmişine kaydet
+        try:
+            username = current_user.get("username")
+            save_chat_message(
+                username=username,
+                user_message=query_data.query,
+                bot_response=model_answer,
+                retrieved_docs=[s for s in sources if s]  # Boş kaynak olmadığından emin ol
+            )
+        except Exception as e:
+            print(f"Sohbet geçmişi kaydedilirken hata: {e}")
+            # Geçmiş kaydedilemese bile, yanıt dönmeye devam et
 
-        model_answer = output['choices'][0]['text'].strip()
-        print(f"Model yanıtı:\n{model_answer}")
-
+        # 4. Yanıtı döndür
         return ChatResponse(
             model_answer=model_answer,
-            retrieved_context=context, # Alınan bağlamı veya hata mesajını döndür
+            retrieved_context=context,
             sources=sources
         )
 
-    except HTTPException as http_exc:
-        raise http_exc
     except Exception as e:
-        print(f"Sohbet işlenirken hata oluştu: {str(e)}")
-        import traceback
-        traceback.print_exc()
-        raise HTTPException(status_code=500, detail=f"Sohbet işlenirken beklenmeyen bir hata oluştu: {str(e)}")
-
+        print(f"Hata: {e}")
+        raise HTTPException(status_code=500, detail=f"İşlem sırasında hata oluştu: {str(e)}")
 
 # PDF yükleme ve işleme endpoint'i (api_server.py'deki çoklu dosya ve yeniden yükleme mantığı korundu)
 @app.post("/upload-pdf", response_model=UploadResponse, summary="PDF Dosyalarını Yükle ve İndeksle")
@@ -400,6 +465,98 @@ async def upload_pdf(
             traceback.print_exc()
             raise HTTPException(status_code=500, detail=f"Veritabanına ekleme veya yeniden yükleme sırasında bir hata oluştu: {str(e)}")
 
+# --- Kullanıcı Yönetimi Endpoint'leri ---
+
+@app.post("/register", response_model=dict, summary="Yeni Kullanıcı Kaydı")
+async def register_user(user_data: UserRegister):
+    """
+    Yeni bir kullanıcı kaydı oluşturur.
+    """
+    try:
+        success = create_user(
+            username=user_data.username,
+            email=user_data.email,
+            password=user_data.password
+        )
+        
+        if not success:
+            raise HTTPException(status_code=400, detail="Kullanıcı adı veya e-posta zaten kullanımda")
+        
+        return {"success": True, "message": "Kullanıcı başarıyla oluşturuldu"}
+    except Exception as e:
+        print(f"Kullanıcı kaydı sırasında hata: {e}")
+        raise HTTPException(status_code=500, detail=f"Kayıt sırasında bir hata oluştu: {str(e)}")
+
+@app.post("/token", response_model=Token, summary="Access Token Al")
+async def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    """
+    Kullanıcı adı ve şifre ile kimlik doğrulama yapar ve access token döndürür.
+    """
+    try:
+        user = authenticate_user(form_data.username, form_data.password)
+        if not user:
+            raise HTTPException(
+                status_code=401,
+                detail="Hatalı kullanıcı adı veya şifre",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+        
+        access_token_expires = datetime.timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+        access_token = create_access_token(
+            data={"sub": user["username"]}, expires_delta=access_token_expires
+        )
+        
+        return {"access_token": access_token, "token_type": "bearer"}
+    except Exception as e:
+        print(f"Giriş sırasında hata: {e}")
+        raise HTTPException(status_code=500, detail=f"Giriş sırasında bir hata oluştu: {str(e)}")
+
+@app.get("/users/me", response_model=UserInfo, summary="Kullanıcı Bilgilerini Al")
+async def read_users_me(current_user: dict = Depends(get_current_user)):
+    """
+    Mevcut kullanıcının bilgilerini döndürür.
+    """
+    return {"username": current_user["username"], "email": ""}  # Güvenlik için e-posta olmadan dönüş
+
+# --- Sohbet Geçmişi Endpoint'leri ---
+
+@app.get("/chat-history", response_model=List[ChatHistory], summary="Sohbet Geçmişini Al")
+async def get_chat_history(current_user: dict = Depends(get_current_user)):
+    """
+    Kullanıcının tüm sohbet oturumlarını getirir.
+    """
+    try:
+        chats = get_user_chats(current_user["username"])
+        return chats
+    except Exception as e:
+        print(f"Sohbet geçmişi alınırken hata: {e}")
+        raise HTTPException(status_code=500, detail=f"Sohbet geçmişi alınırken bir hata oluştu: {str(e)}")
+
+@app.get("/chat-history/{chat_id}", response_model=List[ChatMessageHistory], summary="Sohbet Mesajlarını Al")
+async def get_chat_message_history(chat_id: str, current_user: dict = Depends(get_current_user)):
+    """
+    Belirli bir sohbetin tüm mesajlarını getirir.
+    """
+    try:
+        messages = get_chat_messages(chat_id)
+        return messages
+    except Exception as e:
+        print(f"Sohbet mesajları alınırken hata: {e}")
+        raise HTTPException(status_code=500, detail=f"Sohbet mesajları alınırken bir hata oluştu: {str(e)}")
+
+@app.delete("/chat-history/{chat_id}", response_model=dict, summary="Sohbeti Sil")
+async def delete_chat_history(chat_id: str, current_user: dict = Depends(get_current_user)):
+    """
+    Belirli bir sohbeti siler.
+    """
+    try:
+        success = delete_chat(chat_id, current_user["username"])
+        if not success:
+            raise HTTPException(status_code=404, detail="Sohbet bulunamadı veya silme işlemi başarısız oldu")
+        return {"success": True, "message": "Sohbet başarıyla silindi"}
+    except Exception as e:
+        print(f"Sohbet silinirken hata: {e}")
+        raise HTTPException(status_code=500, detail=f"Sohbet silinirken bir hata oluştu: {str(e)}")
 
 # --- Uygulamayı Başlat ---
 if __name__ == "__main__":
