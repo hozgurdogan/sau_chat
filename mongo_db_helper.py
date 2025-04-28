@@ -65,20 +65,22 @@ def save_chat_message(username: str, user_message: str, bot_response: str, retri
     """Kullanıcının mesajını ve botun yanıtını kaydeder. Eğer chat_id verilmişse var olan sohbete ekler."""
     try:
         db = get_database()
+        
         # Eğer chat_id verilmişse, o sohbetin varlığını kontrol et
         if chat_id:
             existing_chat = db.chat_history.find_one({"chat_id": chat_id, "username": username})
             if not existing_chat:
                 chat_id = None  # Sohbet bulunamadı veya kullanıcıya ait değil, yeni sohbet oluştur
         
-        # Eğer chat_id yoksa yeni bir sohbet başlat
+        # Eğer chat_id yoksa veya current_chat_id None ise yeni bir sohbet başlat
         if not chat_id:
-            # Yeni benzersiz chat_id oluştur
-            chat_id = str(ObjectId())
+            chat_id = str(ObjectId())  # Yeni benzersiz ID oluştur
             is_new_chat = True
+            print(f"Yeni sohbet oluşturuluyor: {chat_id}")
         else:
             is_new_chat = False
-        
+            print(f"Mevcut sohbete ekleniyor: {chat_id}")
+            
         timestamp = datetime.now()
         
         # Sohbet mesajını oluştur

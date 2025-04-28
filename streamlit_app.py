@@ -322,7 +322,7 @@ with st.sidebar:
         st.subheader("Sohbet Geçmişi")
         
         # Sohbet geçmişini session_state'e ekle (ilk kez veya yenileme)
-        if st.button("�� Geçmişi Yenile"):
+        if st.button("Geçmişi Yenile", key="refresh_history"):
             history_result = get_chat_history()
             if history_result["status"] == "success":
                 st.session_state.chat_history = history_result["data"]
@@ -475,10 +475,14 @@ for message in st.session_state.messages:
 
 # Yeni sohbet başlatma butonu
 if st.session_state.is_logged_in:
-    if st.button("🆕 Yeni Sohbet Başlat", key="new_chat_button", type="primary"):
+    if st.button("Yeni Sohbet", key="new_chat_button", type="primary"):
+        # Yeni sohbet için mesajları ve sohbet ID'sini temizle
         st.session_state.messages = []
-        st.session_state.current_chat_id = None
-        # Sohbet geçmişini güncelle
+        st.session_state.current_chat_id = None  # Bu None olduğunda yeni bir chat_id oluşturulacak
+        
+        print("Yeni sohbet başlatıldı: current_chat_id=None")
+        
+        # Sohbet geçmişini güncelle (önceki sohbet eklendikten sonra)
         history_result = get_chat_history()
         if history_result["status"] == "success":
             st.session_state.chat_history = history_result["data"]
@@ -502,9 +506,11 @@ if user_query:
         with st.spinner("Yanıtınız hazırlanıyor..."):
             # Kullanıcı giriş yapmış mı kontrol et
             if st.session_state.is_logged_in:
+                print(f"Giriş yapılmış kullanıcı için API isteği: chat_id={st.session_state.get('current_chat_id')}")
                 api_response = send_query_to_api(user_query, top_k, temperature, max_tokens)
             else:
                 # Giriş yapılmadıysa, anonim kullanıcı olarak istek gönder
+                print("Anonim kullanıcı için API isteği")
                 payload = {
                     "query": user_query,
                     "top_k": top_k,
