@@ -5,6 +5,8 @@ import hashlib
 import os
 import uuid
 from typing import List, Dict, Optional, Any
+from datetime import datetime, timedelta
+from bson.objectid import ObjectId
 
 # MongoDB bağlantı bilgileri - güvenlik için çevre değişkenlerinden alınmalı
 MONGO_URI = os.environ.get("MONGO_URI", "mongodb+srv://denemecursor1bedava:oF27WsS8MqA1nYPk@bitirme.ne3ofr5.mongodb.net/sau_chat_db?retryWrites=true&w=majority&appName=bitirme")
@@ -59,35 +61,58 @@ def authenticate_user(username: str, password: str) -> Optional[dict]:
     return None
 
 # Sohbet geçmişi işlemleri
-def save_chat_message(username: str, user_message: str, bot_response: str, 
-                      retrieved_docs: List[str] = None) -> str:
-    """Kullanıcı mesajını ve bot yanıtını kaydeder"""
-    db = get_database()
-    
-    # Eğer yeni bir konuşma ise chat_id oluştur, değilse son konuşmanın ID'sini kullan
-    last_chat = db.chat_history.find_one(
-        {"username": username},
-        sort=[("timestamp", pymongo.DESCENDING)]
-    )
-    
-    # Son mesajdan 30 dakika geçtiyse yeni konuşma başlat
-    if (not last_chat or 
-        (datetime.datetime.utcnow() - last_chat["timestamp"]).total_seconds() > 1800):
-        chat_id = str(uuid.uuid4())
-    else:
-        chat_id = last_chat["chat_id"]
-    
-    message = {
-        "chat_id": chat_id,
-        "username": username,
-        "user_message": user_message,
-        "bot_response": bot_response,
-        "retrieved_docs": retrieved_docs or [],
-        "timestamp": datetime.datetime.utcnow()
-    }
-    
-    result = db.chat_history.insert_one(message)
-    return chat_id if result.acknowledged else None
+def save_chat_message(username: str, user_message: str, bot_response: str, retrieved_docs: List[str] = [], chat_id: Optional[str] = None) -> str:
+    """Kullanıcının mesajını ve botun yanıtını kaydeder. Eğer chat_id verilmişse var olan sohbete ekler."""
+    try:
+        db = get_database()
+        # Eğer chat_id verilmişse, o sohbetin varlığını kontrol et
+        if chat_id:
+            existing_chat = db.chat_history.find_one({"chat_id": chat_id, "username": username})
+            if not existing_chat:
+                chat_id = None  # Sohbet bulunamadı veya kullanıcıya ait değil, yeni sohbet oluştur
+        
+        # Eğer chat_id yoksa yeni bir sohbet başlat
+        if not chat_id:
+            # Kullanıcının son sohbetini kontrol et (yeni oluşturulmamış)
+            last_chat = db.chat_history.find_one(
+                {"username": username, "is_first_message": True},
+                sort=[("timestamp", -1)]
+            )
+            
+            # Eğer son sohbet varsa ama son mesaj 1 saatten eskiyse yeni sohbet oluştur
+            if last_chat:
+                last_timestamp = last_chat.get("timestamp")
+                if datetime.now() - last_timestamp > timedelta(hours=1):
+                    chat_id = str(ObjectId())
+                else:
+                    chat_id = last_chat.get("chat_id")
+            else:
+                chat_id = str(ObjectId())
+        
+        timestamp = datetime.now()
+        
+        # Sohbet mesajını oluştur
+        message = {
+            "chat_id": chat_id,
+            "username": username,
+            "user_message": user_message,
+            "bot_response": bot_response,
+            "retrieved_docs": retrieved_docs,
+            "timestamp": timestamp,
+            "is_first_message": False
+        }
+        
+        # Eğer yeni bir sohbetse, ilk mesaj olarak işaretle
+        if not db.chat_history.find_one({"chat_id": chat_id}):
+            message["is_first_message"] = True
+            message["first_message"] = user_message[:50] + ("..." if len(user_message) > 50 else "")
+        
+        # Mesajı veritabanına ekle
+        result = db.chat_history.insert_one(message)
+        return chat_id
+    except Exception as e:
+        print(f"Sohbet mesajı kaydedilirken hata: {e}")
+        return None
 
 def get_user_chats(username: str) -> List[Dict[str, Any]]:
     """Kullanıcının tüm sohbet oturumlarını getirir"""

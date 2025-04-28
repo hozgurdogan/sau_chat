@@ -49,8 +49,29 @@ except ImportError as e:
 # --- Konfigürasyon Ayarları (Ortam Değişkenleri veya Varsayılanlar) ---
 MODEL_PATH = os.environ.get("MODEL_PATH", "/content/drive/MyDrive/llama_chat/gguf/llama3-8B-trendyol-rag-merged-Q8_0.gguf")
 DB_PATH = os.environ.get("DB_PATH", "vector_db")
-N_GPU_LAYERS = int(os.environ.get("N_GPU_LAYERS", -1)) # Ortam değişkenleri string döner, int'e çevir
+
+# GPU kontrolü ve dinamik yapılandırma
+def check_gpu_availability():
+    """GPU kullanılabilirliğini kontrol eder ve uygun yapılandırmayı döndürür"""
+    try:
+        # GPU varlığını kontrol etmeye çalış (CUDA için)
+        import torch
+        if torch.cuda.is_available():
+            print("CUDA GPU bulundu, GPU kullanılacak!")
+            return True
+        else:
+            print("CUDA destekli GPU bulunamadı, CPU kullanılacak.")
+            return False
+    except ImportError:
+        # Torch yoksa, varsayılan olarak GPU desteğini açmaya çalış
+        print("PyTorch bulunamadı, varsayılan yapılandırma kullanılacak.")
+        return True
+
+# GPU kullanılabilirliğine göre yapılandırma yap
+USE_GPU = check_gpu_availability()
+N_GPU_LAYERS = int(os.environ.get("N_GPU_LAYERS", -1 if USE_GPU else 0)) # GPU varsa -1 (tüm katmanlar), yoksa 0
 N_CTX = int(os.environ.get("N_CTX", 4096)) # Ortam değişkenleri string döner, int'e çevir
+USE_MLOCK = os.environ.get("USE_MLOCK", "1" if USE_GPU else "0")  # GPU bellek optimizasyonu
 
 # JWT için gizli anahtar ve ayarlar
 SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "sauchat_secret_key_change_in_production")
@@ -75,25 +96,44 @@ async def lifespan(app: FastAPI):
     global llm, faiss_index, documents, ids, is_llm_loaded, is_db_loaded
 
     # LLaMA modelini yükle
-    print(f"LLaMA modeli yükleniyor: {MODEL_PATH}") # args.model_path -> MODEL_PATH
-    if not os.path.exists(MODEL_PATH): # args.model_path -> MODEL_PATH
-        print(f"UYARI: Model dosyası bulunamadı: {MODEL_PATH}") # args.model_path -> MODEL_PATH
+    print(f"LLaMA modeli yükleniyor: {MODEL_PATH}")
+    print(f"GPU Yapılandırması: {'Aktif (n_gpu_layers=' + str(N_GPU_LAYERS) + ')' if N_GPU_LAYERS > 0 or N_GPU_LAYERS == -1 else 'Devre dışı (CPU)'}")
+    
+    if not os.path.exists(MODEL_PATH):
+        print(f"UYARI: Model dosyası bulunamadı: {MODEL_PATH}")
         llm = None
         is_llm_loaded = False
     else:
         try:
             llm = Llama(
-                model_path=MODEL_PATH, # args.model_path -> MODEL_PATH
-                n_ctx=N_CTX,           # args.n_ctx -> N_CTX
-                n_gpu_layers=N_GPU_LAYERS, # args.n_gpu_layers -> N_GPU_LAYERS
+                model_path=MODEL_PATH,
+                n_ctx=N_CTX,
+                n_gpu_layers=N_GPU_LAYERS,
+                use_mlock=(USE_MLOCK == "1"),
                 verbose=True
             )
             is_llm_loaded = True
             print("LLaMA modeli başarıyla yüklendi.")
+            if N_GPU_LAYERS > 0 or N_GPU_LAYERS == -1:
+                print("Model GPU'ya yüklenmiştir.")
+            else:
+                print("Model CPU'ya yüklenmiştir.")
         except Exception as e:
             print(f"LLaMA modeli yüklenirken hata oluştu: {e}")
-            llm = None
-            is_llm_loaded = False
+            print("GPU yükleme hatası oluştu, CPU modu deneniyor...")
+            try:
+                llm = Llama(
+                    model_path=MODEL_PATH,
+                    n_ctx=N_CTX,
+                    n_gpu_layers=0,  # CPU modu
+                    verbose=True
+                )
+                is_llm_loaded = True
+                print("LLaMA modeli CPU modunda başarıyla yüklendi.")
+            except Exception as e2:
+                print(f"LLaMA modeli CPU modunda da yüklenemedi: {e2}")
+                llm = None
+                is_llm_loaded = False
 
     # Vektör veritabanını yükle
     print(f"Vektör veritabanı yükleniyor: {DB_PATH}") # args.db_path -> DB_PATH

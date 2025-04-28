@@ -22,6 +22,11 @@ REGISTER_API_URL = f"{BASE_API_URL}/register"
 TOKEN_API_URL = f"{BASE_API_URL}/token"
 CHAT_HISTORY_API_URL = f"{BASE_API_URL}/chat-history"
 
+# --- Ortam Değişkenleri ---
+# GPU öncelikle tercih edilsin
+os.environ["N_GPU_LAYERS"] = "-1"  # -1 değeri tüm katmanları GPU'ya yükler
+os.environ["USE_MLOCK"] = "1"  # GPU belleğini optimum kullanım için kilit
+
 # --- API İstemci Fonksiyonları ---
 
 def check_api_health() -> Dict[str, Any]:
@@ -494,6 +499,30 @@ if user_query:
                     "sources": sources
                 }
             })
+
+            # 3. Sohbet geçmişine kaydet
+            try:
+                username = st.session_state.username
+                chat_id = st.session_state.get("current_chat_id", None)  # Eğer varsa mevcut sohbet ID'sini al
+                save_chat_message(
+                    username=username,
+                    user_message=user_query,
+                    bot_response=assistant_response,
+                    retrieved_docs=[s for s in sources if s],  # Boş kaynak olmadığından emin ol
+                    chat_id=chat_id  # Sohbet ID'sini ekle, None ise yeni sohbet oluşturulur
+                )
+                
+                # Eğer bu ilk mesajsa ve yeni bir sohbet oluşturulduysa, ID'yi al
+                if not chat_id:
+                    # Sohbet geçmişini güncelle
+                    history_result = get_chat_history()
+                    if history_result["status"] == "success":
+                        # En son eklenen sohbetin ID'sini al
+                        if history_result["data"]:
+                            st.session_state.current_chat_id = history_result["data"][0]["chat_id"]
+            except Exception as e:
+                print(f"Sohbet geçmişi kaydedilirken hata: {e}")
+                # Geçmiş kaydedilemese bile, yanıt dönmeye devam et
 
         else:
             # Hata mesajını göster
