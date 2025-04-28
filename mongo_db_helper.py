@@ -7,7 +7,7 @@ import uuid
 from typing import List, Dict, Optional, Any
 
 # MongoDB bağlantı bilgileri - güvenlik için çevre değişkenlerinden alınmalı
-MONGO_URI = os.environ.get("MONGO_URI", "mongodb+srv://<username>:<password>@<cluster>.mongodb.net/")
+MONGO_URI = os.environ.get("MONGO_URI", "mongodb+srv://denemecursor1bedava:oF27WsS8MqA1nYPk@bitirme.ne3ofr5.mongodb.net/sau_chat_db?retryWrites=true&w=majority&appName=bitirme")
 DB_NAME = "sau_chat_db"
 
 def get_database():
