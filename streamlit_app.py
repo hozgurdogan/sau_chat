@@ -248,6 +248,14 @@ def do_login(username, password):
         st.session_state.username = username
         st.session_state.is_logged_in = True
         st.success(f"Hoş geldiniz, {username}!")
+        
+        # Giriş yapıldığında sohbet geçmişini yükle
+        history_result = get_chat_history()
+        if history_result["status"] == "success":
+            st.session_state.chat_history = history_result["data"]
+        else:
+            st.session_state.chat_history = []
+            
         st.rerun()
     else:
         st.error(f"Giriş başarısız: {login_result['detail']}")
@@ -258,6 +266,8 @@ def do_logout():
     st.session_state.is_logged_in = False
     st.session_state.messages = []
     st.session_state.current_chat_id = None
+    if 'chat_history' in st.session_state:
+        del st.session_state.chat_history
     st.rerun()
 
 # --- Başlık ---
@@ -310,15 +320,18 @@ with st.sidebar:
         
         # Sohbet Geçmişi
         st.subheader("Sohbet Geçmişi")
-        if st.button("Geçmişi Yenile"):
+        
+        # Sohbet geçmişini session_state'e ekle (ilk kez veya yenileme)
+        if st.button("�� Geçmişi Yenile"):
             history_result = get_chat_history()
             if history_result["status"] == "success":
                 st.session_state.chat_history = history_result["data"]
+                st.success("Sohbet geçmişi yenilendi!")
             else:
                 st.error(f"Geçmiş yüklenemedi: {history_result['detail']}")
                 st.session_state.chat_history = []
         
-        # Sohbet geçmişini session_state'e ekle (ilk kez)
+        # İlk kez veya yeniden yükleme için geçmişi kontrol et
         if "chat_history" not in st.session_state:
             history_result = get_chat_history()
             if history_result["status"] == "success":
@@ -333,10 +346,11 @@ with st.sidebar:
                 timestamp_str = str(chat["timestamp"])
                 formatted_time = format_timestamp(timestamp_str)
                 
-                col1, col2 = st.columns([3, 1])
+                chat_title = chat["first_message"]
+                col1, col2 = st.columns([4, 1])
                 with col1:
                     # Sohbeti yükle butonu (başlık olarak göster)
-                    if st.button(f"{chat['first_message']}", key=f"chat_{chat['chat_id']}"):
+                    if st.button(f"💬 {chat_title}", key=f"chat_{chat['chat_id']}", use_container_width=True):
                         with st.spinner("Sohbet yükleniyor..."):
                             messages_result = get_chat_messages(chat["chat_id"])
                             if messages_result["status"] == "success":
@@ -358,7 +372,7 @@ with st.sidebar:
                 
                 with col2:
                     st.caption(f"{formatted_time}")
-                    if st.button("Sil", key=f"del_{chat['chat_id']}"):
+                    if st.button("🗑️", key=f"del_{chat['chat_id']}", help="Sohbeti sil"):
                         delete_result = delete_chat(chat["chat_id"])
                         if delete_result["status"] == "success":
                             st.success("Sohbet silindi!")
@@ -369,6 +383,9 @@ with st.sidebar:
                             st.rerun()
                         else:
                             st.error(f"Sohbet silinemedi: {delete_result['detail']}")
+                
+                # Her sohbetten sonra ince bir çizgi ekle
+                st.markdown("---")
         else:
             st.info("Henüz sohbet geçmişiniz bulunmuyor.")
         
@@ -457,10 +474,14 @@ for message in st.session_state.messages:
                     st.caption("Kaynak bulunamadı.")
 
 # Yeni sohbet başlatma butonu
-if st.session_state.is_logged_in and st.session_state.messages:
-    if st.button("Yeni Sohbet Başlat"):
+if st.session_state.is_logged_in:
+    if st.button("🆕 Yeni Sohbet Başlat", key="new_chat_button", type="primary"):
         st.session_state.messages = []
         st.session_state.current_chat_id = None
+        # Sohbet geçmişini güncelle
+        history_result = get_chat_history()
+        if history_result["status"] == "success":
+            st.session_state.chat_history = history_result["data"]
         st.rerun()
 
 # Kullanıcı girdisi al
@@ -545,6 +566,11 @@ if user_query:
                         # En son eklenen sohbetin ID'sini al
                         if history_result["data"]:
                             st.session_state.current_chat_id = history_result["data"][0]["chat_id"]
+                             
+                # Her mesaj sonrası sohbet geçmişi listesini güncelle
+                history_result = get_chat_history()
+                if history_result["status"] == "success":
+                    st.session_state.chat_history = history_result["data"]
             except Exception as e:
                 print(f"Sohbet geçmişi kaydedilirken hata: {e}")
                 # Geçmiş kaydedilemese bile, yanıt dönmeye devam et

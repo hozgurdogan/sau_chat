@@ -73,21 +73,11 @@ def save_chat_message(username: str, user_message: str, bot_response: str, retri
         
         # Eğer chat_id yoksa yeni bir sohbet başlat
         if not chat_id:
-            # Kullanıcının son sohbetini kontrol et (yeni oluşturulmamış)
-            last_chat = db.chat_history.find_one(
-                {"username": username, "is_first_message": True},
-                sort=[("timestamp", -1)]
-            )
-            
-            # Eğer son sohbet varsa ama son mesaj 1 saatten eskiyse yeni sohbet oluştur
-            if last_chat:
-                last_timestamp = last_chat.get("timestamp")
-                if datetime.now() - last_timestamp > timedelta(hours=1):
-                    chat_id = str(ObjectId())
-                else:
-                    chat_id = last_chat.get("chat_id")
-            else:
-                chat_id = str(ObjectId())
+            # Yeni benzersiz chat_id oluştur
+            chat_id = str(ObjectId())
+            is_new_chat = True
+        else:
+            is_new_chat = False
         
         timestamp = datetime.now()
         
@@ -99,12 +89,11 @@ def save_chat_message(username: str, user_message: str, bot_response: str, retri
             "bot_response": bot_response,
             "retrieved_docs": retrieved_docs,
             "timestamp": timestamp,
-            "is_first_message": False
+            "is_first_message": is_new_chat
         }
         
-        # Eğer yeni bir sohbetse, ilk mesaj olarak işaretle
-        if not db.chat_history.find_one({"chat_id": chat_id}):
-            message["is_first_message"] = True
+        # Eğer yeni bir sohbetse, ilk mesaj için first_message alanını ekle
+        if is_new_chat:
             message["first_message"] = user_message[:50] + ("..." if len(user_message) > 50 else "")
         
         # Mesajı veritabanına ekle
@@ -118,26 +107,36 @@ def get_user_chats(username: str) -> List[Dict[str, Any]]:
     """Kullanıcının tüm sohbet oturumlarını getirir"""
     db = get_database()
     
-    # Benzersiz chat_id'leri bul ve her biri için ilk mesajı al
-    pipeline = [
-        {"$match": {"username": username}},
-        {"$sort": {"timestamp": 1}},
-        {"$group": {
-            "_id": "$chat_id",
-            "first_message": {"$first": "$user_message"},
-            "timestamp": {"$first": "$timestamp"},
-            "message_count": {"$sum": 1}
-        }},
-        {"$sort": {"timestamp": -1}}
-    ]
+    # Benzersiz chat_id'leri bul
+    distinct_chat_ids = db.chat_history.distinct("chat_id", {"username": username})
     
-    chat_sessions = list(db.chat_history.aggregate(pipeline))
-    return [{
-        "chat_id": chat["_id"],
-        "first_message": chat["first_message"][:50] + "..." if len(chat["first_message"]) > 50 else chat["first_message"],
-        "timestamp": chat["timestamp"],
-        "message_count": chat["message_count"]
-    } for chat in chat_sessions]
+    chat_sessions = []
+    for chat_id in distinct_chat_ids:
+        # Her sohbet için ilk mesajı bul
+        first_message = db.chat_history.find_one(
+            {"chat_id": chat_id, "username": username},
+            sort=[("timestamp", 1)]
+        )
+        
+        if first_message:
+            # Sohbetteki toplam mesaj sayısını bul
+            message_count = db.chat_history.count_documents({
+                "chat_id": chat_id, 
+                "username": username
+            })
+            
+            # Sohbet bilgilerini ekle
+            chat_sessions.append({
+                "chat_id": chat_id,
+                "first_message": first_message["user_message"][:50] + ("..." if len(first_message["user_message"]) > 50 else ""),
+                "timestamp": first_message["timestamp"],
+                "message_count": message_count
+            })
+    
+    # Sohbetleri zamana göre sırala (en yeniden en eskiye)
+    chat_sessions.sort(key=lambda x: x["timestamp"], reverse=True)
+    
+    return chat_sessions
 
 def get_chat_messages(chat_id: str) -> List[Dict[str, Any]]:
     """Belirli bir sohbetin tüm mesajlarını getirir"""
