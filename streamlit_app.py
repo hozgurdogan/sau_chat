@@ -51,11 +51,11 @@ def send_query_to_api(query: str, top_k: int, temperature: float, max_tokens: in
         headers["Authorization"] = f"Bearer {st.session_state.access_token}"
     
     try:
-        response = requests.post(CHAT_API_URL, json=payload, headers=headers, timeout=120) # Daha uzun timeout
+        response = requests.post(CHAT_API_URL, json=payload, headers=headers, timeout=300) # Daha uzun timeout (300 saniye)
         response.raise_for_status() # HTTP 2xx olmayan durumlar için hata fırlat
         return {"status": "success", "data": response.json()}
     except requests.exceptions.Timeout:
-         return {"status": "error", "detail": "API isteği zaman aşımına uğradı."}
+         return {"status": "error", "detail": "API isteği zaman aşımına uğradı. LLaMA modeli yanıt üretirken zaman aşımına uğradı. Lütfen tekrar deneyin veya daha kısa bir soru sorun."}
     except requests.exceptions.RequestException as e:
         error_detail = f"API bağlantı hatası: {e}."
         if e.response is not None:
