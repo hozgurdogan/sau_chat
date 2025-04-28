@@ -186,7 +186,7 @@ class UploadResponse(BaseModel):
 # Kullanıcı modelleri
 class UserRegister(BaseModel):
     username: str = Field(..., min_length=3, max_length=50)
-    email: str = Field(..., regex=r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
+    email: str = Field(..., pattern=r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
     password: str = Field(..., min_length=6)
 
 class UserLogin(BaseModel):
