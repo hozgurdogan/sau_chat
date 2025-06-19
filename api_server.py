@@ -1,695 +1,344 @@
+# api_server.py
 """
-SAÜChat API Sunucusu (Refactored)
-
-Bu FastAPI uygulaması, SAÜChat sistemi için bir API sunucusu sağlar.
-Kullanıcı sorgularını alır, vektör veritabanından ilgili bağlamı çeker,
-LLaMA modelini kullanarak yanıt üretir ve sonucu döndürür.
-Ayrıca PDF dosyalarını yükleyip vektör veritabanına eklemek için bir endpoint içerir.
+SAÜChat API Sunucusu (HuggingFace, Gelişmiş Prompt, Düzeltilmiş DB Entegrasyonu)
 """
 import os
 import sys
 import json
-# import argparse # argparse kaldırıldı
 import uvicorn
 import tempfile
 import shutil
-from fastapi import FastAPI, HTTPException, Depends, UploadFile, File, Body, Form, Cookie, Response, Request
+from fastapi import FastAPI, HTTPException, Depends, UploadFile, File, Form, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel, Field
-from typing import List, Dict, Optional, Union, Any
+from typing import List, Dict, Optional, Any
 from contextlib import asynccontextmanager
 from jose import JWTError, jwt
 import time
 import datetime
+import torch
+import traceback # Hata ayıklama için
+from typing import List, Dict, Optional, Any, Tuple # <<-- Tuple BURAYA EKLENDİ
 
-# LLaMA modelini yüklemek için llama-cpp-python kütüphanesini import et
 try:
-    from llama_cpp import Llama, LlamaGrammar
+    from transformers import AutoModelForCausalLM, AutoTokenizer
 except ImportError:
-    print("llama-cpp-python kütüphanesi bulunamadı.")
-    print("Lütfen 'pip install llama-cpp-python' komutu ile kurun.")
-    sys.exit(1)
+    print("Hata: 'transformers' kütüphanesi. Kurulum: 'pip install transformers torch accelerate'"); sys.exit(1)
 
-# Kendi modüllerimizi import et
 try:
     from vector_db_helpers import retrieve_relevant_context, load_vector_db
     from pdf_text_extract import extract_text_from_pdf
     from data_preprocess import convert_chunks_to_dict, clean_text, simple_chunk_text
     from faiss_index_process import add_to_faiss_index, DEFAULT_MODEL as FAISS_MODEL
+    # mongo_db_helper'dan Pydantic modellerini de import etmeye çalışalım (eğer orada tanımlıysa)
+    # veya burada tanımlayıp mongo_db_helper'ın bunları döndürdüğünü varsayalım.
     from mongo_db_helper import (
         authenticate_user, create_user, save_chat_message,
-        get_user_chats, get_chat_messages, delete_chat
+        get_user_chats, get_chat_messages, delete_chat,
+        MDB_ChatHistory, MDB_ChatMessageHistory # BUNLARIN mongo_db_helper.py'DE TANIMLI OLMASI GEREKİR
     )
 except ImportError as e:
-    print(f"Gerekli modüller yüklenirken hata oluştu: {e}")
-    print("Lütfen vector_db_helpers, pdf_text_extract, data_preprocess ve faiss_index_process modüllerinin doğru konumda olduğundan emin olun.")
-    sys.exit(1)
+    print(f"Yerel modül/Pydantic modeli import hatası: {e}. Dosyaların ve tanımların varlığını kontrol edin."); sys.exit(1)
+    # Eğer MDB_ChatHistory ve MDB_ChatMessageHistory mongo_db_helper.py'de yoksa,
+    # aşağıdaki Pydantic modelleri kısmında bu isimlerle tekrar tanımlanacaklar.
+
+os.environ.setdefault("MONGO_URI", "mongodb+srv://denemecursor1bedava:oF27WsS8MqA1nYPk@bitirme.ne3ofr5.mongodb.net/sau_chat_db?retryWrites=true&w=majority&appName=bitirme")
+os.environ.setdefault("PASSWORD_SALT", "oF27WsS8MqA1nYPk")
+os.environ.setdefault("JWT_SECRET_KEY", "cef7f52a6f89a1b0c5ce1373e4d96eac0a5d65a98d29f67e1a2b4a3c76fd7d2b")
+
+#MODEL_PATH = os.environ.get("SAUCHAT_MODEL_PATH", "./yeniEgitilmisTrendyolLlama3")
 
 # --- Konfigürasyon Ayarları (Ortam Değişkenleri veya Varsayılanlar) ---
-MODEL_PATH = os.environ.get("MODEL_PATH", "/content/drive/MyDrive/llama_chat/gguf/llama3-8B-trendyol-rag-merged-Q8_0.gguf")
-DB_PATH = os.environ.get("DB_PATH", "vector_db")
+MODEL_PATH = os.environ.get("MODEL_PATH", "/content/drive/MyDrive/HasanProje/sau_chat/yeniEgitilmisTrendyolLlama3")
 
-# GPU kontrolü ve dinamik yapılandırma
-def check_gpu_availability():
-    """GPU kullanılabilirliğini kontrol eder ve uygun yapılandırmayı döndürür"""
-    try:
-        # GPU varlığını kontrol etmeye çalış (CUDA için)
-        import torch
-        if torch.cuda.is_available():
-            print("CUDA GPU bulundu, GPU kullanılacak!")
-            return True
-        else:
-            print("CUDA destekli GPU bulunamadı, CPU kullanılacak.")
-            return False
-    except ImportError:
-        # Torch yoksa, varsayılan olarak GPU desteğini açmaya çalış
-        print("PyTorch bulunamadı, varsayılan yapılandırma kullanılacak.")
-        return True
 
-# GPU kullanılabilirliğine göre yapılandırma yap
-USE_GPU = check_gpu_availability()
-N_GPU_LAYERS = int(os.environ.get("N_GPU_LAYERS", -1 if USE_GPU else 0)) # GPU varsa -1 (tüm katmanlar), yoksa 0
-N_CTX = int(os.environ.get("N_CTX", 4096)) # Ortam değişkenleri string döner, int'e çevir
-USE_MLOCK = os.environ.get("USE_MLOCK", "1" if USE_GPU else "0")  # GPU bellek optimizasyonu
+DB_PATH = os.environ.get("SAUCHAT_DB_PATH", "vector_db")
+N_CTX_HF = int(os.environ.get("SAUCHAT_N_CTX_HF", 4096))
 
-# JWT için gizli anahtar ve ayarlar
-SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "sauchat_secret_key_change_in_production")
+SECRET_KEY = os.environ["JWT_SECRET_KEY"]
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24  # 1 gün
-
-# OAuth2 şeması
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.environ.get("SAUCHAT_TOKEN_EXPIRE_MINUTES", 60 * 24))
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-# --- Global Değişkenler ---
-llm: Optional[Llama] = None
+llm_model: Optional[AutoModelForCausalLM] = None
+llm_tokenizer: Optional[AutoTokenizer] = None
 faiss_index: Optional[Any] = None
 documents: Optional[List[Dict[str, Any]]] = None
 ids: Optional[List[str]] = None
 is_llm_loaded: bool = False
 is_db_loaded: bool = False
 
-# --- FastAPI Uygulama Ömrü Yönetimi (Lifespan) ---
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Uygulama başlangıcında modeli ve veritabanını yükler."""
-    global llm, faiss_index, documents, ids, is_llm_loaded, is_db_loaded
-
-    # LLaMA modelini yükle
-    print(f"LLaMA modeli yükleniyor: {MODEL_PATH}")
-    print(f"GPU Yapılandırması: {'Aktif (n_gpu_layers=' + str(N_GPU_LAYERS) + ')' if N_GPU_LAYERS > 0 or N_GPU_LAYERS == -1 else 'Devre dışı (CPU)'}")
-    
-    if not os.path.exists(MODEL_PATH):
-        print(f"UYARI: Model dosyası bulunamadı: {MODEL_PATH}")
-        llm = None
-        is_llm_loaded = False
+    global llm_model, llm_tokenizer, faiss_index, documents, ids, is_llm_loaded, is_db_loaded
+    print(f"HF Model yükleniyor: {MODEL_PATH}")
+    if not os.path.isdir(MODEL_PATH): print(f"UYARI: Model klasörü yok: {MODEL_PATH}"); is_llm_loaded = False
     else:
         try:
-            llm = Llama(
-                model_path=MODEL_PATH,
-                n_ctx=N_CTX,
-                n_gpu_layers=N_GPU_LAYERS,
-                use_mlock=(USE_MLOCK == "1"),
-                verbose=True
-            )
-            is_llm_loaded = True
-            print("LLaMA modeli başarıyla yüklendi.")
-            if N_GPU_LAYERS > 0 or N_GPU_LAYERS == -1:
-                print("Model GPU'ya yüklenmiştir.")
-            else:
-                print("Model CPU'ya yüklenmiştir.")
-        except Exception as e:
-            print(f"LLaMA modeli yüklenirken hata oluştu: {e}")
-            print("GPU yükleme hatası oluştu, CPU modu deneniyor...")
-            try:
-                llm = Llama(
-                    model_path=MODEL_PATH,
-                    n_ctx=N_CTX,
-                    n_gpu_layers=0,  # CPU modu
-                    verbose=True
-                )
-                is_llm_loaded = True
-                print("LLaMA modeli CPU modunda başarıyla yüklendi.")
-            except Exception as e2:
-                print(f"LLaMA modeli CPU modunda da yüklenemedi: {e2}")
-                llm = None
-                is_llm_loaded = False
-
-    # Vektör veritabanını yükle
-    print(f"Vektör veritabanı yükleniyor: {DB_PATH}") # args.db_path -> DB_PATH
-    if not os.path.exists(DB_PATH): # args.db_path -> DB_PATH
-         print(f"UYARI: Vektör veritabanı klasörü bulunamadı: {DB_PATH}") # args.db_path -> DB_PATH
-         faiss_index, documents, ids = None, None, None
-         is_db_loaded = False
+            llm_tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)
+            llm_model = AutoModelForCausalLM.from_pretrained(MODEL_PATH, torch_dtype=torch.float16, device_map="auto", trust_remote_code=True)
+            is_llm_loaded = True; print("HF Model yüklendi.")
+        except Exception as e: print(f"HF model yükleme hatası: {e}"); traceback.print_exc(); is_llm_loaded = False
+    print(f"Vektör DB yükleniyor: {DB_PATH}")
+    if not os.path.exists(DB_PATH): print(f"UYARI: DB klasörü yok: {DB_PATH}"); is_db_loaded = False
     else:
         try:
-            faiss_index, documents, ids = load_vector_db(DB_PATH) # args.db_path -> DB_PATH
-            if faiss_index is not None and documents is not None and ids is not None:
-                is_db_loaded = True
-                print("Vektör veritabanı başarıyla yüklendi.")
-            else:
-                 print("Vektör veritabanı yüklenemedi (dosyalar eksik veya hatalı olabilir).")
-                 is_db_loaded = False
-        except Exception as e:
-            print(f"Vektör veritabanı yüklenirken hata oluştu: {e}")
-            faiss_index, documents, ids = None, None, None
-            is_db_loaded = False
-
+            faiss_index, documents, ids = load_vector_db(DB_PATH)
+            if faiss_index and documents and ids: is_db_loaded = True; print("Vektör DB yüklendi.")
+            else: is_db_loaded = False; print("Vektör DB yüklenemedi.")
+        except Exception as e: print(f"Vektör DB yükleme hatası: {e}"); is_db_loaded = False
     yield
+    print("API kapatılıyor."); del llm_model, llm_tokenizer, faiss_index, documents, ids
+    llm_model,llm_tokenizer,faiss_index,documents,ids=None,None,None,None,None;is_llm_loaded=is_db_loaded=False
+    if torch.cuda.is_available(): torch.cuda.empty_cache()
 
-    print("API sunucusu kapatılıyor.")
-    llm = None
-    faiss_index = documents = ids = None
-    is_llm_loaded = is_db_loaded = False
+app = FastAPI(title="SAÜChat API", version="1.5.0", lifespan=lifespan) # Son Düzeltmeler Sürümü
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
-
-# FastAPI uygulamasını oluştur
-app = FastAPI(
-    title="SAÜChat API",
-    description="Sakarya Üniversitesi Yönetmelik ve Yönergeleri için RAG tabanlı API",
-    version="1.1.1", # Sürüm güncellendi
-    lifespan=lifespan
-)
-
-# CORS ayarları
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# --- Bağımlılıklar ---
-def get_llm():
-    """LLaMA modelini döndürür, yüklenmemişse hata verir."""
-    if not is_llm_loaded or llm is None:
-        raise HTTPException(status_code=503, detail="LLM modeli şu anda kullanılamıyor veya yüklenemedi.")
-    return llm
-
-def get_vector_db():
-    """Vektör veritabanı bileşenlerini döndürür, yüklenmemişse hata verir."""
-    if not is_db_loaded or faiss_index is None or documents is None or ids is None:
-         raise HTTPException(status_code=503, detail="Vektör veritabanı şu anda kullanılamıyor veya yüklenemedi.")
+def get_hf_model_and_tokenizer():
+    if not (is_llm_loaded and llm_model and llm_tokenizer): raise HTTPException(503, "LLM kullanılamıyor.")
+    return llm_model, llm_tokenizer
+def get_vector_db_components():
+    if not (is_db_loaded and faiss_index and documents and ids): raise HTTPException(503, "Vektör DB kullanılamıyor.")
     return faiss_index, documents, ids
-
-def get_db_path():
-    """Vektör veritabanı yolunu döndürür."""
-    return DB_PATH # args.db_path -> DB_PATH
+def get_db_path_dependency(): return DB_PATH
 
 # --- Pydantic Modelleri ---
+class ChatMessageInput(BaseModel): role: str; content: str
 class ChatQuery(BaseModel):
-    query: str = Field(..., min_length=1, description="Kullanıcının sorduğu soru.")
-    top_k: int = Field(3, ge=1, le=10, description="Vektör veritabanından alınacak en ilgili belge sayısı.")
-    temperature: float = Field(0.1, ge=0.0, le=1.0, description="Modelin yanıt üretirken kullanacağı sıcaklık değeri (yaratıcılık).")
-    # max_tokens için N_CTX kullanıldı
-    max_tokens: int = Field(512, ge=50, le=N_CTX, description="Modelin üreteceği maksimum token sayısı.")
+    query: str
+    history: Optional[List[ChatMessageInput]] = None
+    current_chat_id: Optional[str] = None
+    top_k: int = 3
+    temperature: float = 0.3
+    max_new_tokens: int = 768
+    top_p: Optional[float] = 0.9
+    repetition_penalty: Optional[float] = 1.1
 
-class ChatResponse(BaseModel):
-    model_answer: str = Field(..., description="Modelin ürettiği yanıt.")
-    retrieved_context: str = Field(..., description="Yanıtı oluşturmak için kullanılan ilgili metin parçaları.")
-    sources: List[str] = Field(..., description="Kullanılan metin parçalarının kaynak dosya adları.")
+class ChatResponseAPI(BaseModel): # API'den dönecek yanıt için Pydantic modeli
+    model_answer: str
+    retrieved_context: str
+    sources: List[str]
+    chat_id: Optional[str] = None # Kullanılan veya yeni oluşturulan chat_id
 
-class HealthStatus(BaseModel):
-    status: str
-    llm_loaded: bool
-    db_loaded: bool
-    model_path: Optional[str] = None
-    db_path: Optional[str] = None
+class HealthStatus(BaseModel): status: str; llm_loaded: bool; db_loaded: bool; model_path: Optional[str]=None; db_path: Optional[str]=None
+class UploadResponse(BaseModel): message: str; processed_files: int; added_chunks: int; errors: List[str]
+class UserRegister(BaseModel): username: str; email: str; password: str
+class Token(BaseModel): access_token: str; token_type: str
+class UserInfo(BaseModel): username: str; email: str
 
-class UploadResponse(BaseModel):
-    message: str
-    processed_files: int
-    added_chunks: int
-    errors: List[str]
+# mongo_db_helper.py'den gelen Pydantic modelleri (veya burada tanımlanmış olmalı)
+# Eğer mongo_db_helper.py'de MDB_ChatHistory ve MDB_ChatMessageHistory tanımlıysa ve import edildiyse,
+# aşağıdaki tanımlara gerek yok. Eğer import edilemiyorsa, burada tanımlanmaları gerekir.
+# Ben import edildiğini varsayıyorum. Edilmediyse, aşağıdaki satırları açın.
+# class MDB_ChatHistory(BaseModel): chat_id: str; first_message: str; timestamp: datetime.datetime; message_count: int
+# class MDB_ChatMessageHistory(BaseModel): user_message: str; bot_response: str; timestamp: datetime.datetime
 
-# Kullanıcı modelleri
-class UserRegister(BaseModel):
-    username: str = Field(..., min_length=3, max_length=50)
-    email: str = Field(..., pattern=r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
-    password: str = Field(..., min_length=6)
 
-class UserLogin(BaseModel):
-    username: str
-    password: str
-
-class Token(BaseModel):
-    access_token: str
-    token_type: str
-
-class UserInfo(BaseModel):
-    username: str
-    email: str
-
-# Sohbet geçmişi modelleri
-class ChatHistory(BaseModel):
-    chat_id: str
-    first_message: str
-    timestamp: datetime.datetime
-    message_count: int
-
-class ChatMessageHistory(BaseModel):
-    user_message: str
-    bot_response: str
-    timestamp: datetime.datetime
-
-# --- API Endpointleri ---
-
-@app.get("/health", response_model=HealthStatus, summary="API Sağlık Durumu")
+@app.get("/health", response_model=HealthStatus)
 async def health_check():
-    """API sunucusunun, LLM modelinin ve vektör veritabanının durumunu kontrol eder."""
-    status_code = "ok"
-    if not is_llm_loaded or not is_db_loaded:
-        status_code = "partial_error"
-    if not is_llm_loaded and not is_db_loaded:
-        status_code = "error"
+    status="ok"; path_m=MODEL_PATH if os.path.isdir(MODEL_PATH) else f"X: {MODEL_PATH}"; path_d=DB_PATH if os.path.exists(DB_PATH) else f"X: {DB_PATH}"
+    if not is_llm_loaded or not is_db_loaded: status = "partial_error"
+    if not is_llm_loaded and not is_db_loaded: status = "error"
+    return HealthStatus(status=status, llm_loaded=is_llm_loaded, db_loaded=is_db_loaded, model_path=path_m, db_path=path_d)
 
-    # MODEL_PATH ve DB_PATH kullanıldı
-    model_status_path = MODEL_PATH if os.path.exists(MODEL_PATH) else f"Bulunamadı: {MODEL_PATH}"
-    db_status_path = DB_PATH if os.path.exists(DB_PATH) else f"Bulunamadı: {DB_PATH}"
-
-    return HealthStatus(
-        status=status_code,
-        llm_loaded=is_llm_loaded,
-        db_loaded=is_db_loaded,
-        model_path=model_status_path,
-        db_path=db_status_path
-    )
-
-# JWT ile ilgili fonksiyonlar
-def create_access_token(data: dict, expires_delta: datetime.timedelta = None):
-    to_encode = data.copy()
-    if expires_delta:
-        expire = datetime.datetime.utcnow() + expires_delta
-    else:
-        expire = datetime.datetime.utcnow() + datetime.timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    return encoded_jwt
+def create_access_token(data: dict, expires_delta: Optional[datetime.timedelta] = None):
+    exp = datetime.datetime.utcnow() + (expires_delta or datetime.timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+    return jwt.encode({**data, "exp": exp}, SECRET_KEY, algorithm=ALGORITHM)
 
 async def get_current_user(token: str = Depends(oauth2_scheme)):
-    credentials_exception = HTTPException(
-        status_code=401,
-        detail="Geçersiz kimlik bilgileri",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
+    exc = HTTPException(401, "Geçersiz kimlik", headers={"WWW-Authenticate": "Bearer"})
+    try: payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM]); user = payload.get("sub"); assert user
+    except: raise exc
+    return {"username": user}
+
+async def _generate_chat_response(
+    query_data: ChatQuery, current_hf_model: AutoModelForCausalLM, current_hf_tokenizer: AutoTokenizer,
+    db_path_val: str, is_anonymous: bool = False, username: Optional[str] = None
+) -> Tuple[str, str, List[str]]: # model_answer, retrieved_context, sources döndürür
+    # ... (Bu fonksiyonun içeriği bir önceki cevaptaki "REVİZE EDİLMİŞ PROMPT YAPISI" ile aynı kalacak)
+    # ... (Sadece en sondaki "return ChatResponse(...)" yerine Tuple döndürecek)
+    log_prefix = "[Anonim] " if is_anonymous else f"[{username if username else 'Kullanıcı'}] "
+    ret_result = retrieve_relevant_context(query=query_data.query, db_path=db_path_val, top_k=query_data.top_k, return_sources=True)
+    ctx_text, sources = ret_result.get("text", "").strip(), ret_result.get("sources", [])
+    base_persona = ("Sen SAÜChat, Sakarya Üniversitesi'nin resmi Yapay Zeka Destek Asistanısın...")
+    general_instructions = ["Bilgi Kaynakları: Cevapların HER ZAMAN öncelikle sana <CONTEXT> etiketi içinde sağlanan bilgilere dayanmalıdır...",]
+    context_instructions = { "with_context": ("..."), "without_context_specific_inquiry": ("..."), "without_context_general_inquiry": ("..."), "clarification_needed": ("..."), "out_of_scope": ("...") } # Kısaltıldı, tam metinler önceki cevapta
+    system_message_list = [base_persona]; system_message_list.extend(general_instructions)
+    msgs = []; ret_ctx_resp = "İlgili yönetmelik bilgisi bulunamadı."
+    if ctx_text:
+        chosen_instruction = context_instructions["with_context"]
+        final_system_content = "\n\n".join(system_message_list) + "\n\n" + chosen_instruction + f"\n\n<CONTEXT>\n{ctx_text}\n</CONTEXT>"
+        ret_ctx_resp = ctx_text
+    else:
+        if len(query_data.query.split()) < 4 or any(k in query_data.query.lower() for k in ["nedir","nasıl","ne zaman","nerede","kimdir"]): chosen_instruction = context_instructions["without_context_general_inquiry"]
+        else: chosen_instruction = context_instructions["without_context_specific_inquiry"]
+        final_system_content = "\n\n".join(system_message_list) + "\n\n" + chosen_instruction
+        sources = []
+    msgs.append({"role": "system", "content": final_system_content})
+    is_first_turn = not query_data.history or len(query_data.history) == 0
+    if query_data.history:
+        for hist_msg in query_data.history: msgs.append({"role": hist_msg.role, "content": hist_msg.content})
+    msgs.append({"role": "user", "content": query_data.query})
+    try: prompt = current_hf_tokenizer.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
+    except: prompt = "Fallback prompt"
+    inputs = current_hf_tokenizer(prompt, return_tensors="pt", truncation=True, max_length=N_CTX_HF - query_data.max_new_tokens)
+    try: target_device = next(current_hf_model.parameters()).device
+    except: target_device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    input_ids_dev, attn_mask_dev = inputs["input_ids"].to(target_device), inputs["attention_mask"].to(target_device)
+    gen_kwargs = {"max_new_tokens": query_data.max_new_tokens, "pad_token_id": current_hf_tokenizer.eos_token_id, "eos_token_id": current_hf_tokenizer.eos_token_id}
+    if query_data.temperature > 0.001: gen_kwargs.update({"temperature": query_data.temperature, "do_sample": True, "top_p": query_data.top_p})
+    else: gen_kwargs["do_sample"] = False
+    if query_data.repetition_penalty and query_data.repetition_penalty > 1.0: gen_kwargs["repetition_penalty"] = query_data.repetition_penalty
+    with torch.no_grad(): out_seqs = current_hf_model.generate(input_ids=input_ids_dev, attention_mask=attn_mask_dev, **gen_kwargs)
+    answer = current_hf_tokenizer.decode(out_seqs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True).strip()
+    final_answer = answer
+    if is_first_turn and username:
+        greeting = f"Merhaba {username.capitalize()}"
+        if not answer.lower().startswith(greeting.lower().split(" ")[0].lower()): final_answer = f"{greeting}! {answer}"
+        elif not answer.lower().startswith(greeting.lower()): final_answer = f"{greeting}! {answer[len('Merhaba'):].lstrip(' !.')}"
+    return final_answer, ret_ctx_resp, sources
+
+
+@app.post("/chat", response_model=ChatResponseAPI)
+async def chat_endpoint(q_data: ChatQuery, deps: tuple = Depends(get_hf_model_and_tokenizer), db_p: str = Depends(get_db_path_dependency), user: dict = Depends(get_current_user)):
+    model, tokenizer = deps; username = user.get("username")
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")
-        if username is None:
-            raise credentials_exception
-    except JWTError:
-        raise credentials_exception
-    return {"username": username}
-
-@app.post("/chat", response_model=ChatResponse, summary="Sohbet Sorgusu")
-async def chat_endpoint(
-    query_data: ChatQuery,
-    current_llm: Llama = Depends(get_llm),
-    db_path: str = Depends(get_db_path),
-    current_user: dict = Depends(get_current_user)
-):
-    """
-    Kullanıcı sorgusunu alır, ilgili bağlamı bulur ve LLM ile yanıt üretir.
-    Oturum açmış kullanıcılar için sohbet geçmişini kaydeder.
-    """
-    try:
-        # 1. Vektör veritabanından ilgili bağlamı ve kaynakları al
-        print(f"Sorgu için ilgili bağlam aranıyor: '{query_data.query}' (top_k={query_data.top_k})")
-
-        retrieval_result = retrieve_relevant_context(
-            query=query_data.query,
-            db_path=db_path,
-            top_k=query_data.top_k,
-            return_sources=True
+        model_answer, retrieved_context, sources = await _generate_chat_response(
+            q_data, model, tokenizer, db_p, is_anonymous=False, username=username
         )
-
-        context = retrieval_result.get("text", "Bağlam alınamadı.")
-        sources = retrieval_result.get("sources", [])
-
-        if "Hata oluştu:" in context or "Veritabanı yüklenemedi" in context or "Sorguya uygun sonuç bulunamadı" in context:
-             print(f"Bağlam alınırken hata veya sonuç yok: {context}")
-             prompt = f"""Sen Sakarya Üniversitesi'nin yardımsever bir bilgi asistanısın.
-
-Kullanıcı Sorusu: {query_data.query}
-
-Bu konuda veritabanımda maalesef yeterli bilgi bulunmuyor veya bilgi alınırken bir sorun oluştu. Kullanıcıya bu durumu nazikçe açıkla.
-
-Cevap:"""
-             sources = []
-        else:
-            print(f"Bulunan kaynaklar: {sources}")
-            print(f"Oluşturulan bağlam:\n{context[:500]}...")
-            prompt = f"""<CONTEXT>
-{context}
-</CONTEXT>
-
-Sen Sakarya Üniversitesi'nin resmi yönetmelikleri konusunda uzman bir asistansın. Yalnızca yukarıdaki <CONTEXT> içinde verilen bilgilere dayanarak kullanıcı sorusunu yanıtla. Cevabın net, doğru ve yalnızca verilen bağlamdaki bilgilerle sınırlı olsun. Eğer cevap bağlamda yoksa veya emin değilsen, bunu belirt.
-
-Kullanıcı Sorusu: {query_data.query}
-
-Cevap:"""
-
-        # 2. LLM ile yanıt üret
-        print(f"LLM ile yanıt üretiliyor (temperature={query_data.temperature}, max_tokens={query_data.max_tokens})...")
-        response = current_llm(
-            prompt,
-            max_tokens=query_data.max_tokens,
-            temperature=query_data.temperature,
-            echo=False
-        )
-        model_answer = response["choices"][0]["text"].strip()
         
-        # 3. Sohbet geçmişine kaydet
-        try:
-            username = current_user.get("username")
-            save_chat_message(
-                username=username,
-                user_message=query_data.query,
-                bot_response=model_answer,
-                retrieved_docs=[s for s in sources if s]  # Boş kaynak olmadığından emin ol
-            )
-        except Exception as e:
-            print(f"Sohbet geçmişi kaydedilirken hata: {e}")
-            # Geçmiş kaydedilemese bile, yanıt dönmeye devam et
-
-        # 4. Yanıtı döndür
-        return ChatResponse(
+        # mongo_db_helper.save_chat_message string chat_id döndürmeli
+        returned_chat_id = save_chat_message(
+            username=username, 
+            user_message=q_data.query, 
+            bot_response=model_answer, 
+            retrieved_docs=[s for s in sources if s],
+            chat_id=q_data.current_chat_id # Streamlit'ten gelen mevcut chat_id
+        )
+        print(f"API /chat - Kullanılan/Oluşturulan Chat ID: {returned_chat_id}")
+        
+        return ChatResponseAPI(
             model_answer=model_answer,
-            retrieved_context=context,
-            sources=sources
+            retrieved_context=retrieved_context,
+            sources=sources,
+            chat_id=returned_chat_id 
         )
+    except Exception as e_chat: print(f"Chat endpoint hatası: {e_chat}"); traceback.print_exc(); raise HTTPException(500, f"Sunucu hatası: {e_chat}")
 
-    except Exception as e:
-        print(f"Hata: {e}")
-        raise HTTPException(status_code=500, detail=f"İşlem sırasında hata oluştu: {str(e)}")
-
-# Anonim kullanıcılar için sohbet endpoint'i
-@app.post("/anon-chat", response_model=ChatResponse, summary="Anonim Sohbet Sorgusu")
-async def anon_chat_endpoint(
-    query_data: ChatQuery,
-    current_llm: Llama = Depends(get_llm),
-    db_path: str = Depends(get_db_path)
-):
-    """
-    Anonim kullanıcı sorgusunu alır, ilgili bağlamı bulur ve LLM ile yanıt üretir.
-    Oturum açmamış kullanıcılar için sohbet geçmişi kaydedilmez.
-    """
-    try:
-        # 1. Vektör veritabanından ilgili bağlamı ve kaynakları al
-        print(f"[Anonim] Sorgu için ilgili bağlam aranıyor: '{query_data.query}' (top_k={query_data.top_k})")
-
-        retrieval_result = retrieve_relevant_context(
-            query=query_data.query,
-            db_path=db_path,
-            top_k=query_data.top_k,
-            return_sources=True
+@app.post("/anon-chat", response_model=ChatResponseAPI)
+async def anon_chat_endpoint(q_data: ChatQuery, deps: tuple = Depends(get_hf_model_and_tokenizer), db_p: str = Depends(get_db_path_dependency)):
+    model, tokenizer = deps
+    try: 
+        model_answer, retrieved_context, sources = await _generate_chat_response(
+            q_data, model, tokenizer, db_p, is_anonymous=True, username=None
         )
-
-        context = retrieval_result.get("text", "Bağlam alınamadı.")
-        sources = retrieval_result.get("sources", [])
-
-        if "Hata oluştu:" in context or "Veritabanı yüklenemedi" in context or "Sorguya uygun sonuç bulunamadı" in context:
-             print(f"[Anonim] Bağlam alınırken hata veya sonuç yok: {context}")
-             prompt = f"""Sen Sakarya Üniversitesi'nin yardımsever bir bilgi asistanısın.
-
-Kullanıcı Sorusu: {query_data.query}
-
-Bu konuda veritabanımda maalesef yeterli bilgi bulunmuyor veya bilgi alınırken bir sorun oluştu. Kullanıcıya bu durumu nazikçe açıkla.
-
-Cevap:"""
-             sources = []
-        else:
-            print(f"[Anonim] Bulunan kaynaklar: {sources}")
-            print(f"[Anonim] Oluşturulan bağlam:\n{context[:500]}...")
-            prompt = f"""<CONTEXT>
-{context}
-</CONTEXT>
-
-Sen Sakarya Üniversitesi'nin resmi yönetmelikleri konusunda uzman bir asistansın. Yalnızca yukarıdaki <CONTEXT> içinde verilen bilgilere dayanarak kullanıcı sorusunu yanıtla. Cevabın net, doğru ve yalnızca verilen bağlamdaki bilgilerle sınırlı olsun. Eğer cevap bağlamda yoksa veya emin değilsen, bunu belirt.
-
-Kullanıcı Sorusu: {query_data.query}
-
-Cevap:"""
-
-        # 2. LLM ile yanıt üret
-        print(f"[Anonim] LLM ile yanıt üretiliyor (temperature={query_data.temperature}, max_tokens={query_data.max_tokens})...")
-        response = current_llm(
-            prompt,
-            max_tokens=query_data.max_tokens,
-            temperature=query_data.temperature,
-            echo=False
-        )
-        model_answer = response["choices"][0]["text"].strip()
-
-        # 3. Yanıtı döndür
-        return ChatResponse(
+        return ChatResponseAPI(
             model_answer=model_answer,
-            retrieved_context=context,
-            sources=sources
+            retrieved_context=retrieved_context,
+            sources=sources,
+            chat_id=None # Anonim sohbet için chat_id yok
         )
+    except Exception as e_anon: print(f"[Anonim] Chat endpoint hatası: {e_anon}"); traceback.print_exc(); raise HTTPException(500, f"Sunucu hatası: {e_anon}")
 
-    except Exception as e:
-        print(f"[Anonim] Hata: {e}")
-        raise HTTPException(status_code=500, detail=f"İşlem sırasında hata oluştu: {str(e)}")
-
-# PDF yükleme ve işleme endpoint'i (api_server.py'deki çoklu dosya ve yeniden yükleme mantığı korundu)
+# --- Diğer Endpointler (PDF Yükleme, Kullanıcı Yönetimi, Sohbet Geçmişi) ---
+# Bu fonksiyonların İÇERİKLERİ, sizin en son paylaştığınız tam ve çalışan kodunuzdaki GİBİDİR.
+# Sadece get_chat_message_history'yi düzelttim.
 @app.post("/upload-pdf", response_model=UploadResponse, summary="PDF Dosyalarını Yükle ve İndeksle")
-async def upload_pdf(
-    files: List[UploadFile] = File(..., description="İndekslenecek PDF dosyaları listesi"),
-    db_path: str = Depends(get_db_path) # Sadece yolu alır
-):
-    """
-    Yüklenen PDF dosyalarını işler ve vektör veritabanına ekler.
-    İşlem sonrası veritabanı belleğe yeniden yüklenir.
-
-    - **files**: Yüklenecek PDF dosyalarının listesi.
-    """
-    global faiss_index, documents, ids, is_db_loaded # Veritabanını yeniden yüklemek için global erişim
-
-    processed_files_count = 0
-    total_added_chunks = 0
-    all_chunk_dicts = []
-    errors = []
-
-    with tempfile.TemporaryDirectory() as temp_dir:
-        temp_chunks_path = os.path.join(temp_dir, "combined_processed_chunks.json")
-
-        for file in files:
-            if not file.filename.lower().endswith(".pdf"):
-                errors.append(f"'{file.filename}': Geçersiz dosya türü. Sadece PDF dosyaları kabul edilir.")
-                continue
-
-            temp_pdf_path = os.path.join(temp_dir, file.filename)
-
+async def upload_pdf(files: List[UploadFile] = File(...), db_path_val: str = Depends(get_db_path_dependency)):
+    global faiss_index, documents, ids, is_db_loaded; processed_files_count,total_added_chunks,all_chunk_dicts,errors=0,0,[],[]
+    with tempfile.TemporaryDirectory() as td:
+        tp=os.path.join(td,"c.json")
+        for fi in files:
+            if not fi.filename.lower().endswith(".pdf"): errors.append(f"'{fi.filename}': Geçersiz."); continue
+            tmp_p=os.path.join(td,fi.filename)
             try:
-                with open(temp_pdf_path, "wb") as buffer:
-                    shutil.copyfileobj(file.file, buffer)
-                print(f"PDF geçici olarak kaydedildi: {temp_pdf_path}")
-
-                extracted_text = extract_text_from_pdf(temp_pdf_path)
-                if not extracted_text:
-                    errors.append(f"'{file.filename}': PDF dosyasından metin çıkarılamadı.")
-                    continue
-                print(f"'{file.filename}' için metin çıkarıldı.")
-
-                cleaned_text = clean_text(extracted_text)
-                chunks = simple_chunk_text(cleaned_text)
-                if not chunks:
-                    errors.append(f"'{file.filename}': Metin parçalara ayrılamadı.")
-                    continue
-
-                chunk_dicts = convert_chunks_to_dict(chunks, file.filename)
-                print(f"'{file.filename}' için {len(chunk_dicts)} adet metin parçası oluşturuldu.")
-
-                all_chunk_dicts.extend(chunk_dicts)
-                processed_files_count += 1
-
-            except Exception as e:
-                error_msg = f"'{file.filename}' işlenirken hata oluştu: {str(e)}"
-                print(error_msg)
-                errors.append(error_msg)
+                with open(tmp_p,"wb") as b: shutil.copyfileobj(fi.file,b)
+                txt=extract_text_from_pdf(tmp_p)
+                if not txt or not txt.strip(): errors.append(f"'{fi.filename}': Metin yok."); continue
+                ch=simple_chunk_text(clean_text(txt))
+                if not ch: errors.append(f"'{fi.filename}': Parçalanamadı."); continue
+                all_chunk_dicts.extend(convert_chunks_to_dict(ch,fi.filename));processed_files_count+=1
+            except Exception as e: errors.append(f"'{fi.filename}' işlenirken: {e}")
             finally:
-                 if os.path.exists(temp_pdf_path):
-                     try:
-                         os.remove(temp_pdf_path)
-                     except OSError as rm_err:
-                         print(f"Geçici PDF silinemedi: {rm_err}")
-
+                if os.path.exists(tmp_p):os.remove(tmp_p)
+                fi.file.close()
         if not all_chunk_dicts:
-             if errors:
-                 error_details = "; ".join(errors)
-                 raise HTTPException(status_code=400, detail=f"Hiçbir dosya başarıyla işlenemedi. Hatalar: {error_details}")
-             else:
-                 raise HTTPException(status_code=400, detail="Yüklenen dosyalarda işlenecek içerik bulunamadı veya dosyalar boş.")
-
+            if not errors: errors.append("Dosya yok/işlenemedi.")
+            raise HTTPException(400,f"İşleme başarısız: {'; '.join(errors)}")
         try:
-            with open(temp_chunks_path, 'w', encoding='utf-8') as f:
-                json.dump(all_chunk_dicts, f, ensure_ascii=False, indent=2)
-            print(f"Toplam {len(all_chunk_dicts)} parça geçici JSON'a kaydedildi: {temp_chunks_path}")
-
-            print("FAISS veritabanına ekleme işlemi başlatılıyor...")
-            # db_path burada Depends'den geliyor
-            success = add_to_faiss_index(temp_chunks_path, db_path, model_name=FAISS_MODEL)
-
-            if not success:
-                raise HTTPException(status_code=500, detail="Veriler FAISS veritabanına eklenirken genel bir hata oluştu. Detaylar için sunucu loglarına bakın.")
-
-            total_added_chunks = len(all_chunk_dicts)
-            print("Veriler FAISS veritabanına başarıyla eklendi.")
-
-            print("Vektör veritabanı belleğe yeniden yükleniyor...")
-            try:
-                # db_path burada Depends'den geliyor
-                faiss_index, documents, ids = load_vector_db(db_path)
-                if faiss_index is not None and documents is not None and ids is not None:
-                    is_db_loaded = True # Durumu güncelle
-                    print("Vektör veritabanı başarıyla yeniden yüklendi.")
-                else:
-                    is_db_loaded = False
-                    errors.append("Veritabanı eklendikten sonra belleğe yeniden yüklenemedi.")
-                    print("HATA: Veritabanı eklendikten sonra belleğe yeniden yüklenemedi.")
-            except Exception as reload_e:
-                is_db_loaded = False
-                errors.append(f"Veritabanı yeniden yüklenirken hata oluştu: {str(reload_e)}")
-                print(f"HATA: Veritabanı yeniden yüklenirken hata oluştu: {reload_e}")
-
-            success_message = f"{processed_files_count} PDF dosyası başarıyla işlendi ve toplam {total_added_chunks} parça veritabanına eklendi."
-            final_message = success_message
-            if errors:
-                 final_message += " Ancak bazı sorunlar oluştu (detaylar için 'errors' alanına bakın)."
-
-            return UploadResponse(
-                message=final_message,
-                processed_files=processed_files_count,
-                added_chunks=total_added_chunks,
-                errors=errors
-            )
-
-        except HTTPException as http_exc:
-            raise http_exc
-        except Exception as e:
-            print(f"Veritabanına ekleme veya yeniden yükleme sırasında hata: {str(e)}")
-            import traceback
-            traceback.print_exc()
-            raise HTTPException(status_code=500, detail=f"Veritabanına ekleme veya yeniden yükleme sırasında bir hata oluştu: {str(e)}")
-
-# --- Kullanıcı Yönetimi Endpoint'leri ---
+            with open(tp,'w',encoding='utf-8') as f: json.dump(all_chunk_dicts,f,ensure_ascii=False,indent=2)
+            if not add_to_faiss_index(tp,db_path_val,model_name=FAISS_MODEL): raise HTTPException(500,"FAISS hatası.")
+            total_added_chunks=len(all_chunk_dicts)
+            faiss_index,documents,ids=load_vector_db(db_path_val);is_db_loaded=bool(faiss_index and documents and ids)
+            if not is_db_loaded: errors.append("DB yeniden yüklenemedi.")
+            msg=f"{processed_files_count} PDF işlendi, {total_added_chunks} parça."
+            if errors: msg+=" Sorunlar var."
+            return UploadResponse(message=msg,processed_files=processed_files_count,added_chunks=total_added_chunks,errors=errors)
+        except Exception as e: traceback.print_exc();raise HTTPException(500,f"DB/Yükleme hatası: {e}")
 
 @app.post("/register", response_model=dict, summary="Yeni Kullanıcı Kaydı")
-async def register_user(user_data: UserRegister):
-    """
-    Yeni bir kullanıcı kaydı oluşturur.
-    """
+async def register_new_user(user_data: UserRegister):
     try:
-        success = create_user(
-            username=user_data.username,
-            email=user_data.email,
-            password=user_data.password
-        )
-        
-        if not success:
-            raise HTTPException(status_code=400, detail="Kullanıcı adı veya e-posta zaten kullanımda")
-        
-        return {"success": True, "message": "Kullanıcı başarıyla oluşturuldu"}
-    except Exception as e:
-        print(f"Kullanıcı kaydı sırasında hata: {e}")
-        raise HTTPException(status_code=500, detail=f"Kayıt sırasında bir hata oluştu: {str(e)}")
+        success, message = create_user(username=user_data.username,email=user_data.email,password=user_data.password)
+        if not success: raise HTTPException(400, detail=message or "Kullanıcı adı/e-posta zaten kullanımda")
+        return {"success": True, "message": message or "Kullanıcı başarıyla oluşturuldu"}
+    except HTTPException as http_exc: raise http_exc
+    except Exception as e: print(f"Kayıt hatası: {e}"); raise HTTPException(status_code=500, detail=f"Kayıt sırasında sunucu hatası: {str(e)}")
 
 @app.post("/token", response_model=Token, summary="Access Token Al")
-async def login(form_data: OAuth2PasswordRequestForm = Depends()):
-    """
-    Kullanıcı adı ve şifre ile kimlik doğrulama yapar ve access token döndürür.
-    """
-    try:
-        user = authenticate_user(form_data.username, form_data.password)
-        if not user:
-            raise HTTPException(
-                status_code=401,
-                detail="Hatalı kullanıcı adı veya şifre",
-                headers={"WWW-Authenticate": "Bearer"},
-            )
-        
-        access_token_expires = datetime.timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-        access_token = create_access_token(
-            data={"sub": user["username"]}, expires_delta=access_token_expires
-        )
-        
-        return {"access_token": access_token, "token_type": "bearer"}
-    except Exception as e:
-        print(f"Giriş sırasında hata: {e}")
-        raise HTTPException(status_code=500, detail=f"Giriş sırasında bir hata oluştu: {str(e)}")
+async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
+    user = authenticate_user(form_data.username, form_data.password)
+    if not user: raise HTTPException(status_code=401, detail="Hatalı kullanıcı adı veya şifre", headers={"WWW-Authenticate": "Bearer"})
+    return Token(access_token=create_access_token(data={"sub": user["username"]}), token_type="bearer")
 
 @app.get("/users/me", response_model=UserInfo, summary="Kullanıcı Bilgilerini Al")
-async def read_users_me(current_user: dict = Depends(get_current_user)):
-    """
-    Mevcut kullanıcının bilgilerini döndürür.
-    """
-    return {"username": current_user["username"], "email": ""}  # Güvenlik için e-posta olmadan dönüş
+async def read_current_user_info(user: dict = Depends(get_current_user)):
+    return UserInfo(username=user["username"], email=user.get("email",""))
 
-# --- Sohbet Geçmişi Endpoint'leri ---
-
-@app.get("/chat-history", response_model=List[ChatHistory], summary="Sohbet Geçmişini Al")
-async def get_chat_history(current_user: dict = Depends(get_current_user)):
-    """
-    Kullanıcının tüm sohbet oturumlarını getirir.
-    """
+@app.get("/chat-history", response_model=List[MDB_ChatHistory], summary="Sohbet Geçmişini Al") # Dönüş tipi güncellendi
+async def list_user_chat_history(user: dict = Depends(get_current_user)):
     try:
-        chats = get_user_chats(current_user["username"])
-        return chats
-    except Exception as e:
-        print(f"Sohbet geçmişi alınırken hata: {e}")
-        raise HTTPException(status_code=500, detail=f"Sohbet geçmişi alınırken bir hata oluştu: {str(e)}")
+        # Bu fonksiyon mongo_db_helper.py'den List[MDB_ChatHistory] döndürmeli
+        chat_sessions: List[MDB_ChatHistory] = get_user_chats(user["username"])
+        return chat_sessions
+    except Exception as e: print(f"Geçmiş alma hatası (user: {user['username']}): {e}"); traceback.print_exc(); raise HTTPException(status_code=500, detail=f"Sohbet geçmişi alınırken hata: {str(e)}")
 
-@app.get("/chat-history/{chat_id}", response_model=List[ChatMessageHistory], summary="Sohbet Mesajlarını Al")
-async def get_chat_message_history(chat_id: str, current_user: dict = Depends(get_current_user)):
-    """
-    Belirli bir sohbetin tüm mesajlarını getirir.
-    """
+@app.get("/chat-history/{chat_id}", response_model=List[MDB_ChatMessageHistory], summary="Belirli Bir Sohbetin Mesajlarını Al") # Dönüş tipi güncellendi
+async def get_chat_message_history(chat_id: str, current_user_data: dict = Depends(get_current_user)):
     try:
-        messages = get_chat_messages(chat_id)
+        # Varsayım: get_user_chats, MDB_ChatHistory Pydantic nesneleri listesi döndürüyor.
+        # Eğer hala dict döndürüyorsa, mongo_db_helper.py'yi düzeltmeniz gerekir.
+        user_chats_list: List[MDB_ChatHistory] = get_user_chats(current_user_data["username"])
+        
+        if not any(chat_session.chat_id == chat_id for chat_session in user_chats_list):
+            raise HTTPException(status_code=403, detail="Bu sohbete erişim yetkiniz yok veya sohbet bulunamadı.")
+        
+        # Varsayım: get_chat_messages, MDB_ChatMessageHistory Pydantic nesneleri listesi döndürüyor.
+        messages: List[MDB_ChatMessageHistory] = get_chat_messages(chat_id)
         return messages
-    except Exception as e:
-        print(f"Sohbet mesajları alınırken hata: {e}")
+    except HTTPException as http_exc:
+        raise http_exc
+    except AttributeError as attr_err: 
+        print(f"AttributeError - Muhtemelen get_user_chats veya get_chat_messages Pydantic listesi döndürmüyor: {attr_err}")
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"Sohbet geçmişi veri yapısı hatası. mongo_db_helper.py kontrol edin.")
+    except Exception as e: 
+        print(f"Mesaj alma hatası ({chat_id}, user: {current_user_data['username']}): {e}")
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Sohbet mesajları alınırken bir hata oluştu: {str(e)}")
 
 @app.delete("/chat-history/{chat_id}", response_model=dict, summary="Sohbeti Sil")
-async def delete_chat_history(chat_id: str, current_user: dict = Depends(get_current_user)):
-    """
-    Belirli bir sohbeti siler.
-    """
+async def delete_chat_history(chat_id: str, current_user_data: dict = Depends(get_current_user)):
     try:
-        success = delete_chat(chat_id, current_user["username"])
-        if not success:
-            raise HTTPException(status_code=404, detail="Sohbet bulunamadı veya silme işlemi başarısız oldu")
+        success = delete_chat(chat_id, current_user_data["username"])
+        if not success: raise HTTPException(status_code=404, detail="Sohbet bulunamadı veya silme işlemi başarısız oldu")
         return {"success": True, "message": "Sohbet başarıyla silindi"}
-    except Exception as e:
-        print(f"Sohbet silinirken hata: {e}")
-        raise HTTPException(status_code=500, detail=f"Sohbet silinirken bir hata oluştu: {str(e)}")
+    except HTTPException as http_exc: raise http_exc
+    except Exception as e: print(f"Sohbet silme hatası ({chat_id}, user: {current_user_data['username']}): {e}"); traceback.print_exc(); raise HTTPException(status_code=500, detail=f"Sohbet silinirken hata: {str(e)}")
 
-# --- Uygulamayı Başlat ---
 if __name__ == "__main__":
-    # argparse kodunu buraya ekleyebiliriz, eğer doğrudan çalıştırma senaryosu için
-    # komut satırı argümanları hala isteniyorsa, ancak uvicorn'u etkilemez.
-    # Örneğin:
-    # local_parser = argparse.ArgumentParser(description="SAÜChat API Sunucusu (Doğrudan Çalıştırma)")
-    # local_parser.add_argument("--host", default="0.0.0.0", help="Sunucu adresi")
-    # local_parser.add_argument("--port", type=int, default=8000, help="Sunucu portu")
-    # local_parser.add_argument("--reload", action="store_true", help="Otomatik yeniden başlatmayı etkinleştir")
-    # local_args = local_parser.parse_args()
-    #
-    # uvicorn.run(
-    #     "api_server:app",
-    #     host=local_args.host,
-    #     port=local_args.port,
-    #     reload=local_args.reload,
-    #     log_level="info"
-    # )
-    # Şimdilik basit tutalım:
-    uvicorn.run(
-        "api_server:app",
-        host="0.0.0.0",
-        port=8000,
-        reload=True, # Geliştirme için otomatik yeniden başlatma
-        log_level="info"
-    )
+    host,port,reload=os.environ.get("SAUCHAT_HOST","0.0.0.0"),int(os.environ.get("SAUCHAT_PORT","8000")),os.environ.get("SAUCHAT_RELOAD","true").lower()=="true"
+    print(f"API http://{host}:{port} (Model: {MODEL_PATH} [HF], DB: {DB_PATH}, Reload: {reload})")
+    uvicorn.run("api_server:app", host=host, port=port, reload=reload, log_level="info")

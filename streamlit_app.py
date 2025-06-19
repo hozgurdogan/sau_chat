@@ -14,7 +14,7 @@ st.set_page_config(
 
 # --- API URL'leri ---
 # Bu URL'leri gerektiğinde ortam değişkenlerinden veya bir config dosyasından almak daha iyidir.
-BASE_API_URL = os.environ.get("API_URL", "http://localhost:8000")
+BASE_API_URL = os.environ.get("API_URL", "http://localhost:8001")
 CHAT_API_URL = f"{BASE_API_URL}/chat"
 UPLOAD_API_URL = f"{BASE_API_URL}/upload-pdf"
 HEALTH_API_URL = f"{BASE_API_URL}/health"

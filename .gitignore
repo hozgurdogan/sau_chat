@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.so
+
+# Environment variables
+.env
+*.env
+env/
+venv/
+.venv/
+
+# Model ve GGUF dosyaları (Büyük dosyalar, Git'e eklenmemeli)
+model/
+gguf/
+trendyol-finetuned/
+yeniEgitilmisTrendyolLlama3/
+
+# Oluşturulmuş veri (Kaynak koddan tekrar oluşturulabilir)
+# vector_db/  # Yorum satırı yapıldı veya silindi, böylece Git'e eklenecek
+extracted_texts/
+processed_chunks/
+
+# Log dosyaları
+*.log
+
+# Veritabanı dosyaları (eğer yerel geliştirme için kullanılıyorsa)
+# *.sqlite3
+# *.db
+
+# IDE ve düzenleyiciye özel dosyalar
+.vscode/
+.idea/
+*.swp
+*~
+*.sublime-project
+*.sublime-workspace
+
+# İşletim sistemine özel dosyalar
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Jupyter Notebook checkpoint dosyaları
+.ipynb_checkpoints/
+
+# Test çıktıları veya raporları
+htmlcov/
+.tox/
+.nox/
+.coverage
+.cache
+.pytest_cache/
+
+# Bağımlılık klasörleri (genellikle requirements.txt ile yönetilir)
+# node_modules/
+# bower_components/

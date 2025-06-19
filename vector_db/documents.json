@@ -838,5 +838,995 @@
       "source_file": "extracted_texts\\_8402563_Sakarya_U__niversitesi_Dumansiz_Hava_Sahasi_Yo__nergesi__1__metin.txt",
       "total_chunks": 18
     }
+  },
+  {
+    "id": "YazilimMu__h_StajYo__nergesi.pdf_0",
+    "text": "SAKARYA ÜNİVERSİTESİ BİLGİSAYAR VE BİLİŞİM BİLİMLERİ FAKÜLTESİ YAZILIM MÜHENDİSLİĞİ BÖLÜMÜ ZORUNLU İŞYERİ STAJI UYGULAMA ESASLARI Tanım: Bölümümüzde her biri en az 20 iş günü olmak üzere iki yazılım stajı yapılması zorunludur. Stajlar ders planında “Staj I” ve “Staj II” isminde birer ders olarak görünmektedir. Öğrenciler dönem başında yazıldıkları staj dersinin faaliyetini yazın, eğitim almadıkları sürede ve bölümün onayladığı bir firmada yapar. Staj ile ilgili tüm işlemler Sabis staj takip sistemi ( üzerinden yapılmalıdır. Genel hususlar: ● Yazılım Mühendisliği bölümü öğrencilerinin yapacakları stajlarının temel ilkeleri Bilgisayar ve Bilişim Bilimleri Fakültesi’nin “Zorunlu İşyeri Staj Yönergesi” ile belirlenmiştir. Aşağıdaki esaslar, ilgili yönergede yer alan her bölümün kendi gereksinimlerine uygun bir kılavuz hazırlayabileceği ilkesine uygun olarak hazırlanmıştır. ● Öğrencilerimiz staj yerlerini kendileri bulmakla yükümlüdürler.",
+    "source": "YazilimMu__h_StajYo__nergesi.pdf",
+    "chunk_index": 0,
+    "metadata": {
+      "source_file": "YazilimMu__h_StajYo__nergesi.pdf",
+      "total_chunks": 7
+    }
+  },
+  {
+    "id": "YazilimMu__h_StajYo__nergesi.pdf_1",
+    "text": "ilgili yönergede yer alan her bölümün kendi gereksinimlerine uygun bir kılavuz hazırlayabileceği ilkesine uygun olarak hazırlanmıştır. ● Öğrencilerimiz staj yerlerini kendileri bulmakla yükümlüdürler. Ayrıca kurumlardan gelen stajyer talepleri bölüm web sayfasında duyurulmaktadır. ● Eğitim-Öğretim döneminde (güz, bahar, yaz) ders alan öğrenci dönem devam ettiği sürece staj yapamaz. ● Staj yapacak tüm öğrencilerin (çalışan/memur dahil) sigorta işlemlerini de yaptırmaları gerekmektedir. ● Sigorta kayıtları bulunmayan öğrenciler mülakata alınmaz. ● Staj süresi kesintisiz olarak 20 iş günü olacak şekilde belirlenmelidir. ● Aynı işletmede stajların tamamının yapılması Bölüm Staj Komisyonunun izniyle olur. ● Öğrenciler Staj I’i dördüncü yarıyılın sonunda, Staj II’yi ise altıncı yarıyılın sonunda yapabilir. Ayrıca altıncı yarıyılın sonunda iki stajlarını da aynı yaz döneminde yapabilirler. ● Staj yapılan kurumda en az bir yazılım mühendisi / Bilgisayar mühendisi / Elektrik ve Elektronik mühendisi / Elektronik mühendisi / Mekatronik mühendisi / Bilişim sistemleri mühendisi / Endüstri mühendisi olması zorunludur.",
+    "source": "YazilimMu__h_StajYo__nergesi.pdf",
+    "chunk_index": 1,
+    "metadata": {
+      "source_file": "YazilimMu__h_StajYo__nergesi.pdf",
+      "total_chunks": 7
+    }
+  },
+  {
+    "id": "YazilimMu__h_StajYo__nergesi.pdf_2",
+    "text": " az bir yazılım mühendisi / Bilgisayar mühendisi / Elektrik ve Elektronik mühendisi / Elektronik mühendisi / Mekatronik mühendisi / Bilişim sistemleri mühendisi / Endüstri mühendisi olması zorunludur. Stajyer öğrenciden sorumlu mühendisin mesleki iş alanı, yazılım mühendisliği ile ilgili olmalıdır. ● Stajın değerlendirmeye alınabilmesi için öğrenci  üzerinden gerekli tüm işlemleri tamamlamış olmalıdır. Staj Kapsamı: ● Staj I kapsamında öğrencinin yazılım geliştiren bir kuruluşta yazılım geliştirme ve süreçleriyle ilgili detaylı gözlem yapması, yazılım analiz ve tasarım çalışmaları yapması amaçlanmaktadır. ● Staj II kapsamında ise öğrencinin yazılım geliştiren bir kuruluşta yazılım geliştirme ve süreçleriyle ilgili detaylı gözlem yapması, yazılım analiz ve tasarım çalışmaları yapması ve yazılım geliştirme projesinde görev alması beklenir. ● Satış, donanım kurulumu, yazılım kurulumu, programlama içermeyen döküman hazırlama gibi işler staj olarak kabul edilmez. ● Staj yapılacak iş yerinin, yazılım mühendisliği temel alanlarından en az birinde faaliyet gösteriyor olması gerekmektedir. ● Yazılım mühendisliği için staj yapma yerlerine aşağıdaki şirketler/birimler örnek verilebilir.",
+    "source": "YazilimMu__h_StajYo__nergesi.pdf",
+    "chunk_index": 2,
+    "metadata": {
+      "source_file": "YazilimMu__h_StajYo__nergesi.pdf",
+      "total_chunks": 7
+    }
+  },
+  {
+    "id": "YazilimMu__h_StajYo__nergesi.pdf_3",
+    "text": "erinin, yazılım mühendisliği temel alanlarından en az birinde faaliyet gösteriyor olması gerekmektedir. ● Yazılım mühendisliği için staj yapma yerlerine aşağıdaki şirketler/birimler örnek verilebilir. (Bu örnekler fikir verme amacıyla yazılmış olup, seçenekler bu yerler ile sınırlı değildir. ) Yazılım şirketleri; şirketlerin, fabrikaların, bankaların (genel merkezleri ), devlet kurumlarının (bakanlık, belediye, genel müdürlük vb. ) bilgi işlem merkezleri; telekomünikasyon şirketleri; otomasyon şirketleri; üniversiteler; TÜBİTAK, vb. ● Yazılım mühendisliği için staj yapılabilecek alanlara örnek olarak ise aşağıdaki alanlar örnek verilebilir. (Bu alanlar fikir verme amacıyla yazılmış olup, alanlar bunlarla sınırlı değildir. ) Mobil Uygulamalar, Gömülü Sistem Programlama, Biyometri (iz, yüz, parmak izi, vs. ) Uygulamaları, BS/YBS ((Yönetim) Bilişim Sistemleri) Uygulamaları, (ERP, SAP, e- ticaret, vs.",
+    "source": "YazilimMu__h_StajYo__nergesi.pdf",
+    "chunk_index": 3,
+    "metadata": {
+      "source_file": "YazilimMu__h_StajYo__nergesi.pdf",
+      "total_chunks": 7
+    }
+  },
+  {
+    "id": "YazilimMu__h_StajYo__nergesi.pdf_4",
+    "text": "rla sınırlı değildir. ) Mobil Uygulamalar, Gömülü Sistem Programlama, Biyometri (iz, yüz, parmak izi, vs. ) Uygulamaları, BS/YBS ((Yönetim) Bilişim Sistemleri) Uygulamaları, (ERP, SAP, e- ticaret, vs. ), Yazılım Performans Testleri ve Analizi , Veri Madenciliği Uygulamaları, Animasyon, Bilgisayar Grafikleri ve Oyun Programlama Uygulamaları, Veritabanı Uygulamaları, Veritabanı Analizi, Optimizasyonu ve Yönetimi, Bilgisayar Görmesi ve Yapay Zekâ Uygulamaları, Web Programlama, Sistem Programlama, Bilgisayar Güvenliği ve Kriptoloji, Bilgisayar Destekli Kontrol Sistemleri, Siber Güvenlik, vb. Staj Süresince Yapılması Gerekenler ● Öğrenci, staj defterlerini işyerinde, staj süresi içerisinde doldurur. Staj defteri ingilizce dilinde, özgün cümleler ile hazırlanmalıdır. Staj defterleri en az 20 sayfa olarak el yazısı ile doldurulmalıdır. ● Çalışma süresinin sonunda, bütün sayfaların işyerindeki sorumlu mühendis tarafından imzalanması ve ilk ve son sayfalarının işyeri yetkilisi tarafından onaylı ve mühürlü olması gerekmektedir. ● Staj defterlerinde firmanın tanıtımı ve günlük yaptığınız çalışmalar yazılmalıdır. Yapılan çalışmaları veya uygulamaları yansıtmayan defterler kabul edilmez.",
+    "source": "YazilimMu__h_StajYo__nergesi.pdf",
+    "chunk_index": 4,
+    "metadata": {
+      "source_file": "YazilimMu__h_StajYo__nergesi.pdf",
+      "total_chunks": 7
+    }
+  },
+  {
+    "id": "YazilimMu__h_StajYo__nergesi.pdf_5",
+    "text": " onaylı ve mühürlü olması gerekmektedir. ● Staj defterlerinde firmanın tanıtımı ve günlük yaptığınız çalışmalar yazılmalıdır. Yapılan çalışmaları veya uygulamaları yansıtmayan defterler kabul edilmez. ● Staj defterleri şekil ve içerik açısından SAU Bilgisayar ve Bilişim Bilimleri Fakültesi staj yönetmeliğine ve Yazılım mühendisliği bölümü staj yönergesine uygun olmalıdır. Staj Sonunda Yapılması Gerekenler: ● Staj defterleri, staj bitiminden sonra 10 iş günü süre içerisinde staj takip sistemine (staj. sabis. sakarya. edu. tr) yüklenmelidir. Aksi takdirde defter değerlendirmeye alınmayacaktır. ● Sisteme yüklenen staj defterleri, staj komisyonu tarafından, staj defterinin sisteme yüklendiği tarihten itibaren 20 iş günü içerisinde değerlendirilir. Ayrıca, sözlü değerlendirme stajın yapıldığı dönemi takip eden akademik yılın başlangıcından itibaren 10 iş günü içerisinde yapılabilir. Bölüm web sayfası takip edilerek, duyurulan tarihte mülakata gelinmelidir. ● Staj Değerlendirme Formu (SDF)” staj bitiminde işletme tarafından doldurulur ve mühürlü olarak onaylanır. Onaylayan işletme yetkilisinin adı, unvanı, görevi açıkça belirtilir.",
+    "source": "YazilimMu__h_StajYo__nergesi.pdf",
+    "chunk_index": 5,
+    "metadata": {
+      "source_file": "YazilimMu__h_StajYo__nergesi.pdf",
+      "total_chunks": 7
+    }
+  },
+  {
+    "id": "YazilimMu__h_StajYo__nergesi.pdf_6",
+    "text": "mülakata gelinmelidir. ● Staj Değerlendirme Formu (SDF)” staj bitiminde işletme tarafından doldurulur ve mühürlü olarak onaylanır. Onaylayan işletme yetkilisinin adı, unvanı, görevi açıkça belirtilir. Staj Değerlendirme Formu öğrenci tarafından yine defter yükleme tarihleri içerisinde sisteme yüklenir. Staj defterlerinin değerlendirilebilmesi için SDF’nin mutlaka sisteme yüklenmiş olması gerekir. Belgenin posta vb. yollar ile fiziksel olarak komisyona iletilmesi gibi bir durum söz konusu değildir.",
+    "source": "YazilimMu__h_StajYo__nergesi.pdf",
+    "chunk_index": 6,
+    "metadata": {
+      "source_file": "YazilimMu__h_StajYo__nergesi.pdf",
+      "total_chunks": 7
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_0",
+    "text": "T. C. Sakarya Üniversitesi Bilgisayar ve Bilişim Bilimleri Fakültesi Bilişim Sistemleri Mühendisliği Bölümü Bölüm Başkanı Prof. Dr. İsmail Hakkı Cedimoğlu T. C. SAKARYA ÜNİVERSİTESİ SAKARYA 2015 i Bilişim Sistemleri Mühendisliği 2014/2015 Dekanın Mesajı Teknoloji her alanda, daha önce hiç olmadığı kadar hızlı gelişmekte ve bu alandaki rekabetin artmasına neden olmaktadır. Üniversiteler teknoloji üretme potansiyelleri ile ülkelerinin rekabet güçlerine katkı sağlamaktadırlar. Ayrıca sektöre sağladığı en önemli katkı olan potansiyel insan gücü ile de, bunu sürekli hale getirirler. Üniversiteler bu amaçla öğrencilerini iş dünyasına daha yakın, araştırma yapma ilkelerine hâkim ve bu araştırmalarının sonuçlarını daha kısa sürede elde eden, bu sonuçların topluma ve sektöre etkilerini izleyebilen yetkinlikte mezunlar yetiştirmek üzere planlar yapmaktadırlar.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 0,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_1",
+    "text": "a ilkelerine hâkim ve bu araştırmalarının sonuçlarını daha kısa sürede elde eden, bu sonuçların topluma ve sektöre etkilerini izleyebilen yetkinlikte mezunlar yetiştirmek üzere planlar yapmaktadırlar. Ayrıca üniversiteler, ekonominin itici gücü olan sanayiinin bilimsel bilgi ve zaman kaybetmeksizin pazara çıkma gereksinimlerini karşılayıp bu konuda sanayiye destek olma sorumluluğuna sahiptirler. Böylece ülke ekonomisine önemli bir katkı sağlamaktadırlar. 1789’lardan sonra teknolojiler bilimsel bilgi temelli olarak gelişmeye başlamış ve üniversite sanayi işbirliği, sanayileşme ve ekonomik gelişmenin motoru olmuştur. Üniversitelerden, endüstrinin uzun vadeli teknoloji stratejilerini anlayacak ve bu stratejilere katkı sağlayacak mezunlar yetiştirmesi beklenmektedir. Bu durum, bilimin artık teknolojiye daha fazla yönelmesinden dolayı teknoloji ile bilim arasındaki makasın daralmasından kaynaklanmaktadır. Anlaşılıyor ki küresel rekabetin temel unsuru olan teknolojik yetkinliğin kazanılması için en önemli araçlardan biri üniversite-sanayi işbirliğidir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 1,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_2",
+    "text": "arasındaki makasın daralmasından kaynaklanmaktadır. Anlaşılıyor ki küresel rekabetin temel unsuru olan teknolojik yetkinliğin kazanılması için en önemli araçlardan biri üniversite-sanayi işbirliğidir. Üniversite sanayi birlikteliği MÜDEK akreditasyonu sürecinde Fakültemiz Bilgisayar Mühendisliği bölümünün güçlü yönü olarak belirlenmiştir. Bilişim Sistemleri Mühendisliği bölümü eğitim amaçlarının belirlenmesinde ve eğitim planlarının güncellenmesinde dış paydaşları olan Ford-Otosan, Kuveyt Türk, ABB-Türkiye, Toyota, Agdaş ve Sakarya Büyükşehir Belediyesi gibi sanayi temsilcileri ve kurumlardan düzenli olarak görüş alması bu konudaki farkındalığını göstermektedir. Öğrencilerimizin 4 yıl boyunca almış oldukları derslerden edindikleri ana tasarım deneyimleri ile ortaya koydukları bu kitapta bulunan değerli çalışmalar, onların insan hayatını kolaylaştıran, yeni ve faydalı ürün geliştirme potansiyeline sahip, ulusal ve küresel rekabete katkı sağlayan ve hem kendilerinin hem ülkemizin ulusal ve küresel alanda saygınlığının artmasını sağlayacak projelere imza atabileceklerinin ispatı niteliğindedir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 2,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_3",
+    "text": "e sahip, ulusal ve küresel rekabete katkı sağlayan ve hem kendilerinin hem ülkemizin ulusal ve küresel alanda saygınlığının artmasını sağlayacak projelere imza atabileceklerinin ispatı niteliğindedir. Yukarıda bahsedilen ve dünyanın geleceğini ilgilendiren bilim ve endüstri birlikteliğine çekirdekte oluşturdukları örnek faaliyetlerden dolayı bölümümüz değerli öğretim üyelerini ve sevgili mezunlarımızın çalışmalarını tebrik eder saygılarımı sunarım. Prof. Dr. Nejat Yumuşak Dekan ii Bilişim Sistemleri Mühendisliği 2014/2015 Bölüm Başkanının Mesajı Bilişim Bilimleri alanındaki çalışmalar, işletme ve organizasyonların ayrılmaz bir parçası olan ve yönetim ve karar vermenin etkinliğini artırmada vazgeçilmez araçlar olan Bilişim Sistemlerinin ortaya çıkmasını sağlamıştır. İşletmelerde bilişim sistemlerinin, seçimi, uygulaması, kullanımı şirketlere önemli rekabet avantajı kazandırmaktadır. Bu bakımdan günümüzün yöneticileri, pazar payını artıran bir fırsat olarak görmektedirler. Ülkemizde Bilişim Sistemleri alanında insan gücüne ihtiyaç vardır.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 3,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_4",
+    "text": " önemli rekabet avantajı kazandırmaktadır. Bu bakımdan günümüzün yöneticileri, pazar payını artıran bir fırsat olarak görmektedirler. Ülkemizde Bilişim Sistemleri alanında insan gücüne ihtiyaç vardır. Bilişim Sistemleri Mühendisliği’ni bitirirken; Bilişim Sistemleri, Bilişim modelleme ve tasarımı, Yönetim ve organizasyon ve Kurumsal Bilişim Sistemleri ERP, CRM, SCM ve BI Sistemleri gibi bilişim sistemlerinin tasarlanması, modellenmesi, geliştirilmesi, projelendirilmesi ve uyarlaması için temel dersleri aldınız. Bitirme projeniz dört yıllık bir sürede öğrenmiş olduğunuz bilgi ve kabiliyetlerinizin bir sonucu olarak ortaya çıkmıştır. Bu kazanımlarınızın ülkemiz, bölümümüz ve gelecekte bu bölümü tercih edecek öğrencilerimiz için faydalı olmasını dilerim. Prof. Dr. İsmail Hakkı Cedimoğlu Bölüm Başkanı iii Bilişim Sistemleri Mühendisliği 2014/2015 İÇİNDEKİLER SAKARYA ÜNİVERSİTESİ. i BİLİŞİM SİSTEMLERİ MÜHENDİSLİĞİ. ii BILIŞIM SISTEMLERI MÜHENDİSLİĞİ BÖLÜMÜ. iii Amaç. iii Hedefler. iii Program ve Öğrenim Çıktıları. iii Eğitim Amaçları. iv Araştırma Amaçları. iv Sanayi ve Devlet Kurumları ile İşbirliği Amaçları. iv Bölümün Avantajları. iv Dünyada Bilişim Sistemleri Mühendisliği.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 4,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_5",
+    "text": " iii Program ve Öğrenim Çıktıları. iii Eğitim Amaçları. iv Araştırma Amaçları. iv Sanayi ve Devlet Kurumları ile İşbirliği Amaçları. iv Bölümün Avantajları. iv Dünyada Bilişim Sistemleri Mühendisliği. v Bilişim Sistemleri Eğitim Modeli. vi Mezunların İş Alanları. ix BİLGİSAYAR VE BİLİŞİM BİLİMLERİ FAKÜLTESİ. x Haşim Gürdamar Fakülte Binası. x Bilişim Sistemleri Laboratuvarı. xii 2014-2015 ÖĞRETİM YILI BİTİRME TEZ ÖZETLERİ. 1 Tazebaklava. com E-Ticaret Sistemi. 1 NODEXL İle GSM Şirketlerinin Twitter Kullanıcı Ağ Analizi. 2 Sakarya İli Genelinde Kaza Tutanak Kayıt ve Analiz Sistemi. 3 Kablosuz Sensör Ağları İle Akıllı Ev Sistemi. 4 Uzaktan Eğitim Merkezi İçin İş Zekâsı Sistemi. 5 Uzaktan Eğitim Merkezi Kullanıcı-Video Etkileşimleri Denetimi ve Analizinin Gerçeklenmesi. 6 VISITICK Etkinlik Takip Ve Yönetim Sistemi. 7 GPS Sinyalleri İle Konum Belirlemeyi Sağlayan Programın Mobil Platformda Tasarımı Ve Uygulaması. 8 Beyin Tümörü Tespitinde Sınıflandırma Algoritmalarının Test Edilmesi. 9 Veri Madenciliği ve Talep Tahmin Yöntemleri. 10 NODEXL İle Sosyal Medya Analizi. 11 İşbirlikçi Öğrenmenin Mobil Platformda Gerçeklenmesi. 12 SEO ( Search Engine Optimization) Bakış Açısı İle Analiz.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 5,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_6",
+    "text": "9 Veri Madenciliği ve Talep Tahmin Yöntemleri. 10 NODEXL İle Sosyal Medya Analizi. 11 İşbirlikçi Öğrenmenin Mobil Platformda Gerçeklenmesi. 12 SEO ( Search Engine Optimization) Bakış Açısı İle Analiz. 13 FOTOĞRAFLARLA BİZ. 15 PAYDAŞLARIMIZ. 21 Bilişim Sistemleri Mühendisliği 2014/2015 iv i Bilişim Sistemleri Mühendisliği 2014/2015 SAKARYA ÜNİVERSİTESİ Misyonumuz Evrensel nitelikte bilgi ve teknoloji üreten araştırmacı, katılımcı, paylaşımcı, özgün ve estetik değerlere sahip, çağdaş bir öğretim kültürü oluşturmak ve mesleki açıdan yetkin, toplumsal değerlere saygılı bireyler yetiştirmektir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 6,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_7",
+    "text": "noloji üreten araştırmacı, katılımcı, paylaşımcı, özgün ve estetik değerlere sahip, çağdaş bir öğretim kültürü oluşturmak ve mesleki açıdan yetkin, toplumsal değerlere saygılı bireyler yetiştirmektir. Vizyonumuz Eğitim, öğretim ve araştırma kalitesi ile Türkiye’de ve dünyada tanınmış ve ilk sıralarda tercih edilen; Takım çalışmasını teşvik eden, katılımcı ve paylaşımcı bir yönetime sahip; İlimiz ve bölgemiz başta olmak üzere ülkemizin sorunlarını çözmeye yönelik çalışmalar yapan, üniversite - sanayi - toplum iş birliğini sağlamada öncü; İnternet üzerinden yürütülen önlisans, lisans, lisansüstü eğitim - öğretimi etkin bir şekilde yürüten ve servis sağlayan; Geleneksel sanatlarımızın özünü koruyarak çağdaş, kalıcı ve özgün eserler ortaya koyan; Evrensel değerlere saygılı, toplam kalite yönetimi ilkelerini benimsemiş, sürekli gelişen bir üniversite olmaktır. Neden Sakarya Üniversitesi Öğretim kadrosunun önemli bir bölümünü, deneyimli, yurt dışındaki üniversitelerde öğrenim görmüş, uluslararası yayın sahibi akademisyenler oluşturmaktadır. Türkiye’nin Üniversitelerde ‘Kalite Geliştirme ve Değerlendirme’ çalışmalarını ilk başlatan üniversitesidir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 7,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_8",
+    "text": "i üniversitelerde öğrenim görmüş, uluslararası yayın sahibi akademisyenler oluşturmaktadır. Türkiye’nin Üniversitelerde ‘Kalite Geliştirme ve Değerlendirme’ çalışmalarını ilk başlatan üniversitesidir. Türkiye’nin idari hizmetlerde TS EN ISO 9001:2001 ‘Kalite Yönetim Belgesi’ almış ilk üniversitesidir. EFQM ‘Mükemmellik Modeli’ ne göre ‘Ulusal Kalite Büyük Ödülü’ alan ilk yükseköğretim kurumudur. Elektronik veri tabanları ile ulusal ve uluslararası süreli yayınlar 24 saat öğrencilerin ve akademisyenlerin hizmetindedir. AB Üniversiteleri ile imzaladığı protokoller çerçevesinde her sene ‘Erasmus’ öğrenci değişim programı kapsamında 200’den fazla Üniversiteye Erasmus değişim öğrencisi göndermektedir. Öğrenimlerinin bir bölümünü Türkiye’nin farklı üniversitelerinde geçirmek isteyen öğrenciler için ‘Farabi Değişim Programı’na katılma olanağı bulunmaktadır. ‘Çift Anadal Programı’ ile öğrenciler iki diploma alabilmektedir. Eğitim-öğretim faaliyetleri, eşsiz bir doğal güzelliğe sahip, Sapanca Gölü manzaralı kampüs alanı içerisinde inşa edilen yeni ve teknolojik açılardan donanımlı binalarda devam etmektedir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 8,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_9",
+    "text": "bilmektedir. Eğitim-öğretim faaliyetleri, eşsiz bir doğal güzelliğe sahip, Sapanca Gölü manzaralı kampüs alanı içerisinde inşa edilen yeni ve teknolojik açılardan donanımlı binalarda devam etmektedir. Sakarya Üniversitesi, öğrencilerin akademik gelişimleri için gereksinim duydukları tüm ihtiyaçlara en uygun şekilde cevap veren bir üniversitedir. ii Bilişim Sistemleri Mühendisliği 2014/2015 BİLİŞİM SİSTEMLERİ MÜHENDİSLİĞİ Bilişim Bilimleri; Bilgisayar Mühendisliğinin temel yeteneklerini içermekle birlikte çok daha geniş bir alanı kapsayan ve içerisinde Sosyal Bilimler, Mühendislik Bilimleri, Sağlık Bilimleri, Askeri Çalışmalar, Hukuk, Medya gibi pek çok bilim dalı ile ortak çalışmaların olduğu bir bilim alanıdır. İşletme, ekonomi, mühendislik, biyoloji, sağlık ve yayıncılık gibi pekçok farklı alandaki problemler için çözümler üretir ve bilişim teknolojileri için yeni kullanım alanları meydana getirir. Bilişim Bilimleri alanındaki çalışmalar, yönetim ve karar vermenin etkinliğini artırmada vazgeçilmez araçlar olan Bilişim Sistemlerinin (BS) ortaya çıkmasını sağlamıştır.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 9,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_10",
+    "text": "nım alanları meydana getirir. Bilişim Bilimleri alanındaki çalışmalar, yönetim ve karar vermenin etkinliğini artırmada vazgeçilmez araçlar olan Bilişim Sistemlerinin (BS) ortaya çıkmasını sağlamıştır. Bilişim Sistemleri; Organizasyonel verinin toplanması, işlenmesi, dağıtılması, depolanması, zeki tekniklerle bilişime dönüştürülmesi gibi faaliyetleri içerir. Günümüzde Bilişim Sistemleri; bankacılıktan otomotiv sanayine, sağlık bilgi sistemlerinden şirket yönetimine, telekomünikasyon sistemlerinden hava taşımacılığına çok geniş alanlarda kullanılmaktadır. İşletme ve organizasyonların ayrılmaz bir parçasıdır. Bu yönüyle Endüstri Mühendisliği, Bilgisayar Mühendisliği ve İşletme Bilim dalının temel becerilerini birlikte ele almak ve hâkim olmayı gerektirmektedir. Bilişim Sistemlerinin ana bileşenleri Yönetim, Organizasyon, İş Süreçleri ve Bilişim Teknolojileridir. Bilişim sistemleri, organizasyonel amaç ve hedeflere varmak için bilgi ve iletişim teknolojilerinin kullanımını ve kurumun uçtan uca dijital dönüşümünü sağlar.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 10,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_11",
+    "text": "ş Süreçleri ve Bilişim Teknolojileridir. Bilişim sistemleri, organizasyonel amaç ve hedeflere varmak için bilgi ve iletişim teknolojilerinin kullanımını ve kurumun uçtan uca dijital dönüşümünü sağlar. ERP, CRM, SCM, BI ve BPM (Business Performance Management) gibi kurumsal sistemlerin projelendirilerek hayata geçirilmesi, bu kapsamda iş analizi, sistemlerin tasarlanması ve geliştirilmesi, iş süreçlerinin yeniden yapılandırılması, değişim yönetimi, karar verme ve iş analitiği Bilişim Sistemleri Mühendisliğinin faaliyetlerinden bazılarıdır. Bilişim sistemleri şirketlere önemli rekabet avantajı kazandırmaktadır. Bu bakımdan günümüzün yöneticileri bilişim sistemlerini bir destek birimi ve maliyet unsuru değil, pazar payını artıran, işini büyüten ve/veya iş modelinin temelini oluşturan bir fırsat olarak görmektedirler. Ülkemizde Bilişim Sistemleri Mühendisliği alanında insan kaynağı oldukça sınırlıdır ve bu alanda yetişmiş mühendislere ihtiyaç duyulmaktadır. Bu amaçla Bilgisayar ve Bilişim Bilimleri fakültesi bünyesinde bu alanda mühendislik eğitiminin verildiği Bilişim Sistemleri Mühendisliği bölümü ve lisans programı hayata geçirilmiştir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 11,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_12",
+    "text": "duyulmaktadır. Bu amaçla Bilgisayar ve Bilişim Bilimleri fakültesi bünyesinde bu alanda mühendislik eğitiminin verildiği Bilişim Sistemleri Mühendisliği bölümü ve lisans programı hayata geçirilmiştir. 3 Bilişim Sistemleri Mühendisliği 2014/2015 BILIŞIM SISTEMLERI MÜHENDİSLİĞİ BÖLÜMÜ Amaç Bölümün amacı; bilişim sistemleri alanındaki teknolojik ve bilimsel gelişmeleri takip edebilen, yetkin, üretici, bilimsel üretim gücüne sahip, bilim ve deneyi esas kabul eden, katılımcı, sayısal ve akademik düşünme gücüne sahip, kendi kendine öğrenebilen ve hayat boyu öğrenme düşüncesine sahip, sorumluluk alabilen, uluslararası alanda üretilen bilgiyi toplumsal ve endüstriyel faydaya dönüştürebilen ve etik kurallara uyan bir bölüm olmaktır. Hedefler Bölümün hedefleri; kazandığı bilgiyi toplumsal ve endüstriyel faydaya dönüştürerek bilişim sistemlerini üretici bir güç haline getiren ve küresel alandaki gelişmeleri izleyebilen ve rekabetçi mühendisler yetiştirmek için sürekli yenilenen ve gelişen bir bölüm olmak.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 12,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_13",
+    "text": "aya dönüştürerek bilişim sistemlerini üretici bir güç haline getiren ve küresel alandaki gelişmeleri izleyebilen ve rekabetçi mühendisler yetiştirmek için sürekli yenilenen ve gelişen bir bölüm olmak. Program ve Öğrenim Çıktıları BİLGİ: Kuramsal, Olgusal - Bilişim Sistemleri problemlerini saptama, tanımlama, formüle etme ve çözme becerisi; bu amaçla uygun Bilişim Sistemleri ve sistem modelleme tekniklerini seçme ve uygulama, - Matematik, fen bilimleri ve kendi dalları ile ilgili Yönetim Bilişim konularında yeterli altyapıya sahip olma; bu alanlardaki kuramsal ve uygulamalı bilgileri Yönetim Bilişim Sistemleri çözümleri için beraber kullanabilme, BECERİLER: Bilişsel, Uygulamalı - Bilişim Sistemi, sistem bileşenini ya da süreci analiz etme ve istenen gereksinimleri karşılamak üzere gerçekçi kısıtlar altında tasarlama becerisi; bu doğrultuda modern tasarım yöntemlerini uygulama becerisi, - Kurumsal Bilişim Sistemleri uygulamaları için gerekli olan modern teknikler, yazılım, donanım ve ağ araçları seçme ve kullanma becerisi; bilişim teknolojilerini etkin kullanma becerisi, - Bilişim Sistemi tasarlama, geliştirme, test etme, deney yapma, veri toplama, sonuçları analiz etme ve yorumlama",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 13,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_14",
+    "text": " araçları seçme ve kullanma becerisi; bilişim teknolojilerini etkin kullanma becerisi, - Bilişim Sistemi tasarlama, geliştirme, test etme, deney yapma, veri toplama, sonuçları analiz etme ve yorumlama becerisi, YETKİNLİKLER: Bağımsız Çalışabilme ve Sorumluluk Alabilme Yetkinliği - Bireysel olarak ve çok disiplinli takımlarda etkin çalışabilme becerisi, sorumluluk alma özgüveni, Öğrenme Yetkinliği - Bilgiye erişebilme ve bu amaçla kaynak araştırması yapabilme, veri tabanları ve diğer bilgi kaynaklarını kullanabilme becerisi, - Yaşam boyu öğrenmenin gerekliliği bilinci; bilim ve teknolojideki gelişmeleri izleme ve kendini sürekli yenileme becerisi, İletişim ve Sosyal Yetkinlik - Türkçe sözlü ve yazılı etkin iletişim kurma becerisi; en az bir yabancı dil bilgisi, Alana Özgü Yetkinlik - Kurumsal Bilişim Sistemleri Proje yönetimi, işyeri uygulamaları, çevre ve iş güvenliği konularında bilinç; Bilişim uygulamalarının hukuksal sonuçları hakkında farkındalık, - Bilişim Sistemleri uygulamalarının evrensel ve toplumsal boyutlardaki etkilerinin bilincinde olmak; girişimcilik ve yenilikçilik konularının farkında olmak ve çağın sorunları hakkında bilgi sahibi olmak - Mesleki ve etik sorumluluk",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 14,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_15",
+    "text": "nın evrensel ve toplumsal boyutlardaki etkilerinin bilincinde olmak; girişimcilik ve yenilikçilik konularının farkında olmak ve çağın sorunları hakkında bilgi sahibi olmak - Mesleki ve etik sorumluluk bilinci. Bilgi ve teknolojik uygulamaları bir ülkenin gelişimi için önkoşulları arasında yer almaktadır. Bilgisayarlar, teknolojik uygulamalardan biri olmak üzere tüm sektörlerde rekabeti artırır. Öte yandan, disiplinler arası yaklaşım ve çalışmalar dünyada daha da yaygın hale gelmektedir. Sonuç olarak, parti üretimi veya bu sistemlerin ve yaklaşımların kullanımı bu konuda eğitimli çalışanlara ihtiyaç duymaktadır. 4 Bilişim Sistemleri Mühendisliği 2014/2015 Bilişim Sistemleri Bölümü, bu ihtiyaçları karşılamak için kurulmuştur. Bu bölüm tarafından sunulacak olan Bilişim Sistemleri Mühendisliği programı bilgisayar bilimi, yönetim bilimleri ve endüstri/üretim disiplinlerini bütünleştirerek lisans derecesi sunacaktır. Bu program, Bilişim Sistemlerini geliştirebilen ve sürdürülebilirliğini sağlayan öğrenciler yetiştirmek için yönetim bilimleri, endüstri mühendisliği ve bilgisayar mühendisliği alanındaki derslerin dengeli bir şekilde sunmak üzere tasarlanmıştır.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 15,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_16",
+    "text": "n ve sürdürülebilirliğini sağlayan öğrenciler yetiştirmek için yönetim bilimleri, endüstri mühendisliği ve bilgisayar mühendisliği alanındaki derslerin dengeli bir şekilde sunmak üzere tasarlanmıştır. Ana konusu listesi organizasyon, ekonomi, pazarlama, finans, bilgisayar programlama teknikleri, sistem tasarımı kavramları, veritabanı yönetimi, veri iletişimi ve yazılım mühendisliği ve ileri Bilişim konularını içerir. Bölüm, modern bilgi sistemlerine ilişkin yönetimsel ve son kullanıcı bakış açılarına bir vurgu içermektedir. Öğrencilerin, yönetim uygulamaları ve implementasyonları geliştirilmesinde uzmanlaşmaları için özen gösterilmiştir. İlk iki yılda, öğrenciler mühendisliğin temel dersleri ile Bilgisayar ve Yönetim Bilimlerinin temel derslerini alırlar. dönemden 4: itibaren yıl 3: boyunca Bilgisayar derslerinin yanı sıra yönetim bilimleri, üretim ve servis sistemleri, yöneylem araştırması, iş süreç yönetimi ve işletme operasyonları, karar verme teknikleri, maliyet muhasebesi gibi konulara vakıf olmaları sağlanır.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 16,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_17",
+    "text": "sıra yönetim bilimleri, üretim ve servis sistemleri, yöneylem araştırması, iş süreç yönetimi ve işletme operasyonları, karar verme teknikleri, maliyet muhasebesi gibi konulara vakıf olmaları sağlanır. Son iki yıl Bilişim Sistemlerinin tesis edilmesi için analizi, modellenmesi, tasarımı ile Bilişim Yönetimi üzerine uzmanlaştıracak şekilde özelliştirilmiş dersler sunulmaktadır. Bu bölüm tasarlanırken, öğrencilerin mezun oldukları gibi sektörde Bilgisayar ve Bilişim Sistemleri ilgili iş pozisyonlarında hemen yer alabilmeleri amaçlanmıştır. Dersler laboratuar çalışmaları ve proje uygulamaları ile geliştirilmiştir. Öğrenciler 240 AKTS kredilik ders ve stajı tamamlayacaktır. Eğitim Amaçları  Öğrencilerimize Bilişim Sistemleri Mühendisliğinin temel konularındaki geçerli yaklaşımları öğretmek ve derinliğine bilgilenme ve araştırmanın yollarını göstermektir.  Öğrencilerimize evrensel düzeyde laboratuarlarda çalışma olanağı sağlamaktır.  Onlara temel mühendislik ve temel bilim alanlarında güçlü bir altyapı sağlamak, insan ve toplumbilim konularında ilgilendikleri alanlarda çalışma olanağı vermektir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 17,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_18",
+    "text": "arda çalışma olanağı sağlamaktır.  Onlara temel mühendislik ve temel bilim alanlarında güçlü bir altyapı sağlamak, insan ve toplumbilim konularında ilgilendikleri alanlarda çalışma olanağı vermektir.  Bu alanın gerektirdiği analitik, matematiksel, karar verme, iletişim ve yönetim becerileri ile donatılmış,  Küresel düzeyde talep gören mezunlar yetiştirmektir.  Öğrencilerimizin tasarım yapma, karar alma yeteneklerini geliştirmek, onlara grup içi çalışma alışkanlığı edindirmek, bilgiye erişme yollarını göstermek ve etik davranış bilinci edinmeleri için örnek olmaktır. Araştırma Amaçları  İyi donatılmış araştırma laboratuvarları kurmak ve bu laboratuvarları çeşitli fonlarla zenginleştirerek evrensel düzeyde çalışmalar yapmaktır.  Bölüm çalışmalarının sonuçlarını bilimsel dergilerde ve çeşitli etkinliklerde uluslararası düzeyde tartışmaya açmaktır.  Kongre, sempozyum, kurultay, çalıştay, konferans, seminer gibi etkinlikler düzenleyerek veya bunlara katılarak bilimsel tartışma ortamlarının zenginleşmesine katkıda bulunmaktır. Sanayi ve Devlet Kurumları ile İşbirliği Amaçları  Ülkemiz sanayi kuruluşları ile köklü ilişkiler kurarak ortak Ar-Ge çalışmaları yapmaktır.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 18,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_19",
+    "text": "tartışma ortamlarının zenginleşmesine katkıda bulunmaktır. Sanayi ve Devlet Kurumları ile İşbirliği Amaçları  Ülkemiz sanayi kuruluşları ile köklü ilişkiler kurarak ortak Ar-Ge çalışmaları yapmaktır.  Ülkemizin teknolojisi ile ilgili stratejik kararların alındığı, standart ve yönetmeliklerin belirlendiği forumlara ve çalışma gruplarına katılarak bu çalışmalara katkı vermektir. Bölümün Avantajları Bilişim Sistemleri Mühendisliği bölümü öğrencileri,  Endüstri Mühendisliği, Bilgisayar Mühendisliği ve İşletme Bölümü’ne ait birçok alan dersini alarak disiplinler arası zengin ve kapsamlı bir müfredatı tamamlayacaklardır.  Diğer bölümlerin mezunları Bilişim Sistemleri alanında çalışabilmek için yüksek lisans yaparak uzmanlaşmak zorunda olmalarına karşın, bölümün öğrencileri mezun oldukları gibi Bilişim Sistemleri alanında mühendis olarak iş hayatına başlayabilecektir.  Mezunlar lisans seviyesinde mühendislik formasyonuna sahip olacaktır.  Bilişim ve iletişim teknolojileri alanında çeşitli sektörlerde ve pozisyonlarda çalışabilir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 19,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_20",
+    "text": "ak iş hayatına başlayabilecektir.  Mezunlar lisans seviyesinde mühendislik formasyonuna sahip olacaktır.  Bilişim ve iletişim teknolojileri alanında çeşitli sektörlerde ve pozisyonlarda çalışabilir. 5 Bilişim Sistemleri Mühendisliği 2014/2015  Endüstri ve İşletmelerde yer alan Bilişim Sistemlerinin projelendirilmesi, tasarlanması, geliştirilmesi, implementasyonu, yönetimi, veri bankaları geliştirme, veri madenciliği uygulamaları, ERP ve modüllerinin tesisi ve yönetimi, gibi iş alanlarında çalışabilir.  Öğrencilerimiz üniversitemizin ERP Laboratuvarlarında ERP alanında profesyonel danışman firmalarla yürütülen Danışmanlık Eğitimini uygulamalı olarak sunarak danışmanlık eğitimi göreceklerdir.  Mezunlar; Analist, Uzman, Uzman Yardımcısı, Müfettiş, Denetçi, Proje Yöneticisi, Müdür, Bölüm Sorumlusu, Yazılım Geliştirici, Girişimci, Direktör, Koordinatör, Müdür Yardımcısı, Genel Müdür Yardımcısı, Bilim Adamı, Öğretim Görevlisi, Araştırma Görevlisi olarak görev alabilecektir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 20,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_21",
+    "text": "Müdür, Bölüm Sorumlusu, Yazılım Geliştirici, Girişimci, Direktör, Koordinatör, Müdür Yardımcısı, Genel Müdür Yardımcısı, Bilim Adamı, Öğretim Görevlisi, Araştırma Görevlisi olarak görev alabilecektir. Dünyada Bilişim Sistemleri Mühendisliği Bilişim Bilimleri yüksek öğrenimi ABD, Avrupa Ülkeleri, Kanada, Avustralya, Japonya gibi ülkelerde farklı isimlerdeki fakülte, okul, bölüm ve farklı araştırma faaliyetleri ile yürütülmektedir. ABD ve Kanada bölgesinde bilişim alanındaki araştırma ve öğretim çeşitli üniversitelerde “School of Informatics” veya “Information School” şeklinde yer almakta ise de daha çok diğer bilim ve mühendislik fakülteleri içerisindeki programlarla uygulanmaktadır. “School of Informatics” veya “Information School” ismiyle yer alan okullarda, bilişimin temelleri olan alanlarda araştırmalar yürütülmekte ve “Bachelor of Science in Informatics, Bachelor of Arts in Computer Science (B. A. ), Bachelor of Science in Computer Science (B. S. ) , Bachelor of Science in Informatics (B. S. ), Master of Science in Bioinformatics (M. S. ), Master of Science in Chemical Informatics (M. S. ), Master of Science in Computer Science (M. S.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 21,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_22",
+    "text": "e (B. S. ) , Bachelor of Science in Informatics (B. S. ), Master of Science in Bioinformatics (M. S. ), Master of Science in Chemical Informatics (M. S. ), Master of Science in Computer Science (M. S. ), Master of Science in Human Computer Interaction Design (M. S. ), Master of Science in Music Informatics (M. S. ) Proposed, Master of Science in Security Informatics (M. S. )” gibi diploma programları düzenlenmektedir. İngiltere ve Avrupa ülkelerinde, “School of Information Science, Faculty of Informatics, Faculty of Science, School of Computing, Information Technology and Engineering, School of Computing, Engineering and Information Sciences, School Of Engineering And Information Sciences, School of Computing” gibi isimlerle anılan okullarda eğitim vermekte ve ülkelere göre farklılık göstermektedir. Bazende disiplinler arası olması nedeniyle “School of Combined Honours” yada “School of Humanities and Social Science” yada bazı bilişim programları “Business School”’lar altında sunulmaktadır.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 22,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_23",
+    "text": "tedir. Bazende disiplinler arası olması nedeniyle “School of Combined Honours” yada “School of Humanities and Social Science” yada bazı bilişim programları “Business School”’lar altında sunulmaktadır. Bilişim eğitimi veren fakülteler ve programları, isim farklılıklarına farklılıklarına rağmen ISCED1997 (International Standart Classification of Education) standardına uygun olarak yüksek öğretim alanlarından “Science / Matematics ve Computing” ve “Engineering / Engineering ve Manufacturing” alanları içerisinde yer almaktadır. “Social sciences, business and law” başlığı altında yer alan “Journalism and Information” alanı ise daha çok bilgi yönetimi ve kütüphanecelik alanlarını hedeflemektedir. Bilişim Bilimleri programları özellikle İngiltere, ABD ve Avrupa Yüksek Öğretiminde önemli yer tutmaktadır. Dünyadaki bu örnekler incelenerek program ve müfredatı belirlenmiştir. Ülkemizin ihtiyaçları ve bireysel eğilimler gözönünde bulundurularak bu programlar şekillendirilmiştir. Önerilen Bilişim Bilimleri Fakültesi disiplinler arası çalışmaların yürütüleceği bir fakültedir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 23,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_24",
+    "text": "Ülkemizin ihtiyaçları ve bireysel eğilimler gözönünde bulundurularak bu programlar şekillendirilmiştir. Önerilen Bilişim Bilimleri Fakültesi disiplinler arası çalışmaların yürütüleceği bir fakültedir. Özellikle Bilişim Bilimlerinin; İşletme, Endüstri Mühendisliği, Bilgisayar Mühendisliği, gibi çeşitli programlar ile ortak paydaları bulunmaktadır. Bu nedenle farklı bölümlerdeki çeşitli programlarla ile ortak dersleri bulunmaktadır. Ülkemizin gelecek vizyonu, sektörel işgücü ihtiyacı ve bireysel eğilimler göz önünde bulundurulduğunda Yönetim Bilişim Sistemleri alanında çalışmalara ihtiyaç duyulmaktadır. Bilişim Sistemleri Mühendisliği Bölümünde; Yönetim Bilişim Sistemi geliştirme ve yönetme, sistem bileşenini ya da süreci analiz etme ve istenen gereksinimleri karşılamak üzere gerçekçi kısıtlar altında tasarlama becerisi; bu doğrultuda modern tasarım yöntemlerini uygulama becerisi kazandırılacaktır.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 24,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_25",
+    "text": "eşenini ya da süreci analiz etme ve istenen gereksinimleri karşılamak üzere gerçekçi kısıtlar altında tasarlama becerisi; bu doğrultuda modern tasarım yöntemlerini uygulama becerisi kazandırılacaktır. Kurumsal Bilişim Sistemleri uygulamaları için gerekli olan modern teknikler, yazılım, donanım ve ağ araçları seçme ve kullanma becerisi; bilişim teknolojilerini etkin kullanma becerisi, Yönetim Bilişim Sistemi tasarlama, geliştirme, test etme, deney yapma, veri toplama, sonuçları analiz etme ve yorumlama becerisi kazandırılacaktır. Mezunların günümüz iş ihtiyaçları çerçevesinde kurumsal çapta bilişim sistemlerini geliştirmeleri, hayata geçirmeleri ve yönetmeleri planlanmaktadır. 6 Bilişim Sistemleri Mühendisliği 2014/2015 Bilişim Sistemleri Eğitim Modeli Bilişim Sistemleri Mühendisliği programı, yükseköğretimde 240 AKTS kredilik birinci aşama derece sistemine tabidir. Program başarılı bir şekilde tamamlanıp, program yeterlilikleri sağlandığında Bilişim Sistemleri Mühendisliği alanında Lisans derecesine sahip olunur. Yüksek seviyeli BS yetenekleri kazandırabilmek amacıyla zorunlu ve seçmeli dersler sunulmaktadır.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 25,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_26",
+    "text": " yeterlilikleri sağlandığında Bilişim Sistemleri Mühendisliği alanında Lisans derecesine sahip olunur. Yüksek seviyeli BS yetenekleri kazandırabilmek amacıyla zorunlu ve seçmeli dersler sunulmaktadır. Aşağıdaki modelde belirtilen teorik ve uygulamalı derslerin yanında bölüm laboratuvarlarında kurulu ERP sistemleri üzerinde uygulamalı eğitimler gerçekleştirilecektir. Bir Bilişim Sistemleri Mühendisinin sahip olması gereken yetenekler;  Organizasyonel süreçleri iyileştirmek,  Teknolojik yeniliklerin doğurdu fırsatları değerlendirmek,  Bilişim gereksinimlerini anlamak ve karşılamak,  Kurumsal Mimariyi tasarlamak ve yönetmek,  Alternatif çözüm ve yöntemleri belirlemek ve değerlendirmek,  Veri ve altyapı güvenliğini sağlamak,  BT risklerini anlama, yönetme ve kontroldür.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 26,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_27",
+    "text": "lamak,  Kurumsal Mimariyi tasarlamak ve yönetmek,  Alternatif çözüm ve yöntemleri belirlemek ve değerlendirmek,  Veri ve altyapı güvenliğini sağlamak,  BT risklerini anlama, yönetme ve kontroldür. Tablo Bölümün 1: Müfredat Bileşenleri Teknoloji Temelli Konular İş ve Endüstri Temelli Konular Bilişim Sistemlerinin Temelleri Veri ve Bilişim Yönetimi Kurumsal Mimari BS Proje Yönetimi BT Altyapısı Sistem Analiz ve Tasarım BS Stratejisi, Yönetimi ve Edinimi İşletme Yönetimi İş Süreç Yönetimi Operasyon Yönetimi Yöneylem Araştırması Mühendislik Ekonomisi İş Zekâsı (İş Analitiği) Kurumsal Sistemler (ERP, SCM, CRM) vii Bilişim Sistemleri Mühendisliği 2014/2015 Ders türü Adedi Yüzdesi Mühendislik Temel ortak dersleri 10 22 Bilgisayar Mühendisliği Dersleri 10 22 Endüstri Mühendisliği Dersleri 5 11 İşletme Dersleri 3 7 Bilişim Alanı Dersleri 9 20 Sosyal Dersler 3 7 Seçmeli Dersler 6 13 46 100 Şekil Bilişim 1: Sistemleri Mühendisliği Temel Konuları Tablo Program 2: Derslerinin Alanlara Göre Dağılımı 88 Bilişim Sistemleri Mühendisliği 2014/2015 Şekil Derslerin 2: Alanlara Göre Yüzdelik Dağılımı TabloSeçmeli 3: Derslerin Alanlara Göre Dağılımı Ders türü Adedi Yüzdesi Bilişim Alanı Dersleri 5 14",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 27,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_28",
+    "text": "ımı 88 Bilişim Sistemleri Mühendisliği 2014/2015 Şekil Derslerin 2: Alanlara Göre Yüzdelik Dağılımı TabloSeçmeli 3: Derslerin Alanlara Göre Dağılımı Ders türü Adedi Yüzdesi Bilişim Alanı Dersleri 5 14 Bilgisayar Mühendisliği Dersleri 12 33 Endüstri Mühendisliği Dersleri 6 17 İşletme Dersleri 11 31 Sosyal Dersler 2 5 36 100 Şekil Seçmeli 3: Derslerin Alanlara Göre Yüzde Dağılımı 9 Bilişim Sistemleri Mühendisliği 2014/2015 Mezunların İş Alanları Bilişim Sistemleri Mühendisliği programından mezun adaylar; Bilişim ve iletişim teknolojileri alanında çeşitli sektörlerde ve pozisyonlarda çalışabilir. Bilişim Sistemlerinin projelendirilmesi, tasarlanması, implementasyonu, yönetimi, veri bankaları geliştirme, veri madenciliği uygulamaları, ERP ve modüllerinin tesisi ve yönetimi, gibi iş alanlarında iş imkânı bulmaktadırlar.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 28,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_29",
+    "text": "jelendirilmesi, tasarlanması, implementasyonu, yönetimi, veri bankaları geliştirme, veri madenciliği uygulamaları, ERP ve modüllerinin tesisi ve yönetimi, gibi iş alanlarında iş imkânı bulmaktadırlar. Bunlardan bazıları: Bilişim Uygulamalarının Tasarımı ve Geliştirilmesi, Bilişim Projelerinin Yönetimi, Bilişim Kaynaklarının ve Sistemlerinin Yönetimi, Bilişim ve İletişim Teknolojilerinde Risk ve Güvenlik Yönetimi, Süreç Tasarımı ve İş Akışı Yönetimi, E- iş ve E-dönüşüm Projelerinin Yönetimi, Bilişim ve İletişim Çözümlerinin Pazarlama ve Satış Hizmetleri, Bilişim ve İletişim Teknolojileri Alanlarında Girişimcilik, Danışmanlık ve Yöneticilik, Kurumsal Kaynak Planlaması, Müşteri İlişkileri Yönetimi, Tedarik Zinciri Yönetimi, Kurumsal Bilgi Yönetimi, Kurumsal Zekâ Yönetimi ve Yönetim Destek Sistemleri, E-Ticaret Alanında Girişimcilik, Danışmanlık ve Yöneticilik. Teknolojik gelişmelere paralel olarak endüstri ve işletmelerde dijital dönüşüm kaçınılmaz hale gelmiş, işletme yönetimi ve karar vermede Bilişim Sistemleri hayati bir önemi haiz hale gelmiştir. Orta ve büyük ölçekli tüm işletme ve organizasyonlar kaçınılmaz olarak bu teknolojik dönüşümü yaşamaktadır.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 29,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_30",
+    "text": ", işletme yönetimi ve karar vermede Bilişim Sistemleri hayati bir önemi haiz hale gelmiştir. Orta ve büyük ölçekli tüm işletme ve organizasyonlar kaçınılmaz olarak bu teknolojik dönüşümü yaşamaktadır. ERP (Kurumsal Kaynak Planlama) Sistemleri, CRM (Müşteri İlişkileri Yönetimi) Sistemleri, SCM(Tedarik Zinciri Yönetimi) Sistemleri, Verimadenciliği ve İş Zekası Çözümleri ve bunların altyapı ve entegrasyonunu oluşturan danışmanlık ve proje hizmetleri Bilişim Sistemlerinin sektörel uygulamalarının başında gelmektedir. Bu hizmet ve çözümler, tüm sektörler tarafından talep edilmekte ve gerek dış kaynak kullanımı gerekse firmada istihdam edilen Bilişim Sistemleri ve Bilişim Teknolojileri kadroları ile yürütülmektedir. Bu açıdan mezunların istihdamına yönelik önemli bir talep ve işgücü açığı vardır. Fakülte mühendislik programları önermektedir. Mühendislik programları, yükseköğretimde 240 AKTS kredilik birinci aşama derece sistemine tabidir. Mezunlar, mühendislik programından mezun olacaklarından dolayı meslek elemanı tanımında bir değişiklik sözkonusu değildir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 30,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_31",
+    "text": "rı, yükseköğretimde 240 AKTS kredilik birinci aşama derece sistemine tabidir. Mezunlar, mühendislik programından mezun olacaklarından dolayı meslek elemanı tanımında bir değişiklik sözkonusu değildir. Program başarılı bir şekilde tamamlanıp, program yeterlilikleri sağlandığında programlarından mezun olabilmek için 4 yıl, 8 yarıyılda, toplam 240 AKTS kredilik ders alınması gerekmektedir. Öğrenciler her eğitim yılı için zorunlu ve seçmeli ders kredisini ve stajını tamamlamak zorundadır. 1 Bilişim Sistemleri Mühendisliği 2014/2015 BİLGİSAYAR VE BİLİŞİM BİLİMLERİ FAKÜLTESİ Bilgisayar ve Bilişim Bilimleri Fakültesi; hâlihazırda Bilgisayar Mühendisliği Bölümü ve Bilişim Sistemleri Mühendisliği Bölümü (Şekil 1) ile iki bölümde hizmet vermektedir. Bilgisayar Mühendisliği bölümü örgün ve ikinci öğretim programları ile mühendislik eğitimi vermektedir. Bilişim Sistemleri Mühendisliği bölümümüz 4 yıldır örgün eğitim vermektedir. Bilişim Sistemleri Mühendisliği bölümü fiziksel imkânları, öğretim materyalleri ve organizasyonel yapılanması ile olgunlaşmıştır. Mevcut imkânlarının daha verimli ve etkin kullanılabilmesi adına bu yıl ikinci öğretim programının hayata geçirilmesine planlanmaktadır.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 31,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_32",
+    "text": " materyalleri ve organizasyonel yapılanması ile olgunlaşmıştır. Mevcut imkânlarının daha verimli ve etkin kullanılabilmesi adına bu yıl ikinci öğretim programının hayata geçirilmesine planlanmaktadır. Şekil Fakültenin 4: Bölümleri ve Önerilen Program Haşim Gürdamar Fakülte Binası Bilgisayar ve Bilişim Fakültesi için 6. 000 m2 kullanım alanlı yeni bir bina inşa edilmiştir. Bina Şen Piliç tarafından bağış usulüyle yapılan ilk binadır. Bilişim Sistemleri programın yürütülebilmesi için üniversite yerleşkesinde bulunan yeni binayı bilgisayar mühendisliği ile birlikte kullanmaktadır. 1 Bilişim Sistemleri Mühendisliği 2014/2015 Haşim Gürdamar Bilgisayar ve Bilişim Fakültesi Binası Üniversitenin tüm sınıfları modern oturma yerlerine, yerleşik projeksiyon cihazlarına, ders Öğretim Üyelerine ait internet ve ağ erişimli masaüstü bilgisayara ve kablosuz internet ağına sahiptir. Sınıflar 80 kişiliktir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 32,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_33",
+    "text": "ınıfları modern oturma yerlerine, yerleşik projeksiyon cihazlarına, ders Öğretim Üyelerine ait internet ve ağ erişimli masaüstü bilgisayara ve kablosuz internet ağına sahiptir. Sınıflar 80 kişiliktir. Haşim Gürdamar Bilgisayar ve Bilişim Fakültesi Binası xii Bilişim Sistemleri Mühendisliği 2014/2015 Bilişim Sistemleri Laboratuvarı Yaklaşık 1200 öğrencinin eğitim alacağı fakültenin binasında teorik derslerin yapılacağı sınıfların yanı sıra İşletim Sistemleri, Bilgisayar Mimarileri, Yazılım Geliştirme, Veri tabanı Sistemleri, Programlama ve Bilişim Sistemleri gibi birçok dalda laboratuvar da bulunmaktadır. 2015-2015 Öğretim yılı başında hizmet vermek üzere geliştirilmekte olan Bilişim Sistemleri Laboratuvarı başta SAP, ORACLE ve CANIAS’ın iş dünyasına yönelik çözümlerinin uygulamalı eğitimlerinin verildiği bir laboratuvar olacaktır. Hali hazırda CANIAS ERP sistemi 100 kullanıcı lisansı alınarak ve örnek bir veri tabanı ile sunuculara kurulmuş ve kullanıma hazır hale getirilmiştir. Bunun yanı sıra Oracle Academy ve SAP University Alliance programlarına bölüm olarak katılarak laboratuvarın geliştirilmesi ile ilgili süreç takip edilmektedir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 33,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_34",
+    "text": " ve kullanıma hazır hale getirilmiştir. Bunun yanı sıra Oracle Academy ve SAP University Alliance programlarına bölüm olarak katılarak laboratuvarın geliştirilmesi ile ilgili süreç takip edilmektedir. Bu laboratuvar kurumsal sistemlerin yanı sıra bunlar birlikte çalışan diğer iş uygulamaları ve analitik çözümlere de ev sahipliği yapacaktır. Bilişim Sistemleri Mühendisliği 2014/2015 xiii Bilişim Sistemleri Mühendisliği 2014/2015 xiv Bilişim Sistemleri Mühendisliği Bölümü 2014-2015 Öğretim Yılı Bitirme Tez Özetleri Bilişim Sistemleri Mühendisliği 2014/2015 1 2014-2015 ÖĞRETİM YILI BİTİRME TEZ ÖZETLERİ Tazebaklava. com E-Ticaret Sistemi Abdullah ERKAL  Danışman: Yrd. Doç. Dr. Fatih ÇALLI Özet E-ticaret, günümüz girişimcilerinin az sermaye ve kolay kurulumu ile en çok tercih ettikleri iş alanıdır. Gıda sektöründe e-ticarette belli başlı firmalar olmakla birlikte yöresel ürünlerin satışı son zamanlarda yaygınlaşmakta ve tekel bir firma bulunmamaktadır. Baklava, Türkiye’nin her yerinde en lezzetli tatlı olarak bilinmektedir. Bu projede yöresel ürünler arasında dünya çağında önemli bir pazara sahip olan baklava ticaretine odaklı bir E-Ticaret sistemi geliştirilmiştir. Tazebaklava.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 34,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_35",
+    "text": "de en lezzetli tatlı olarak bilinmektedir. Bu projede yöresel ürünler arasında dünya çağında önemli bir pazara sahip olan baklava ticaretine odaklı bir E-Ticaret sistemi geliştirilmiştir. Tazebaklava. com E-Ticaret sistemi; Gaziantep’in önde gelen baklavacılarını, baklava ve türevleri ürünleri ile müşterileri buluşturan bir platformdur. Müşteri odaklı olan bu projede amaç, müşterilerin baklava firmasından aldıkları ürünleri ek ücret ödemeden kapılarına kadar getirilmesini sağlamaktır. Projenin gelirlerini ise firmalardan alınan satış başı komisyonlar, site reklamları ve sözleşme bedelleri oluşturmaktadır. Bu hizmeti Gaziantep içerisinde motor kurye ile gerçekleştirilmektedir. Gaziantep dışında ise iki metot kullanılmaktadır. Daha az maliyetli olan standart kargo ve daha kısa teslimat süresi fakat daha maliyetli olan hızlı servis metodu. Hızlı servis metodunda siparişler otobüse verilir, ilgili şehre ulaşınca ürünler oradaki özel motor kuryeler otogardan alıp müşteriye teslimatını gerçekleştirir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 35,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_36",
+    "text": "ha maliyetli olan hızlı servis metodu. Hızlı servis metodunda siparişler otobüse verilir, ilgili şehre ulaşınca ürünler oradaki özel motor kuryeler otogardan alıp müşteriye teslimatını gerçekleştirir. Anahtar Kelimeler: E-Ticaret, Gıda, Kurye Sistemleri, Baklava Bilişim Sistemleri Mühendisliği 2014/2015 2 NODEXL İle GSM Şirketlerinin Twitter Kullanıcı Ağ Analizi Adil BALKIZ  Danışman: Yrd. Doç. Dr. Levent ÇALLI Özet Teknolojik gelişmelerle birlikte son on yılda hayatımıza giren ve milyonlarca insanın vazgeçilmez olarak gördüğü sosyal medya sitelerinde milyonlarca satırlık veriler tutulmaktadır. Her geçen gün artan verilerin birikmesiyle oluşan büyük çapta veri(Big Data)’yi insan eliyle incelemek oldukça zor hatta imkânsız hale gelmiştir. Bu sebeple verilerin analizi ve görselleştirilmesi için program lar kullanılmaktadır. Sosyal medya, web siteleri ve daha birçok ortamda oluşan çok sayıda veriler veri madenciliği yöntemleri ile işlenip anlamlı hale getirilerek bilgi çıkarımları yapılır. Bu çalışmada sosyal ağ analiz programı NodeXL ile Türkiye GSM pazarında faaliyet gösteren Turkcell, Avea ve VodafoneTr şirketlerinin twitter ağındaki kullanıcı etkileşimleri analiz edilmiştir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 36,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_37",
+    "text": "apılır. Bu çalışmada sosyal ağ analiz programı NodeXL ile Türkiye GSM pazarında faaliyet gösteren Turkcell, Avea ve VodafoneTr şirketlerinin twitter ağındaki kullanıcı etkileşimleri analiz edilmiştir. NodeXL sosyal ağlarda veri analizi yapmak için kullanılan ücretsiz açık kaynak kodlu bir programdır. NodeXL kullanabilmeniz için internet bağlantınızın sürekli açık olması gerekmektedir, exel uzantısı olarak çalışır. 2008 yılında lisansı alınmış geliştirilmeye devam eden NodeXL’in CEO’su Marc Smith’edir. Veriler NodeXL ortamına arama operatörleri kullanılarak aktarılmışlardır. Bu arama operatörleri Twitterın kendi operatörleridir. Veriler NodeXL’e aktarıldıktan sonra gruplamalar yapılmıştır. Daha sonra kümeleme yöntemi kullanılmıştır. Daha sonra oluşan grup ve kümelerin görselleştirilerek daha iyi anlayabilmek için isimlendirme, renklendirme ve twitter fotoğraflarının eklenmesi için düzenlemeler yapılmıştır. Son olarak graflar kullanılarak görselleştirilmiştir. Her üç şirket içinde aynı adımlar izlenmiş ve çıkarılan sonuçlar yorumlanmıştır. Sonuç olarak verilerin görselleştirilmesi ile farklı veri kümeleri ve grupları oluşturulmuştur.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 37,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_38",
+    "text": "k görselleştirilmiştir. Her üç şirket içinde aynı adımlar izlenmiş ve çıkarılan sonuçlar yorumlanmıştır. Sonuç olarak verilerin görselleştirilmesi ile farklı veri kümeleri ve grupları oluşturulmuştur. Bu kümelerdeki kişilerin bir birey veya kurum etrafında kümelenerek Avea ve Türkcell hakkında olumsuz yönde çok sayıda manipülasyon tweeti attığı anlaşılmıştır. Avea ve Türkcell’e olumsuz yönde eleştiriler yönelten kullanıcı gruplarının VodafoneTr’yi beğenmeye ve kullanmaya teşvik ettikleri görülürken VodafoneTr hakkından olumsuz yönde görüş bildirenlerin oranının az oluşu diğer GSM şirketleri hakkındaki manipülasyonların etik olmayan şekilde VodafoneTr tarafından yaptırıldığı yönünde insan zihninde soru işaretleri oluşturmuştur. VodafonTr’nin bu taktiği pazarlamadaki viral pazarlama kavramının önemini arttırmaktadır. Anahtar Kelimeler: Sosyal Medya, Twitter, NodeXL, Veri Analizi Bilişim Sistemleri Mühendisliği 2014/2015 3 Sakarya İli Genelinde Kaza Tutanak Kayıt ve Analiz Sistemi Ahmet Hamdi ŞEN  Danışman: Dr.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 38,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_39",
+    "text": "ır. Anahtar Kelimeler: Sosyal Medya, Twitter, NodeXL, Veri Analizi Bilişim Sistemleri Mühendisliği 2014/2015 3 Sakarya İli Genelinde Kaza Tutanak Kayıt ve Analiz Sistemi Ahmet Hamdi ŞEN  Danışman: Dr. Alpaslan KİBAR Özet Çalışmamızda temel olarak kaza kayıtlarını taşınabilir cihaz veya bilgisayar araçlarıyla harita yazılımı kullanarak girebilmek ve tüm kayıtları belli özelliklerine göre filtreleyerek analize hazır hale getirmek amaçlanmıştır. Projemiz Trafik Denetleme Bölge Müdürlüğünün kaza kayıtlarına ilişkin tutanaklar örnek alınarak tasarlanmıştır. Çeşitli cihazlardan veri girişini ve erişimini mümkün kılabilmek için bütün akıllı cihazlarda kullanılan web tarayıcı’ lar üzerinde çalışacak proje için programlama dili olarak c#, web programlama çatısı olarak Asp. Net kullanıldı. Haritada görüntüleyebilmek ve üzerinde işlem yapabilmek için yine çoğu web tarayıcıda kullanılabilen Google Javascript Map API kullanıldı. Veriler veritabanından JSON formatında alınarak web arayüzü tarafında Javascript kullanılarak Google Maps üzerinden kullanıcıya sunuldu. Yazılım geliştirme ortamı olarak Microsoft Visual Studio Community Edition kullanıldı.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 39,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_40",
+    "text": "JSON formatında alınarak web arayüzü tarafında Javascript kullanılarak Google Maps üzerinden kullanıcıya sunuldu. Yazılım geliştirme ortamı olarak Microsoft Visual Studio Community Edition kullanıldı. Veritabanı olarak Visual Studio ile entegre olan Sql Server Local Database(LocalDB) kullanıldı. Veritabanından verilere erişim için Entity Framework altyapısı kullanıldı. Projenin hedef kullanıcıları için çeşitli arayüzler oluşturuldu. Bunlar Sisteme giriş ekranı(Login),Tutanak Giriş ekranı, Kullanıcı Bilgileri ekranı ve Tutanak Analiz Ekranı olarak isimlendirilmiştir. Sisteme giriş yapmış bir kişi aşağıdaki işlemleri yapabilmektedir.  Tutanak giriş sayfasından kazaya ilişkin tutanak kayıtlarını sisteme kaydetme  Sistemde kayıtlı tutanakları, kaza özelliklerine harita üzerinden incelemek  Kişisel Bilgilerini düzenleme Sistemin güvenlik açıkları üzerinde araştırmalar yapıldı. Kullanılan yazılım parçaları güncel olduğu için en son güvenlik testlerinden geçmiş yazılım parçaları temel seviyede bir güvenlik altyapısı sağlamaktadır. Ek olarak araştırmalar doğrultusunda bazı parçalar için şifreleme işlemleri gerçekleştirildi.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 40,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_41",
+    "text": "en son güvenlik testlerinden geçmiş yazılım parçaları temel seviyede bir güvenlik altyapısı sağlamaktadır. Ek olarak araştırmalar doğrultusunda bazı parçalar için şifreleme işlemleri gerçekleştirildi. İleride projenin daha kullanışlı hale gelebilmesi için arayüz(ön yüz) tasarımında, veritabanı tasarımında(optimizasyon) ve güvenlik alanında(oturum güvenliği, veritabanı güvenliği) geliştirmeler yapılması uygun olacaktır. Anahtar Kelimeler: Asp. Net, Sql Server, Trafik Denetleme, Google Map API, JSON, Javascript, Entity Framework Bilişim Sistemleri Mühendisliği 2014/2015 4 Kablosuz Sensör Ağları İle Akıllı Ev Sistemi Aslıhan ÇOMU  Danışman: Yrd. Doç. Dr. İhsan Hakan SELVİ Özet Bu çalışmada kablosuz sensör ağı temelinde akıllı ev projesi oluşturma ve yeni gelişen teknolojiler de kablosuz sensör ağı ile akıllı ev sistemini daha pratik yollar ile tasarlama yapıldı. Akıllı ev sistemlerinin özellikleri ve standartlarına uyacak şekilde tasarlanan sistemin temel aracı olarak bir İtalyan mikroişlemci firmasının en yenilikçi ürün serisi ARDUINO seçildi. Bu anlamda Arduino ile geniş bilgilere bu çalışmada yer verildi.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 41,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_42",
+    "text": "ına uyacak şekilde tasarlanan sistemin temel aracı olarak bir İtalyan mikroişlemci firmasının en yenilikçi ürün serisi ARDUINO seçildi. Bu anlamda Arduino ile geniş bilgilere bu çalışmada yer verildi. Arduino mikroişlemci çeşitlerine değinilip, daha sonra bağlantı elemanları ve ek donanımlarından (Shield) bahsedildi. Arduino’nun kablosuz bir ağ oluşturabilecek alt yapıdaki mikro işlemcisi olarak Arduino Yun kullanılıp ve bu bağlamda Arduino Yun’un en önemli özelliği olan doğrudan yerel Wi-fi ağına bağlanabilme özelliği üzerinde duruldu. Sistemde kullanılan bu mikroişlemciyi Arduino yerel host sayfa adresi üzerinden web sayfası, Bridge olarak özel oluşturulmuş sistem arayüzü ve Temboo teknolojisi ile verilen direktiflere uygun haliyle bağlantı kuruldu. Arduino Yun ile bağlantı kurulduktan sonraki aşama Arduino Yun’u amacımız dâhilinde akıllı ev oluşturacak şekilde tasarlamak oldu. Akıllı evi oluşturan gereçler ortam konforunu artırmaya yönelik olması amacıyla sıcaklık, nem, ışık ve zehirli gaz sensörlerini Arduino Yun’a entegre edilip Arduino ile uyumlu sensör çeşitlerini ve seçilebilecek sensörler hakkında bilgiler verildi.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 42,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_43",
+    "text": "tırmaya yönelik olması amacıyla sıcaklık, nem, ışık ve zehirli gaz sensörlerini Arduino Yun’a entegre edilip Arduino ile uyumlu sensör çeşitlerini ve seçilebilecek sensörler hakkında bilgiler verildi. Bu çalışmada Arduino Yun mikroişlemcisine sıcaklık sensörü olarak LM35 termo sensörü, nem sensörü olarak HH10D humidity sensörü, ışık sensörü olarak da TSL2561 light sensörü ve son olarak da zehirli gaz için MQ2 yanıcı gaz, duman sensörü kullanılması planlanıp bu cihazlara göre konfigürasyon ve sistem açıklandı. Arduino Yun’u kontrol edebilen ve yöneten yazılım olan ARDUINO IDE programı vasıtasıyla her sensöre ve bağlantıya uygun kodlar belirlenerek çalıştırıldı. Arduino ailesi işlemcilerin en önemli özelliği, kendine özgü yazılım ve kullanışlı dil ile oluşturulmuş kodlardan oluşan kütüphanesinden bu çalışmada da yararlanıldı. Kodlar Arduino kütüphanesinden alındıktan sonra kablosuz sensör ağı ile akıllı ev sistemine uygun şartlar seçilip sensör değerleri belirlenirken her sensörün üreticisi tarafından oluşturulan veri tablosu(datasheet)’den faydalanıldı.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 43,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_44",
+    "text": "lındıktan sonra kablosuz sensör ağı ile akıllı ev sistemine uygun şartlar seçilip sensör değerleri belirlenirken her sensörün üreticisi tarafından oluşturulan veri tablosu(datasheet)’den faydalanıldı. Akıllı evin amacı ve yararı açısından konforlu bir evin sıcaklık, nem, ışık ve gaz düzeyleri belirlenmiş ve önce sensörlerden Arduino Yun’a daha sonra kablosuz olarak yönetici bilgisayara gelen verilerin uyarı olarak kullanıcıya bildirilme limitleri oluşturuldu. Bu proje kapsamında sistem şeması üzerinde sensörler, Arduino Yun mikroişlemci, Wi-fi kablosuz ağ yolu (IEEE 802. 11) ve yönetici olarak bilgisayar bulunmaktadır. Çalışma kapsamında kontrol arayüzü ileriki zamanlarda Visual C# programıyla yapılabilir esneklikte bırakılıp çalışmaların proje kapsamı dışında devam etmesi planlandı. Anahtar Kelimeler: Arduino, Akıllı Ev, Kablosuz Sensör Ağı, Ev Kontrolü Bilişim Sistemleri Mühendisliği 2014/2015 5 Uzaktan Eğitim Merkezi İçin İş Zekâsı Sistemi Büşra DOĞAN & Mücahit Yasin KEPEK  &  Danışman: Yrd. Doç. Dr.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 44,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_45",
+    "text": "ino, Akıllı Ev, Kablosuz Sensör Ağı, Ev Kontrolü Bilişim Sistemleri Mühendisliği 2014/2015 5 Uzaktan Eğitim Merkezi İçin İş Zekâsı Sistemi Büşra DOĞAN & Mücahit Yasin KEPEK  &  Danışman: Yrd. Doç. Dr. Mustafa Cemil KARACADAĞ Özet Sakarya Üniversitesi Uzaktan Eğitim merkezi (UZEM) ile 36 farklı programda, 10 binden fazla öğrenciye, 500 saatten fazla görüntülü ders çekimi ve online gerçekleştirilen binlerce sınav aktiviteleri ile e-öğrenim hizmetleri sunulmaktadır. E-Öğrenim için geliştirilecek iş zekâsı sistemi ile öğrenci, öğretici, öğretim ortamı ve sürecine dair depolanan büyük miktarlardaki veriler sistem yöneticileri için analiz edilerek keşfedilecek bulgular ile daha başarılı bir sistem yönetim sürecine imkân tanıması beklenmektedir. e-Öğrenim süreci içerisinde çeşitli kaynak ve bileşenler veri üretmektedir. Biz ekip olarak özellikle sınav sistemine odaklandık. Binlerce oturumda, on binlerce soru ve on binden fazla öğrencinin katılımıyla gerçekleşen sınavlarda çok sayıda teknik ve teknik olmayan sorunlar yaşanması muhtemeldir. Sistem yöneticileri açısından “sorunsuz sınav sistemi” harika bir hedeftir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 45,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_46",
+    "text": "nden fazla öğrencinin katılımıyla gerçekleşen sınavlarda çok sayıda teknik ve teknik olmayan sorunlar yaşanması muhtemeldir. Sistem yöneticileri açısından “sorunsuz sınav sistemi” harika bir hedeftir. Bu projede mevcut LMS sisteminin sınav modülüne ait verileri kaynak olarak kullanan, sistem yöneticilerine sorunlar hakkında analiz raporları ve analitik işlem raporları sunan bir iş zekâsı sistemi geliştirilmesi amaçlanmıştır. Projede İş zekâsı sistemi geliştirmek için model olarak “Son Kullanıcı, Gereksinim Analizi, Planlama, Veri ve Bilişim Toplama, Veri İşleme, Analiz, Üretim ve Dağıtım” adımları takip edilmiştir. İlk aşamada UZEM Yöneticilerinin son kullanıcı gereksinimleri tespit edilmiştir. Uygun veri kaynakları değerlendirilmiş ve verinin özellikleri tespit edilmiştir. Bu aşamada geliştirilecek İş Zekâsı Sisteminin üniversite tarafından sağlanan sanal sunucu üzerine kurulması ve hizmet vermesi kararlaştırılmıştır. Sanal sunucu; üniversitenin Blade Sunucularında Intel Xeon CPU E5-2650 2. 00 Ghz işlemci, 12 GB RAM, 120 Gigabyte Harddisk, 64 bit Microsoft Windows Server 2012 R2 Datacenter platformu ve MS SQL Server 2012 Veri tabanı ile tahsis edilmiştir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 46,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_47",
+    "text": "arında Intel Xeon CPU E5-2650 2. 00 Ghz işlemci, 12 GB RAM, 120 Gigabyte Harddisk, 64 bit Microsoft Windows Server 2012 R2 Datacenter platformu ve MS SQL Server 2012 Veri tabanı ile tahsis edilmiştir. Sanal sunucu üzerine Oracle BI iş zekâsı platformu kurulumu gerçekleştirilmiştir. Son kullanıcı gereksinimlerini karşılayacak raporlara uygun olarak Veri ambarının boyutsal tasarımı yapılmıştır. UZEM’in verilerinin sisteme aktarılması için ETL işlemleri sırasında verilerin temizlenmesi, standartlaştırılması ve veri yüklemesi gibi işlemleri tamamlayarak veri ambarı oluşturulmuştur. e-sınav platformuna yönelik çözülmesi kararlaştırılan sorunlar doğrultusunda veri ambarı üzerinde veri küpleri oluşturulmuştur. Yöneticilerin sorunların çözümünde ayrıntıları daha kolay ve özet görmesini sağlayacak Dashboard tasarlanmış ve raporlar üretilmiştir. Bunun yanı sıra soruna etki eden farklı değişkenler ve ilişkilerin tespiti amacıyla veri madenciliği teknikleri kullanılarak analiz yapılmıştır. Sonuçta Sınav sistemini iyileştirmek amacıyla yöneticilerin karar süreçlerini daha etkin hale getirecek İş Zekâsı çözümü geliştirilmiştir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 47,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_48",
+    "text": " veri madenciliği teknikleri kullanılarak analiz yapılmıştır. Sonuçta Sınav sistemini iyileştirmek amacıyla yöneticilerin karar süreçlerini daha etkin hale getirecek İş Zekâsı çözümü geliştirilmiştir. Sistem ölçeklenebilirdir, yeni rapor gereksinimlerinin doğması veya özelleştirilmesi durumunda sistem hizmet verebilir ve genişletilebilir. Anahtar Kelimeler: İş Zekâsı, Veri Ambarı, OLAP, Veri Madenciliği, e-Öğrenim Bilişim Sistemleri Mühendisliği 2014/2015 6 Uzaktan Eğitim Merkezi Kullanıcı-Video Etkileşimleri Denetimi ve Analizinin Gerçeklenmesi Emre DORUK  Danışman: Yrd. Doç. Dr. Halil İbrahim CEBECİ Özet Uzem Kullanıcı-Video etkileşimleri denetimi ders videoları üzerinde kullanıcıların ders esnasında videoda hangi tür işlemleri yaptığının keşfini amaçlar. Proje Kullanıcıların sistemdeki dersler ile ne kadar ilgilendiğini videodan elde edilecek veriler (videonun ne kadarının izlendiği, ne kadar sürenin atlanarak geçildiği, play ve pause yapma sayısı vb. ) sayesinde bulmayı ve kullanıcılara daha uygun bir ortam yaratmayı hedefler. Bu denetim ortamı, HTML5 player framework kütüphanesinin video elements özelliklerini kullanır.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 48,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_49",
+    "text": " ve pause yapma sayısı vb. ) sayesinde bulmayı ve kullanıcılara daha uygun bir ortam yaratmayı hedefler. Bu denetim ortamı, HTML5 player framework kütüphanesinin video elements özelliklerini kullanır. Player Framework kütüphanesinin özelleştirilerek uzem sistemine uygun hale getirilmesi planlanmaktadır. Yapılan bu çalışma sonucundaki veriler bir MSSQL veritabanında saklanır. Bize kullanıcıların oturum bazlı analizini yapma imkanını sunar. Anahtar Kelimeler: Kullanıcı-Video Etkileşimi Denetimi, Video Elements, Player Framework Kütüphanesi, e-Öğrenim Bilişim Sistemleri Mühendisliği 2014/2015 7 VISITICK Etkinlik Takip Ve Yönetim Sistemi Salih OKÇU & Feyyaz KORKMAZ  &  Danışman: Prof. Dr. İsmail Hakkı CEDİMOĞLU Özet Günümüzde bilişim teknolojilerindeki hızlı gelişim ve değişime bağlı olarak kullanıcıların ihtiyaçları da sürekli olarak değişmekte ve kullanıcıyı da doğrudan etkilemektedir. Bilişim sistemleri zaman ve maliyet, vb. tasarrufu sağlamasına karşın etkin ve verimli bir şekilde kullanılması gerekmektedir. Geliştirilen bilişim sistemlerinde ihtiyaç analizi, tasarım, geliştirme, test ve belgelendirme aşamalarını standartlara bağlı olarak gerçekleştirmek gerekmektedir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 49,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_50",
+    "text": " şekilde kullanılması gerekmektedir. Geliştirilen bilişim sistemlerinde ihtiyaç analizi, tasarım, geliştirme, test ve belgelendirme aşamalarını standartlara bağlı olarak gerçekleştirmek gerekmektedir. Aynı zamanda bilişim sistemlerinin önemli bir bileşeni olan donanım ve ağ teknolojilerindeki gelişmelere paralel olarak gelişmektedir. Düne kadar internet destekli bilişim sistemleri kullanılıyorken şimdi mobil teknolojilerdeki gelişmeler dikkatimizi çekmektedir. Bu şekilde düşünüldüğünde mobil teknolojilerde de akıllı cihazların (tablet, cep telefonu, vb. ) hayatımıza girmesiyle geliştirilen bilişim sistemleri mobil uygulamalar ile desteklenmektedir. Proje gerçekleştirilirken bu hususlar dikkate alınmıştır. Proje kapsamında etkinlik yönetim ve planlama bilişim sistemi geliştirilmiştir. Aynı zamanda gelecek gelişmelere bağlı olarak değişime uygun şekilde internet ve mobil teknolojilerde platform bağımsız yeni nesil teknolojiler kullanılmıştır. İhtiyaç analizi sadece bilişim sistemi açısından değil kullanıcı bazlı ihtiyaçları dikkate alacak şekilde geliştirilmiştir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 50,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_51",
+    "text": "bil teknolojilerde platform bağımsız yeni nesil teknolojiler kullanılmıştır. İhtiyaç analizi sadece bilişim sistemi açısından değil kullanıcı bazlı ihtiyaçları dikkate alacak şekilde geliştirilmiştir. Projenin daha sonraki aşamalarında etkinlik bilişim sistemi uygulama sürecinde optimizasyon ve veri madenciliği uygulamaları ile kullanıcılara karar vermelerine destekleyici modüller planlanmaktadır. Bu proje, bilişim teknolojilerindeki iki kullanım alanında internet destekli, mobil olarak hizmet sunacaktır. Proje başlıca dört temel (etkinlik yönetim, etkinlik planlama ve etkinlik kontrol, kare kod etkinlik tanımlama ve biletleme) modül geliştirilmiştir. Bu modüller geliştirirken web ve mobil arayüzlerde sırasıyla (ASP. NET MVC), ve Android teknolojileri kullanılmıştır. Veri tabanı olarak MSSQL veri tabanı sistemi kullanılmıştır. Anahtar Kelimeler: Etkinlik Yönetim, Mobil Uygulama, E-Bilet, E-Sertifika, Optimizasyon, Veri Madenciliği Bilişim Sistemleri Mühendisliği 2014/2015 8 GPS Sinyalleri İle Konum Belirlemeyi Sağlayan Programın Mobil Platformda Tasarımı Ve Uygulaması Gülşah ŞAHİN & Gülay BAYRAM  &  Danışman: Doç. Dr.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 51,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_52",
+    "text": "denciliği Bilişim Sistemleri Mühendisliği 2014/2015 8 GPS Sinyalleri İle Konum Belirlemeyi Sağlayan Programın Mobil Platformda Tasarımı Ve Uygulaması Gülşah ŞAHİN & Gülay BAYRAM  &  Danışman: Doç. Dr. Numan ÇELEBİ Özet Günümüzde mobil ve akıllı cihazların yaygınlaşması ile beraber mobil uygulamalar insan yaşamında önemli bir yer edinmiştir. Bu cihazlar üzerinde çalışan mobil uygulamalar sayesinde insanlar bilgiye daha hızlı bir şekilde ulaşabilmektedir. Ayrıca bu akıllı cihazlara özgü geliştirilen mobil işletim sistemleri üzerine yüklenen uygulamalar sayesinde GPS ile rota takip işlemi gerçekleştirilebilmektedir. Bu çalışmada akıllı cep telefonları için geliştirilen bir mobil yazılım ile öğrenci servis araçlarının rota takibi gerçekleştirilmiştir. Uygulamada Android ve. NET teknolojisi kullanılmıştır. Android işletim sistemli cihaza yüklenen GPS tabanlı uygulama sayesinde, araç konum bilgileri kullanıcının belirlediği periyod aralıkları ile veritabanına kaydedilmektedir. Servis aracında bulunan akıllı cep telefonundan gelen GPS sinyalleri sayesinde aracın anlık konum bilgileri takip edilebilmektedir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 52,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_53",
+    "text": "ın belirlediği periyod aralıkları ile veritabanına kaydedilmektedir. Servis aracında bulunan akıllı cep telefonundan gelen GPS sinyalleri sayesinde aracın anlık konum bilgileri takip edilebilmektedir. İstenilen okul servis aracının plakasına göre her bir aracın izlediği yol izlenebilmektedir. Ayrıca kullanıcılar ya da aileler akıllı cep telefonlarına kuracakları bu uygulama sayesinde öğrencinin bulunduğu servis aracının konumunu ücretsiz bir şekilde takip edebilecektir. Anahtar Kelimeler: Mobil platformlar, Android, GPS, Web Servis,. NET teknolojileri, Google Maps, JSON Bilişim Sistemleri Mühendisliği 2014/2015 9 Beyin Tümörü Tespitinde Sınıflandırma Algoritmalarının Test Edilmesi Melike Nur MERMER  Danışman: Yrd. Doç. Dr. İhsan Hakan SELVİ Özet Günümüzde bir hastalığın erkenden teşhis edilmesi en az tedavisi için bulunan ilaç ve yöntemler kadar önemli olan bir unsurdur. Bu durumda belki de ilaçlara bile gerek kalmadan tedavi uygulamak mümkün olacaktır ve bulunan bir yöntem belki milyonlarca insana umut ışığı olacaktır. Bu tez çalışmasında da bu amaçla beyin MR görüntüsünde tümör tespiti için, hızlı ve doğru bir tespit mekanizması geliştirilmeye çalışılmıştır.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 53,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_54",
+    "text": "bir yöntem belki milyonlarca insana umut ışığı olacaktır. Bu tez çalışmasında da bu amaçla beyin MR görüntüsünde tümör tespiti için, hızlı ve doğru bir tespit mekanizması geliştirilmeye çalışılmıştır. Bilgisayar destekli geliştirilen sistemlerle yapılan tespitler sonucunda hastalığın tedavisine bir an önce başlanması sağlanacak ve böylece doktorlar kazandıkları zamanı daha iyi bir hizmet vermek için kullanabileceklerdir. Tümör tespiti için geliştirmiş olduğumuz yöntemde öncelikle MR görüntüsünde bulunan kafatasına ait kısımların atılması amacıyla görüntüye ön işlem uygulanmakta ve sadece beynin iç bölgesine ait görüntü elde edilmektedir. Bunun ardından tümör olup olmadığının tespiti için farklı sınıflandırma algoritmaları test edilmiş, hız ve doğruluk analizi gerçekleştirilmiştir. Bu çalışmada yapay sinir ağları metodlarından Back-propagation, Momentumlu Back-propagation ve Levenberg-Marquardt algoritmaları MR görüntüsünde tümör tespiti için kullanılmıştır. Yapılan testlerle sınıflandırma algoritmaları arasındaki üstünlük anlaşılacak ve hangi algoritmanın hangi konularda daha başarılı olduğu ortaya çıkacaktır.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 54,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_55",
+    "text": "üntüsünde tümör tespiti için kullanılmıştır. Yapılan testlerle sınıflandırma algoritmaları arasındaki üstünlük anlaşılacak ve hangi algoritmanın hangi konularda daha başarılı olduğu ortaya çıkacaktır. Algoritmaların her biri eldeki veriye göre farklı sonuçlar üretecek ve elde edilen sonuçlar karşılaştırılacaktır. Sınıflandırma algoritmalarının başarısındaki en büyük etken olan algoritma için gerekli parametrelerin isabetli bir şekilde kestirilmesine ise özellikle dikkat edilecektir. Anahtar Kelimeler: Görüntü işleme, Tümör tespiti, Sınıflandırma, Analiz. Bilişim Sistemleri Mühendisliği 2014/2015 10 Veri Madenciliği ve Talep Tahmin Yöntemleri Mustafa AKAL  Danışman: Öğr. Gör. Nevzat TAŞBAŞI Özet Talep tahmini, tüketicilerin gelecekte ne miktar ürün veya hizmet talep edeceklerinin ve bu taleplerin hangi zamanlarda gerçekleşeceğinin kestirilmesi işlemidir. Talep tahmin yöntemlerinde genellikle geçmiş dönemlerdeki talepler üzerinde yapılan çeşitli analizler kullanılmaktadır. Bunun yanında talebi etkileyecek diğer faktörlerdeki değişmelerin, talebi ne yönde ve ne kadar etkileyeceğinin tespitinde istatistiksel analizlerden ve veri madenciliğinden yararlanılmaktadır.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 55,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_56",
+    "text": "ktadır. Bunun yanında talebi etkileyecek diğer faktörlerdeki değişmelerin, talebi ne yönde ve ne kadar etkileyeceğinin tespitinde istatistiksel analizlerden ve veri madenciliğinden yararlanılmaktadır. Bu tez çalışmasında, çeşitli talep tahmin yöntemleri incelenmiş, incelenen bu yöntemler, bir süpermarketten elde edilen perakende verisi içerisinden rastgele olarak seçilen ürünlerin 2 yıllık satış verilerine uygulanmış ve her bir ürün için en uygun talep tahmin yönteminin tespit edilmesine çalışılmıştır. Elimizde bulunan 29 aylık verinin 24 ayı analiz yaparken kullanılmış, kalan 5 ayı ise yaptığımız tahminlerle karşılaştırma ve hata analizleri için ayrılmıştır. Anahtar Kelimeler: Talep Tahmin, Zaman Serileri Analizi, Üretim, Planlama. Bilişim Sistemleri Mühendisliği 2014/2015 11 NODEXL İle Sosyal Medya Analizi Neslihan ACAR  Danışman: Yrd. Doç. Dr. Levent ÇALLI Özet Kullanıcıların birbirleriyle etkin bir biçimde etkileşebildikleri ve paylaşımlarda bulunabildikleri sosyal ağlar yaygınlığını her geçen gün arttırmaktadır. Yaygınlaşan sosyal ağlar arasında Facebook ve Twitter gibi ortamlar liderliği göğüslemektedirler.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 56,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_57",
+    "text": "şebildikleri ve paylaşımlarda bulunabildikleri sosyal ağlar yaygınlığını her geçen gün arttırmaktadır. Yaygınlaşan sosyal ağlar arasında Facebook ve Twitter gibi ortamlar liderliği göğüslemektedirler. Bu durumun yanı sıra sosyal ağların önemli sıkıntılarından birisi sosyal ağ üzerinden gerçekleştirilen etkileşimlerin ve bireyler arasındaki iletişimlerin gerçek anlamda ayrıntılı biçimde incelenememesinden kaynaklanmaktadır. Bu nedenle yürüttüğümüz bu çalışmaların önemli noktası da sosyal medya üzerinden kurulan sosyal ağ yapılarının çözümlenmesidir. Çalışmada elde edilmek istenen sonuç, sosyal ağlar üzerinde kurulan ilişkiler yardımıyla gerek kurumların gerek şirketlerin gerekse bireylerin ağ üzerindeki yeri, önemi ve gelecekteki değerinin (ki bu şirketler için pazarlama anlamında çok büyük öneme sahip) ortaya çıkarılıp çeşitli amaçlar için kullanılmasıdır. Çalışmada sosyal ağ analizi için Microsoft Office Excel programı için ücretsiz bir eklenti olarak hazırlanan NodeXL (Network Overview, Discovery and Exploration add-in for Excel) yazılımı kullanılmaktadır. Program Excel’e entegre olarak kurulmakta ve programa onun üzerinden erişim sağlanmaktadır.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 57,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_58",
+    "text": " hazırlanan NodeXL (Network Overview, Discovery and Exploration add-in for Excel) yazılımı kullanılmaktadır. Program Excel’e entegre olarak kurulmakta ve programa onun üzerinden erişim sağlanmaktadır. Aynı zamanda online olarak analizler gerçekleştirilmektedir. Analiz için birçok yöntem programda mevcuttur. Sosyal medya üzerinden online olarak güncel çekilen veriler, görselleştirme yardımıyla karşımıza anlamlı haliyle çıkar. Anahtar Kelimeler: Sosyal Medya, Nodexl, Ağ Analizi, Veri Madenciliği, Görselleştirme Bilişim Sistemleri Mühendisliği 2014/2015 12 İşbirlikçi Öğrenmenin Mobil Platformda Gerçeklenmesi Yunus KOÇAK & Bilal ULUDAĞ  &  Danışman: Yrd. Doç. Dr. Halil İbrahim Cebeci Özet İşbirlikçi öğrenme, öğrencilerin küçük gruplar halinde çalışarak ve birbirinin öğrenmesine yardım ederek öğrenmeyi gerçekleştirme süreci olarak ele alınabilir. İşbirlikçi öğrenmede öğrenciler belirli konular etrafında öğretim görevlisi eşliğinde dersin içeriğinin oluşmasına katkıda bulunmaktır. Öğrenciye sınıfta bir takım görevler yükleyerek her hafta sırayla arkadaşlarının yaptıkları araştırmaları kontrol ile dersin öğretim elemanına iletilmesi vb.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 58,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_59",
+    "text": "içeriğinin oluşmasına katkıda bulunmaktır. Öğrenciye sınıfta bir takım görevler yükleyerek her hafta sırayla arkadaşlarının yaptıkları araştırmaları kontrol ile dersin öğretim elemanına iletilmesi vb. görevleri yerine getirerek derse katılması ve öğrencilerin derste çektikleri resim ve çeşitli dokümantasyonları bu sistem aracılığı ile arkadaşlarıyla paylaşabileceği ve öğretim elemanlarının bu sistemden çeşitli raporlar elde edebileceği bir sistemdir. Bu sistemdeki amaçlar; i. Öğrencilerin derslere katılımını sağlamak ve bu katılımı değerlendirmek, ii. Öğrencilerin derslerde çekmiş oldukları resimler ve ses kayıtlarını bir ortam üzerinden yönetmek, iii. Derste işlenecek konularda hangi alt konuların işleneceğine öneride bulunmak, iv. İçeriğin oluşmasında öğretim elemanına katkı sağlamak, v. Dönem sonunda yapılacak olan değerlendirme sınavlarına sorular ekleyerek katkıda bulunmak, vi. Sınıf arkadaşlarını bir takım rollerle denetlemek, Kullanılan yöntemler; i. Uygulamanın gerçekleştirmesinde Asp. net 4. 0 platformu ve DevExpress toolları kullanılmıştır. ii. Uygulamada oluşan veriler MSSQL veri tabanında tutulmaktadır. iii.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 59,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_60",
+    "text": "netlemek, Kullanılan yöntemler; i. Uygulamanın gerçekleştirmesinde Asp. net 4. 0 platformu ve DevExpress toolları kullanılmıştır. ii. Uygulamada oluşan veriler MSSQL veri tabanında tutulmaktadır. iii. Uygulamada oluşan verilerin veri tabanına gönderilmesinde katmanlı mimari kullanılmıştır. Sistem sonucunda öğrenciler derste işlenecek konular için alt konular girmiştir. Bu alt konulara içerik girmişlerdir. O hafta yetkili olan öğrenciler içeriği ara kontrollerden geçirerek içerik öğretim görevlisine ulaşmıştır. Öğretim görevlisinin içeriği inceleyip onaylanması sonucu içerik tamamlanıp kapatılmıştır. Anahtar Kelimeler: Asp. net, İşbirlikçi Öğrenme, Teknoloji, Eğitim Öğretim Sistemi Bilişim Sistemleri Mühendisliği 2014/2015 13 SEO ( Search Engine Optimization) Bakış Açısı İle Analiz Zeynep SAYGILIER  Danışman: Yrd. Doç. Dr. Mustafa YILMAZ Özet SEO ( Search Engine Optimization) kullanıcıların arama motorunda yapmış olduğu aramalarda, arama motorlarının algoritmalarına uyumluluk sağlayarak üst sıralarda yer almak için yapılan bir dizi işlem için verilen genel addır.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 60,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_61",
+    "text": "mization) kullanıcıların arama motorunda yapmış olduğu aramalarda, arama motorlarının algoritmalarına uyumluluk sağlayarak üst sıralarda yer almak için yapılan bir dizi işlem için verilen genel addır. Başarılı olması hedeflenen bir arama motoru optimizasyonu çalışması üç genel bölüme ayrılır; sayfa veya site içi optimizasyon, teknik optimizasyon ve sayfa veya site dışı optimizasyon. Bu çalışmada mevcut olan bir sitenin Google arama motoru algoritmalarına yönelik bir analiz çalışması yapılmıştır. Google arama motoruna ağırlık verilmesinin sebebi ülkemizde en yaygın kullanılan arama motoru olması ve dolayısıyla sitenin Google’da daha fazla faaliyet göstermesidir. Çalışmanın uygulaması Bilişim Topluluğu Kulübü web sitesi üzerinde gerçekleştirilmiştir. Uygulamada farklı SEO araçları kullanılarak bir site içi SEO analizi yapılmıştır. Bu araçlardan “Screaming Frog SEO Spider 3,3” programı daha iyi sonuç verdiğine kanaat getirildiği için bu programla elde edilen analiz bulguları üzerinden değerlendirme yapılmıştır. Site internal, external, H1, H2 etiketleri, response code, page titles, meta description alanlarında analiz edilmiş ve bulgular elde edilmiştir.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 61,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BSM_14_15_.pdf_62",
+    "text": "n analiz bulguları üzerinden değerlendirme yapılmıştır. Site internal, external, H1, H2 etiketleri, response code, page titles, meta description alanlarında analiz edilmiş ve bulgular elde edilmiştir. Elde edilen bulgular sitenin H1 etiketi kullanımında sıkıntı, meta descriptionların uyumlu ancak anahtar kelime kullanımında, linkler ile ilgili, css ve html dosyaları ile ilgili sorunlar olduğu tespit edilmiştir. Yapılan değerlendirmeler sonucu, sitede karşılaşılan eksiklerin düzeltilmesi için profesyonel sitelerden backlink alınması gerektiği, html sitelerinin boyutlarını düşürülmesi, kaynakların “gzip” ile sıkıştırılması H1 etiketlerinin etkili kullanılması konusunda önerilerde bulunulmuştur. Anahtar Kelimeler: SEO ( Search Engine Optimization), Analiz, SEO Aracı, Google Bilişim Sistemleri Mühendisliği 2014/2015 14 FOTOĞRAFLARLA BİZ Bilişim Sistemleri Mühendisliği 2014/2015 15 Bilişim Sistemleri Mühendisliği 2014/2015 16 Bilişim Sistemleri Mühendisliği 2014/2015 17 Bilişim Sistemleri Mühendisliği 2014/2015 18 Bilişim Sistemleri Mühendisliği 2014/2015 19 Bilişim Sistemleri Mühendisliği 2014/2015 20 PAYDAŞLARIMIZ Bilişim Sistemleri Mühendisliği 2014/2015 21.",
+    "source": "BSM_14_15_.pdf",
+    "chunk_index": 62,
+    "metadata": {
+      "source_file": "BSM_14_15_.pdf",
+      "total_chunks": 63
+    }
+  },
+  {
+    "id": "BBBF_UMDE_PROTOKOL1.pdf_0",
+    "text": "SAKARYA ÜNİVERSİTESİ BİLGİSAYAR VE BİLİŞİM BİLİMLERİ FAKÜLTESİ UYGULAMALI MÜHENDİSLİK DENEYİMİ EĞİTİMİ (UMDE) PROTOKOLÜ Bu protokolde geçen; a) Aday Mühendis: UMDE programına katılım şartlarını sağlayan ve UMDE programı kapsamında işletmelere atanan öğrenciyi, b) BUTAK (Bölüm UMDE Takip Komisyonu): Bölüm Başkanı tarafından öğretim üyeleri arasından görevlendirilen bir başkan ve en az iki üyeden oluşan, UMDE uygulamaları takip ve kontrol komisyonunu, c) Danışman Öğretim Üyesi: BUTAK tarafından belirlenen, her bir UMDE öğrencisinin başarı durumunun takibi ve değerlendirmesi için ilgili Bölüm Başkanlığı tarafından atanan bir öğretim üyesini, d) Eğitici Personel: UMDE programında işletmeyi temsil eden, mesleki yetkinliğe sahip, öğrencilerin işletmedeki eğitimlerinden sorumlu, Yükseköğretimde Uygulamalı Eğitimler Çerçeve Yönetmeliğinde Eğitici personel olarak tanımlanmış işletme tarafından yetkilendirilmiş kişiyi, e) UMDE: Yükseköğretimde Uygulamalı Eğitimler Çerçeve Yönetmeliğinde yer alan",
+    "source": "BBBF_UMDE_PROTOKOL1.pdf",
+    "chunk_index": 0,
+    "metadata": {
+      "source_file": "BBBF_UMDE_PROTOKOL1.pdf",
+      "total_chunks": 11
+    }
+  },
+  {
+    "id": "BBBF_UMDE_PROTOKOL1.pdf_1",
+    "text": "ygulamalı Eğitimler Çerçeve Yönetmeliğinde Eğitici personel olarak tanımlanmış işletme tarafından yetkilendirilmiş kişiyi, e) UMDE: Yükseköğretimde Uygulamalı Eğitimler Çerçeve Yönetmeliğinde yer alan İşletmede Mesleki Eğitim faaliyetine karşılık gelen Uygulamalı Mühendislik Deneyimi Eğitimini, f) UMDE Dönemi: Aday Mühendislerin ders planındaki yedinci veya sekizinci yarıyılda işletmelerde gerçekleştirdikleri uygulama dönemini, g) Üniversite: Sakarya Üniversitesini, h) İşletme: UMDE kapsamında Aday Mühendislerin çalışmalarını yapabilecekleri ve BUTAK tarafından onaylanan mal ve hizmet üreten kamu ve özel kurum, kuruluş ve iş yerlerini ifade eder. Taraflar MADDE Bu 1: protokol, ………………………………………………………………. ile T. C. Sakarya Üniversitesi arasında …. /…. / 20. tarihinde imzalanmıştır. Amaç ve Kapsam MADDE Bu 2: protokol, Sakarya Üniversitesi’ne bağlı Bilgisayar ve Bilişim Bilimleri Fakültesinin lisans programlarına kayıtlı, Aday Mühendis sıfatı kazanan öğrencilerin, eğitimlerini kamu veya özel sektör işyerlerinde mesleki uygulama imkânı bularak daha iyi yetiştirilmeleri ve ilgili sektörlere hızla uyum sağlayacak potansiyel iş gücünü oluşturmaları için gerekli kuralları ve esasları içerir.",
+    "source": "BBBF_UMDE_PROTOKOL1.pdf",
+    "chunk_index": 1,
+    "metadata": {
+      "source_file": "BBBF_UMDE_PROTOKOL1.pdf",
+      "total_chunks": 11
+    }
+  },
+  {
+    "id": "BBBF_UMDE_PROTOKOL1.pdf_2",
+    "text": "l sektör işyerlerinde mesleki uygulama imkânı bularak daha iyi yetiştirilmeleri ve ilgili sektörlere hızla uyum sağlayacak potansiyel iş gücünü oluşturmaları için gerekli kuralları ve esasları içerir. Yürürlük MADDE Bu 3: protokolün hükümleri, protokolün imzalandığı tarihten itibaren geçerlidir. Taraflar, her yılın Eylül ayı içerisinde protokolde değişiklik teklif edebilir ve tarafların karşılıklı mutabakatıyla protokole son şekli verilir. Taraflar her yılın Eylül ayı içeresinde haber vermek kaydıyla protokolü sonlandırabilirler. Süre MADDE UMDE 4: programı, eğitim ve öğretim dönemlerinde gerçekleştirilir. UMDE programı üniversitenin akademik takviminde belirlenen eğitim ve öğretim dönemlerinde başlar ve bu sürenin sonunda biter. Aday Mühendis, programda cuma günü olan Üniversite Ortak Seçmeli derslerini de alabilir. Resmî tatil günleri ile cuma, cumartesi ve pazar günleri Aday Mühendislerin çalışma günü değildir ve bu günler için sigorta yapılmamaktadır. UMDE Çalışma Dönemi MADDE Öğrenciler 5: UMDE çalışma dönemine, UMDE yönergesinde yer alan ilgili şartları sağlayarak “Aday Mühendis” sıfatı kazandıktan sonra başlar.",
+    "source": "BBBF_UMDE_PROTOKOL1.pdf",
+    "chunk_index": 2,
+    "metadata": {
+      "source_file": "BBBF_UMDE_PROTOKOL1.pdf",
+      "total_chunks": 11
+    }
+  },
+  {
+    "id": "BBBF_UMDE_PROTOKOL1.pdf_3",
+    "text": "nler için sigorta yapılmamaktadır. UMDE Çalışma Dönemi MADDE Öğrenciler 5: UMDE çalışma dönemine, UMDE yönergesinde yer alan ilgili şartları sağlayarak “Aday Mühendis” sıfatı kazandıktan sonra başlar. UMDE için Kontenjan Tahsisi MADDE İşletmeler 6:, ilgili eğitim öğretim yılında güz ve bahar yarıyılı için ayrı ayrı düzenleyeceği “UMDE Aday Mühendis Talep Formu”nda belirttiği sayı kadar Aday Mühendis için kontenjan tahsis edecektir. Programın Sorumluları MADDE İşletmelerde 7: bu programdan sorumlu olacak kişi/birim ilgili işletme tarafından belirlenir. Sakarya Üniversitesi’nde bu programdan sorumlu birim ise BUTAK’tır. İki kuruluş arasındaki programla ilgili tüm ilişkiler bu kişiler/birimler aracılığı ile yürütülür. Programın Yürütülmesi ve Denetimi MADDE Aday 8: Mühendislerin çalışmaları, ilgili eğitici personel ile danışman öğretim üyesi tarafından belirtilen UMDE programı süresince iletişimde bulunarak izlenir ve değerlendirilir.",
+    "source": "BBBF_UMDE_PROTOKOL1.pdf",
+    "chunk_index": 3,
+    "metadata": {
+      "source_file": "BBBF_UMDE_PROTOKOL1.pdf",
+      "total_chunks": 11
+    }
+  },
+  {
+    "id": "BBBF_UMDE_PROTOKOL1.pdf_4",
+    "text": "i ve Denetimi MADDE Aday 8: Mühendislerin çalışmaları, ilgili eğitici personel ile danışman öğretim üyesi tarafından belirtilen UMDE programı süresince iletişimde bulunarak izlenir ve değerlendirilir. Sakarya Üniversitesi’nin Görev ve Yetkisi MADDE a 9:) Sakarya Üniversitesi, UMDE programına katılan öğrencilerin; 31/5/2006 tarihli ve 5510 sayılı Sosyal Sigortalar ve Genel Sağlık Sigortası Kanununun 5 inci maddesi gereğince iş kazası ve meslek hastalıklarına karşı ilgili sosyal güvenlik kurumundaki sigorta işlemlerini gerçekleştirir. b) Yurt dışında işletmede mesleki eğitim yapacak öğrencilerin sigortalanması amacıyla sigortacılık alanında faaliyet gösteren yerli veya yabancı kurum ve kuruluşlara ödenecek primler Sakarya Üniversitesi tarafından karşılanmaz. Aday Mühendisin Sorumlulukları MADDE a 10:) Aday Mühendisler, bu program kapsamında kabul edildikleri işletmelerde geçerli çalışma şartlarına ve kurallarına uyarak, eğitici personel tarafından UMDE kapsamı çerçevesinde verilen görevleri bizzat yapmak ve gerçekleştirdikleri çalışmaları raporlayarak ilgili danışman öğretim üyesine sunmak zorundadır.",
+    "source": "BBBF_UMDE_PROTOKOL1.pdf",
+    "chunk_index": 4,
+    "metadata": {
+      "source_file": "BBBF_UMDE_PROTOKOL1.pdf",
+      "total_chunks": 11
+    }
+  },
+  {
+    "id": "BBBF_UMDE_PROTOKOL1.pdf_5",
+    "text": "llarına uyarak, eğitici personel tarafından UMDE kapsamı çerçevesinde verilen görevleri bizzat yapmak ve gerçekleştirdikleri çalışmaları raporlayarak ilgili danışman öğretim üyesine sunmak zorundadır. Buna aykırı tutum içinde olan Aday Mühendisler, tarafların mutabakatıyla UMDE programında başarısız kabul edilir. b) Aday Mühendisler, UMDE programı esnasındaki izin veya devamsızlık sürelerine ilişkin işlemlerde üniversitenin ilgili mevzuatı ile işletmenin resmî çalışma kurallarına tabidir. Bu Yönetmelik hükümlerine veya işletmenin resmî çalışma kurallarına aykırı davranan öğrencilerin UMDE dersleri başarısız olarak değerlendirilir. c) Aday Mühendisler, işletmede bulunduğu sürelerde de 18/8/2012 tarihli ve 28388 sayılı Resmî Gazete’de yayımlanan Yükseköğretim Kurumları Öğrenci Disiplin Yönetmeliği ile üniversitenin ilgili disiplin mevzuatına ve işletmenin çalışma kurallarına tabidir.",
+    "source": "BBBF_UMDE_PROTOKOL1.pdf",
+    "chunk_index": 5,
+    "metadata": {
+      "source_file": "BBBF_UMDE_PROTOKOL1.pdf",
+      "total_chunks": 11
+    }
+  },
+  {
+    "id": "BBBF_UMDE_PROTOKOL1.pdf_6",
+    "text": "8/8/2012 tarihli ve 28388 sayılı Resmî Gazete’de yayımlanan Yükseköğretim Kurumları Öğrenci Disiplin Yönetmeliği ile üniversitenin ilgili disiplin mevzuatına ve işletmenin çalışma kurallarına tabidir. Eğitici Personelin Görev ve Yetkisi MADDE a 11:) Eğitici personel, Aday Mühendisin ilgili alandaki bilgi, birikim ve tecrübelerinin artırılmasına katkıda bulunmak amacıyla hazırlanan ve yapılan çalışmaların değerlendirildiği UMDE Değerlendirme Sistemi Formlarını hazırlayarak ilgili danışman öğretim üyesine sunmakla yükümlüdür. b) Eğitici personel, Aday Mühendisler tarafından hazırlanan formları inceleyerek görüş vermek ve onaylamakla yükümlüdür. c) Eğitici personel, UMDE süresinde Aday Mühendislerin işletme çalışma alanı içerisinde bulunmasını sağlar ve denetler. Aday Mühendislerin devamsızlık hakkı yoktur. Ancak, öğrencinin çalıştığı eğitici personel ve danışman öğretim üyesinin izinleri dahilinde toplam uygulama süresinin %10’ununu geçmemek kaydıyla, mazeret izni kullanabilir.",
+    "source": "BBBF_UMDE_PROTOKOL1.pdf",
+    "chunk_index": 6,
+    "metadata": {
+      "source_file": "BBBF_UMDE_PROTOKOL1.pdf",
+      "total_chunks": 11
+    }
+  },
+  {
+    "id": "BBBF_UMDE_PROTOKOL1.pdf_7",
+    "text": "devamsızlık hakkı yoktur. Ancak, öğrencinin çalıştığı eğitici personel ve danışman öğretim üyesinin izinleri dahilinde toplam uygulama süresinin %10’ununu geçmemek kaydıyla, mazeret izni kullanabilir. Aday Mühendis mazeret bildirmeksizin aralıksız üç iş günü uygulamaya gitmediği veya mazeretli azami devamsızlık hakkını geçtiği takdirde, çalıştığı eğitici personelin en geç beş iş günü içinde danışman öğretim üyesine durumu bildirmesi gerekir. Bu durumda, Aday Mühendisin o döneme ait UMDE ile ilgili tüm resmi işlemleri sonlandırılır. d) Eğitici personel, disiplin ve uygulamalı eğitimlerle ilgili diğer hususlarda sorumlu öğretim elemanı ile iş birliği yapmakla yükümlüdür. İşletmelerin Görev ve Yetkisi MADDE a 12:) İşletme, bünyesinde uygulamalı eğitim yapacak öğrenci sayısını dikkate alarak alanında mesleki yetkinliğe sahip yeterli sayıda eğitici personeli görevlendirmekle yükümlüdür. b) İşletme, UMDE programına katılan Aday Mühendis için UMDE protokolünü onaylamakla yükümlüdür. c) İşletme, UMDE programına katılan Aday Mühendislere 3308 sayılı Kanunun 25 inci maddesi uyarınca ücret ödemekle yükümlüdür.",
+    "source": "BBBF_UMDE_PROTOKOL1.pdf",
+    "chunk_index": 7,
+    "metadata": {
+      "source_file": "BBBF_UMDE_PROTOKOL1.pdf",
+      "total_chunks": 11
+    }
+  },
+  {
+    "id": "BBBF_UMDE_PROTOKOL1.pdf_8",
+    "text": "ramına katılan Aday Mühendis için UMDE protokolünü onaylamakla yükümlüdür. c) İşletme, UMDE programına katılan Aday Mühendislere 3308 sayılı Kanunun 25 inci maddesi uyarınca ücret ödemekle yükümlüdür. d) İşletme, uygulamalı eğitim faaliyetlerinin 20/6/2012 tarihli ve 6331 sayılı İş Sağlığı ve Güvenliği Kanunu hükümlerine uygun ortamlarda yapılmasını sağlamakla yükümlüdür. e) İşletme, çalışma ortamı ve uygulamaların mahiyeti dikkate alınarak öğrencilere iş sağlığı ve güvenliği eğitimleri vermekle yükümlüdür. f) Aday mühendisler, işletme tarafından personele sağlanan diğer sosyal hizmetlerden (ulaşım, yemek gibi) ücretsiz olarak yararlanır; fakat kanuni bir hakka veya toplu sözleşmeye dayanarak yapılmakta olan yardımlardan yararlanamazlar. g) İşletme, Aday Mühendislerin işletmede almakla zorunlu oldukları bütün eğitimlerden, Çalışanların İş Sağlığı ve Güvenliği Eğitimlerinin Usul ve Esasları Hakkında Yönetmelik’in 7/(3). maddesine göre, çırak ve stajyerlerin eğitim ve bilgilendirilmelerinden sorumludur. h) İşletme, UMDE programına katılan Aday Mühendislerin geçirdikleri iş kazalarını ilgili mevzuata uygun olarak ilgililere ve aynı gün içinde üniversiteye bildirmekle yükümlüdür.",
+    "source": "BBBF_UMDE_PROTOKOL1.pdf",
+    "chunk_index": 8,
+    "metadata": {
+      "source_file": "BBBF_UMDE_PROTOKOL1.pdf",
+      "total_chunks": 11
+    }
+  },
+  {
+    "id": "BBBF_UMDE_PROTOKOL1.pdf_9",
+    "text": "melerinden sorumludur. h) İşletme, UMDE programına katılan Aday Mühendislerin geçirdikleri iş kazalarını ilgili mevzuata uygun olarak ilgililere ve aynı gün içinde üniversiteye bildirmekle yükümlüdür. Danışman Öğretim Üyesinin Görev ve Yetkisi MADDE a 13:) Danışman öğretim üyesi, program veya bölümlerde UMDE faaliyetlerinin izlenmesinden sorumludur. b) Danışman öğretim üyesi, işletme ile üniversite arasında koordinasyonun sağlanmasından sorumludur. c) Danışman öğretim üyesi, Aday Mühendislere UMDE süreçlerinde rehber olarak, ölçme ve değerlendirme işlemlerini gerçekleştirmekle sorumludur. Gizli Bilgi, Ticari Sırlar ve Patent Haklarının Korunması MADDE Aday 14: Mühendisler ve danışman öğretim üyeleri işletmelere ait tüm ticari sırları, bilgileri ve gizli belgeleri koruyacaklarını kabul ve beyan ederler.",
+    "source": "BBBF_UMDE_PROTOKOL1.pdf",
+    "chunk_index": 9,
+    "metadata": {
+      "source_file": "BBBF_UMDE_PROTOKOL1.pdf",
+      "total_chunks": 11
+    }
+  },
+  {
+    "id": "BBBF_UMDE_PROTOKOL1.pdf_10",
+    "text": "ri Sırlar ve Patent Haklarının Korunması MADDE Aday 14: Mühendisler ve danışman öğretim üyeleri işletmelere ait tüm ticari sırları, bilgileri ve gizli belgeleri koruyacaklarını kabul ve beyan ederler. Söz konusu koruma kapsamında, UMDE programı çerçevesinde çalışma, araştırma-geliştirme ve endüstriyel uygulamalar sırasında herhangi bir aşamada yer almış olan Aday Mühendisler ve danışmanlar; a) Bu çalışmalar kapsamında hiçbir bilgiyi ifşa etmeyeceklerini, b) UMDE ile ilgili olarak, kendileri tarafından düşünülmüş/geliştirilmiş olsun olmasın, işletme için ticari sır niteliği taşıyan hiçbir bilgiyi üçüncü şahıslarla paylaşmayacaklarını, c) Bu protokol kapsamında UMDE çalışmaları sırasında ve sonrasında elde edilen bilgileri herhangi bir teknik veya akademik bildiri, rapor ve benzeri yayınlarda kullanmak durumunda ilgili işletme yetkililerinden izin alacaklarını kabul ve beyan ederler. MADDE 15. ……………………………………………………… ile Sakarya Üniversitesi, toplam 15 (on beş) maddeden oluşan iş bu protokol hükümleri çerçevesinde Uygulamalı Eğitimler için işbirliğini kabul ve taahhüt eder. …. /…/20. İşletme Yetkilisi (Kaşe/İmza) Sakarya Üniversitesi Yetkilisi (Kaşe/İmza).",
+    "source": "BBBF_UMDE_PROTOKOL1.pdf",
+    "chunk_index": 10,
+    "metadata": {
+      "source_file": "BBBF_UMDE_PROTOKOL1.pdf",
+      "total_chunks": 11
+    }
+  },
+  {
+    "id": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf_0",
+    "text": "Staj Birim sorumlusu Gülcan KIHRI İletişim Tel: 0264 295 5916, E-Posta:  Sayfa 1 / 10 BAHAR YARIYILI SONUNDA STAJ (Önemli !) ● Öğrenciler  internet adresi üzerinden yapacakları staj başvurularını Sigorta işlemlerinin sorunsuz bir şekilde yapılabilmesi için staj başvurularını aşağıda tabloda belirtilen son başvuru tarihlerine kadar tamamlamalıdırlar. Tabloda belirtilen son başvuru tarihlerinden sonra yapılan başvurular kesinlikle dikkate alınmayacaktır. ⮚ sınıf 1: öğrencileri staj yapamazlar. ⮚ Sınıf 2: öğrencileri bahar yarıyılı sonunda tek bir staj yapabilirler, ⮚ ve 3: Sınıf 4: öğrencileri bahar yarıyılı sonunda iki staj yapabilirler. ● Staj süresi yirmi (20) iş günüdür (Cumartesi-Pazar günleri ve diğer tatil günlerinde staj yapılamaz). Ekte belirtilen teslim etme zamanı açıklamalarına uymayan formlar dikkate alınmaz. ● Stajla ilgili tüm bilgiler; Fakültenin ve bölümlerin web adresindeki Staj İşlemleri linkinden ve  linkinde yer alan duyurular kısmından ulaşabilirsiniz.",
+    "source": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+    "chunk_index": 0,
+    "metadata": {
+      "source_file": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+      "total_chunks": 10
+    }
+  },
+  {
+    "id": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf_1",
+    "text": "ıklamalarına uymayan formlar dikkate alınmaz. ● Stajla ilgili tüm bilgiler; Fakültenin ve bölümlerin web adresindeki Staj İşlemleri linkinden ve  linkinde yer alan duyurular kısmından ulaşabilirsiniz. Bu linklerde yer alan bölüm staj esasları ve bölüm staj yönergelerini mutlaka okuyunuz! 2025 YAZ STAJI TARİHLERİ Stajların aşağıda belirtilen tarihlerde başlaması zorunludur. Staj Başlangıç Staj Bitiş Son Başvuru Tarihi Staj Defteri ve Staj Fişi son Yükleme Tarihi Açıklama 30. 06. 2025 28. 07. 2025 17. 06. 2025 Saat 00:00 11. 08. 2025 Başka Üniversiteden Yaz Okulunda Ders Almayacak Öğrencilerimiz Başvurabilir. Bütünleme Sınavına Girecek olan öğrenciler bu tarihler arasında staj yapamazlar. 07/07/2025 03/08/2025 30/06/2025 Saat 00. 00 22/08/2025 Staj dönemi gelen tüm öğrencilerimiz Başvurabilir 11/08/2025 05/09/2025 01/08/2025 Saat 00. 00 26/09/2025 Staj dönemi gelen tüm öğrencilerimiz Başvurabilir 18. 08. 2025 12. 09. 2025 04. 08. 2025 Saat 00:00 26. 09. 2025 Başka Üniversiteden Yaz Okulunda Ders Almayacak Öğrencilerimiz Başvurabilir.",
+    "source": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+    "chunk_index": 1,
+    "metadata": {
+      "source_file": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+      "total_chunks": 10
+    }
+  },
+  {
+    "id": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf_2",
+    "text": "26/09/2025 Staj dönemi gelen tüm öğrencilerimiz Başvurabilir 18. 08. 2025 12. 09. 2025 04. 08. 2025 Saat 00:00 26. 09. 2025 Başka Üniversiteden Yaz Okulunda Ders Almayacak Öğrencilerimiz Başvurabilir. 25/08/2025 19/09/2025 15/08/2025 Saat 00:00 03/10/2025 Staj dönemi gelen tüm öğrencilerimiz Başvurabilir Staj Birim sorumlusu Gülcan KIHRI İletişim Tel: 0264 295 5916, E-Posta:  Sayfa 2 / 10 ✔ Staj Birim sorumlusu Gülcan KIHRI İletişim Tel: 0264 295 5916, E-Posta:   LİNKİ ÜZERİNDEN ÖĞRENCİLERİMİZİN YAPACAĞI İŞLEMLER. 1-  Linki adres çubuğuna yazınız ve giriş linkine tıklayınız. 2- Açılan ekranda Kullanıcı adı kısmına SABİS Kullanıcı adınızı (b111210000), Şifre kısmına da SABİS şifrenizi yazıp Giriş Yap linkine tıklayınız. Staj Birim sorumlusu Gülcan KIHRI İletişim Tel: 0264 295 5916, E-Posta:  Sayfa 3 / 10 3- Staj işlemleri kısmından bölüm bilgisi kontrol edilir ve Öğrencinin okumakta olduğu bölüm seçilir. 4- Staj İşlemleri Kutucuğu altında yer alan Staj Başvurusu linkine tıklayınız. Açılan Ekranda “ADIM 1” Bölümün yayınlamış olduğu staj duyuru metnini okuyunuz ve “Sonraki Adım” ikonuna tıklayarak Adım 2 ye geçiniz.",
+    "source": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+    "chunk_index": 2,
+    "metadata": {
+      "source_file": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+      "total_chunks": 10
+    }
+  },
+  {
+    "id": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf_3",
+    "text": "leri Kutucuğu altında yer alan Staj Başvurusu linkine tıklayınız. Açılan Ekranda “ADIM 1” Bölümün yayınlamış olduğu staj duyuru metnini okuyunuz ve “Sonraki Adım” ikonuna tıklayarak Adım 2 ye geçiniz. 5- ADIM 2: Öğrenci Bilgileri ve GSS Beyan Bu alanda Telefon numara bilgilerinizi giriniz IBAN Numarası bilgisi girmenize gerek yoktur. Son olarak Genel Sağlık Sigortası beyanıyla ilgili durumunuza uyan kutucuğu işaretleyerek (GSS beyanında öğrencinin e-devletten almış olduğu SGK Müstehaklık ve Provizyon belgesinde yer alan bilgiler baz alınır. Belgede durum “Müstehaktır Provizyon Alabilir” ise ilk kutucuk, herhangi bir sebepten dolayı “…. Müstehak Değildir. ” ise ikinci kutucuk işaretlenmelidir. ) “Sonraki Adım” ikonuna tıklayınız ve Adım 3’e geçiniz. Staj Birim sorumlusu Gülcan KIHRI İletişim Tel: 0264 295 5916, E-Posta:  Sayfa 4 / 10 6- ADIM 3:Staj Bilgileri Firma Bilgileri Bu alanda Bölümün tanımlamış olduğu staj tarihlerinden (Bölüm staj duyurusunda belirtildiği şekliyle tarih ve açıklama “yaz okulunda ders alıp almama durumu” bilgilerine dikkat edilerek) Durumunuza uygun staj tarihi seçiniz.",
+    "source": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+    "chunk_index": 3,
+    "metadata": {
+      "source_file": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+      "total_chunks": 10
+    }
+  },
+  {
+    "id": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf_4",
+    "text": "amış olduğu staj tarihlerinden (Bölüm staj duyurusunda belirtildiği şekliyle tarih ve açıklama “yaz okulunda ders alıp almama durumu” bilgilerine dikkat edilerek) Durumunuza uygun staj tarihi seçiniz. Sonra “Staj Yapılacak Firmayı Seçiniz (Firma Ekle)” bölümünde staj yapacağınız firma sisteme tanımlı ise firmayı seçerek Sonraki Adım butonunu tıklayınız NOT: Eğer staj yapmak istediğiniz firma listede bulunmuyorsa, “FİRMA EKLE” butonundan staj yapmak istediğiniz kurum bilgilerini girerek kaydediniz. Bu durumda staj yapacağınız firma staj komisyonu onayına düşecektir. Bu süreçte firma hakkında kısa tanıtım yapan (çalışan sayısı, çalışma konuları ve firmada staj yapılacak alanda bir mühendisin bulunup bulunmadığı) bir e-postayı ilgili komisyon üyesine gönderiniz. Komisyon belirttiğiniz firma kaydını onaylaması durumunda başvuru işleminize devam edebilirsiniz. Firma reddedilmesi durumunda bu firmada staj yapamazsınız. 6-1 Firma Ekle Bu alana Firma ile ilgili istenen bilgiler tam ve eksiksiz bir şekilde giriniz ve Kaydet butonuna tıklayınız. NOT: Kaydet Butonuna tıkladıktan sonra staj yapacağınız firma staj komisyonu onayına düşecektir.",
+    "source": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+    "chunk_index": 4,
+    "metadata": {
+      "source_file": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+      "total_chunks": 10
+    }
+  },
+  {
+    "id": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf_5",
+    "text": "na Firma ile ilgili istenen bilgiler tam ve eksiksiz bir şekilde giriniz ve Kaydet butonuna tıklayınız. NOT: Kaydet Butonuna tıkladıktan sonra staj yapacağınız firma staj komisyonu onayına düşecektir. Komisyon belirttiğiniz firma kaydını onaylaması durumunda başvuru işleminize devam edebilirsiniz. Firmanın reddedilmesi durumunda bu firmada staj yapamazsınız. Staj Birim sorumlusu Gülcan KIHRI İletişim Tel: 0264 295 5916, E-Posta:  Sayfa 5 / 10 Kaydet dedikten sonra ekran aşağıdaki duruma dönüşecektir. Firmanın onaylanıp onaylanmama durumunu Staj Başvuru ekranından takip edebilirsiniz. 7- ADIM 4: Staj Tarihleri Bu alanda Staj Başlangıç tarihinizin kontrolünü gerçekleştiriniz. (Staj bitiş tarihi otomatik olarak hesaplanacaktır. ) Sonra staj ile ilgili taahhüt onay kutucuklarını işaretleyerek Sonraki Adım ikonuna tıklayarak ADIM 5’e geçiniz. 8- ADIM 5: Sonuç-Onay Bu alanda sistem tarafından otomatik oluşturulan Staj Kabul Formunun çıktı veya indirme işlemini gerçekleştirebilirsiniz. Çıktısını aldığınız Staj Kabul Formunu staj yapmak istediğiniz kuruma yetkili adı soyadı, ıslak imza ve kaşe ile (Firma Kaşe ve var ise Mühür işlemi de bu alanda yapılmalıdır. ) onaylatmanız gerekmektedir.",
+    "source": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+    "chunk_index": 5,
+    "metadata": {
+      "source_file": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+      "total_chunks": 10
+    }
+  },
+  {
+    "id": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf_6",
+    "text": "sını aldığınız Staj Kabul Formunu staj yapmak istediğiniz kuruma yetkili adı soyadı, ıslak imza ve kaşe ile (Firma Kaşe ve var ise Mühür işlemi de bu alanda yapılmalıdır. ) onaylatmanız gerekmektedir. “KAYDET” butonuna basarak başvuru ilk aşamasını tamamlayınız. Staj Birim sorumlusu Gülcan KIHRI İletişim Tel: 0264 295 5916, E-Posta:  Sayfa 6 / 10 8. 1- Staj Başvurusu KAYDET işleminden sonra başvurunuzu ana sayfanın sol kısmında kalan stajlarım bölümünden takip edebilirsiniz. Bu bölüme tıkladıktan sonra karşınıza aşağıdaki gibi bir sayfa açılacaktır bu sayfadan SİL butonuna tıklayarak hatalı başvuru yaptıysanız başvurunuzu silebilirsiniz. DETAY butonuna tıklayarak ADIM 5’te çıktısını aldığınız Staj kabul formunun Firmaya onaylatılmış halini sisteme yükleyebilir ve stajınızı, Staj Komisyonu onayına sunabilirsiniz. 8. 1. 1- Detay Kısmına tıkladıktan sonra firma onaylı Staj Kabul Formunun sisteme yüklenmesi işlemi için aşağıda görseli paylaşılan ve kırmızı ile işaretlenen “Browse” alanından yükleme işlemini gerçekleştiriniz. Staj Birim sorumlusu Gülcan KIHRI İletişim Tel: 0264 295 5916, E-Posta:  Sayfa 7 / 10 8. 1.",
+    "source": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+    "chunk_index": 6,
+    "metadata": {
+      "source_file": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+      "total_chunks": 10
+    }
+  },
+  {
+    "id": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf_7",
+    "text": " aşağıda görseli paylaşılan ve kırmızı ile işaretlenen “Browse” alanından yükleme işlemini gerçekleştiriniz. Staj Birim sorumlusu Gülcan KIHRI İletişim Tel: 0264 295 5916, E-Posta:  Sayfa 7 / 10 8. 1. 2- Yüklemiş olduğunuz firma onaylı staj kabul formunun Staj Komisyonu onayına gönderilmesi: Yukarıda belirtilen şekilde yüklemiş olduğunuz staj kabul formunuzun doğru bir şekilde yüklendiğinden emin olduktan sonra (Görüntüle Butonuna tıklayarak yüklemiş olduğunuz formu görüntüleyebilir ya da yanlış bir evrak yükleme durumunda da sil butonu aracılığıyla doğru formu yeniden yükleyebilirsiniz. ) aşağıda resimde belirtildiği şekliyle Onaya Gönder butonuna tıklayarak staj Komisyonu onayına göndermelisiniz. Staj Birim sorumlusu Gülcan KIHRI İletişim Tel: 0264 295 5916, E-Posta:  Sayfa 8 / 10 8. 1. 2- Staj kabul formunu onaya göndermek için E-devlet üzerinden alınan SGK Müstehaklık ve Provizyon Belgesi sisteme yüklenmelidir. Tek başına müstehaklik belgesi veya tek başına staj kabul formu eklendiğinde stajınız komisyon üyeleri tarafından onaylanmaz. Staj Birim sorumlusu Gülcan KIHRI İletişim Tel: 0264 295 5916, E-Posta:  Sayfa 9 / 10.",
+    "source": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+    "chunk_index": 7,
+    "metadata": {
+      "source_file": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+      "total_chunks": 10
+    }
+  },
+  {
+    "id": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf_8",
+    "text": "üstehaklik belgesi veya tek başına staj kabul formu eklendiğinde stajınız komisyon üyeleri tarafından onaylanmaz. Staj Birim sorumlusu Gülcan KIHRI İletişim Tel: 0264 295 5916, E-Posta:  Sayfa 9 / 10. ● Onaya göndermeniz durumunda başvurunuz komisyon tarafından incelenecek ve uygun görünmesi durumunda onaylanacak veya reddedilecektir. Bu işlemlerin hepsi online gerçekleşecek olup fakülteye evrak getirmenize gerek yoktur. ● Başvurunuz onaylandıktan sonra SGK giriş belgenize \"STAJLARIM\" menüsünden ulaşabilirsiniz. ● Bu aşamadan sonra onaylanan tarihlerde stajınızı yapabilirsiniz. ● Eğer staj başvurunuz reddedilirse yukarıdaki adımları tekrar ederek yeniden başvuru yapmanız gerekmektedir. ● Staj bitiminde doldurmanız gereken evrakları Staj Defteri, Staj Değerlendirme Formu (Staj fişi kısmına yüklenecek. Bu belge firmanın staj süresince yaptığınız iş ve işlemler ile ilgili firmanın sizi değerlendirdiği belgedir. ) staj bittikten sonra hazırlayıp, taratarak staj bitim tarihinden sonra 10 iş günü içinde sisteme yüklemeniz gerekmektedir. 10 iş gününden sonra sisteme evrak yüklenememektedir. Yükleme işlemi 8. 1.",
+    "source": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+    "chunk_index": 8,
+    "metadata": {
+      "source_file": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+      "total_chunks": 10
+    }
+  },
+  {
+    "id": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf_9",
+    "text": " ) staj bittikten sonra hazırlayıp, taratarak staj bitim tarihinden sonra 10 iş günü içinde sisteme yüklemeniz gerekmektedir. 10 iş gününden sonra sisteme evrak yüklenememektedir. Yükleme işlemi 8. 1. 2 kısmında görseli paylaşılan ekranın en alt kısmında yer alan staj kabul formu butonu altında staj bitiminde aktif olacak butonlar aracılığı ile gerçekleştirilecektir. STAJ KOMİSYON ÜYE BİLGİLERİ Staj Birim sorumlusu Gülcan KIHRI İletişim Tel: 0264 295 5916, E-Posta:  Sayfa 10 / 10 Bölüm Staj Türleri Staj Komisyonu İsim Soyisim Mail Bilgisayar Mühendisliği Donanım Stajı (Staj 1) Arş. Gör. Seda UÇAR  Arş. Gör. Yasin ALTUNBAŞAK  Yazılım Stajı (Staj 2) Arş. Gör. Mustafa Alp Eren KILIÇ  Arş. Gör. Ömer Faruk YAVUZ  Bilişim Sistemleri Mühendisliği İşletme Stajı (Staj 1) Arş. Gör. Ezgi ÇAKMAK  Yazılım Stajı (Staj 2) Arş. Gör. Halenur SAZAK  Yazılım Mühendisliği Yazılım Stajı (Staj 1) Arş. Gör. Nagihan ÇEKİÇ  Yazılım Stajı (Staj 2) Arş. Gör. Abdullah Salih BAYRAKTAR.",
+    "source": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+    "chunk_index": 9,
+    "metadata": {
+      "source_file": "2025_Yaz_Staj_Duyurusu_eklenen_tarihler.pdf",
+      "total_chunks": 10
+    }
+  },
+  {
+    "id": "2.Ogretim_.pdf_0",
+    "text": "15:00 16:00 17:00 Filiz ERTUĞRAL KM6 Mehmet BEKTAŞOĞLU KM4 Tamer TONGUÇ 1201 22:00 23:00 İnternet 15:00 16:00 Mahpeyker ÖZTÜRK KM4 Ömer Faruk GÖZÜKIZIL KM6 Elman HAZAR 1201 17:00 18:00 Cemil ÖZ 1106 22:00 23:00 İnternet 17:00 18:00 Cemil ÖZ 1103 Celal ÇEKEN 1109 Cüneyt BAYILMIŞ 1104 19:00 20:00 Elman HAZAR KM6 Mehmet Ali GÜNGÖR KM4 Ömer Faruk GÖZÜKIZIL 1109 15:00 16:00 Celal ÇEKEN 1109 17:00 18:00 Mahpeyker ÖZTÜRK KM4 Ömer Faruk GÖZÜKIZIL KM6 Elman HAZAR 1201 19:00 20:00 Cemil ÖZ 1106 15:00 16:00 KM4 17:00 18:00 Cemil ÖZ 1103 Cüneyt BAYILMIŞ 1104 19:00 20:00 FİLİZ ERTUĞRAL Mehmet BEKTAŞOĞLU Tamer TONGUÇ SINIF 1: PROGRAMI A GRUBU B GRUBU C GRUBU D GRUBU Programlamaya Giriş A Programlamaya Giriş C Fizik I - Lab A Fizik I - Lab B Fizik I - Lab C CUMA Bilgisayar Mühendisliğine Giriş Matematik I - A Matematik I - B Matematik I - C Intrduction to Programming Intrduction to Programming Matematik I - A Matematik I - B Matematik I - C PERŞEMBE Programlamaya Giriş B ÇARŞAMBA Programlamaya Giriş",
+    "source": "2.Ogretim_.pdf",
+    "chunk_index": 0,
+    "metadata": {
+      "source_file": "2.Ogretim_.pdf",
+      "total_chunks": 4
+    }
+  },
+  {
+    "id": "2.Ogretim_.pdf_1",
+    "text": " I - A Matematik I - B Matematik I - C Intrduction to Programming Intrduction to Programming Matematik I - A Matematik I - B Matematik I - C PERŞEMBE Programlamaya Giriş B ÇARŞAMBA Programlamaya Giriş A Programlamaya Giriş B Programlamaya Giriş C Lineer Cebir A Lineer Cebir B Lineer Cebir C Fizik I - C PAZARTESİ Fizik I - A Fizik I - B SALI Türk Dili Türk Dili 15:00 16:00 17:00 Yüksel YURTAY 1109 18:00 19:00 20:00 21:00 22:00 23:00 İnternet 15:00 16:00 17:00 Ali GÜLBAĞ 1102 Cüneyt BAYILMIŞ 1105 18:00 19:00 Ümit KOCABIÇAK 1202 22:00 23:00 İnternet 17:00 18:00 19:00 Nejat YUMUŞAK 1201 Devrim AKGÜN 1202 Nevzat TAŞBAŞI 1102 15:00 16:00 17:00 Ferhat DİKBIYIK 1105 18:00 19:00 Kürşat AYAN 1104 Serap KAZAN 1109 20:00 Ali GÜLBAĞ 1202 15:00 16:00 17:00 Yüksel YURTAY 1105 Kürşat AYAN 1102 Sinan İLYAS 1201 18:00 19:00 Ümit KOCABIÇAK 1202 ÇARŞAMBA CUMA Sayısal Analiz A Mantık Devreleri C Web Programlama B PERŞEMBE Elektrik Devre Temelleri A Mantık Devreleri A Elektrik Devre Temelleri C Veri Yapıları B Logic Circuits Elektrik Devre Temelleri B Veri Yapıları A Veri Yapıları C Baran KAYNAK 1109 ATATÜRK İLKELERİ VE İNK. TAR. PAZARTESİ SALI Web Programlama B ATATÜRK İLKELERİ VE İNK. TAR.",
+    "source": "2.Ogretim_.pdf",
+    "chunk_index": 1,
+    "metadata": {
+      "source_file": "2.Ogretim_.pdf",
+      "total_chunks": 4
+    }
+  },
+  {
+    "id": "2.Ogretim_.pdf_2",
+    "text": "Veri Yapıları B Logic Circuits Elektrik Devre Temelleri B Veri Yapıları A Veri Yapıları C Baran KAYNAK 1109 ATATÜRK İLKELERİ VE İNK. TAR. PAZARTESİ SALI Web Programlama B ATATÜRK İLKELERİ VE İNK. TAR. Web Programlama C Ümit KOCABIÇAK 1202 Mantık Devreleri A Sayısal Analiz C A GRUBU B GRUBU C GRUBU D GRUBU Sayısal Analiz B Web Programlama A SINIF 2: PROGRAMI 15:00 16:00 17:00 Nevzat TAŞBAŞI 1104 Celal Çeken 1105 Devrim AKGÜN 1106 18:00 19:00 20:00 İbrahim ÖZÇELİK 1102 Murat İSKEFİYELİ 1201 15:00 16:00 17:00 Murat İSKEFİYELİ 1109 18:00 19:00 20:00 Celal Çeken 1104 Nejat YUMUŞAK 1108 Veysel Harun ŞAHİN 1107 17:00 18:00 19:00 Kürşat AYAN 1105 Ahmet ZENGİN 1106 Seçkin ARI 1107 15:00 16:00 17:00 Seçkin ARI 1102 18:00 19:00 Ahmet ÖZMEN 1103 Ahmet ZENGİN 1107 20:00 İbrahim ÖZÇELİK 1102 Veri İletişimi B PERŞEMBE İşaretler ve Sistemler B İşletim Sistemleri A İşletim Sistemleri C ÇARŞAMBA İşaretler ve Sistemler A İşletim Sistemleri B İşaretler ve Sistemler C Biçimsel Diller ve Soyut Mak. B Veritabanı Yönetim Sistemleri C SALI Data Communications Veritabanı Yönetim Sistemleri A PAZARTESİ Biçimsel Diller ve Soyut Mak. A Veritabanı Yönetim Sistemleri B Biçimsel Diller ve Soyut Mak.",
+    "source": "2.Ogretim_.pdf",
+    "chunk_index": 2,
+    "metadata": {
+      "source_file": "2.Ogretim_.pdf",
+      "total_chunks": 4
+    }
+  },
+  {
+    "id": "2.Ogretim_.pdf_3",
+    "text": " Mak. B Veritabanı Yönetim Sistemleri C SALI Data Communications Veritabanı Yönetim Sistemleri A PAZARTESİ Biçimsel Diller ve Soyut Mak. A Veritabanı Yönetim Sistemleri B Biçimsel Diller ve Soyut Mak. C Veri İletişimi A Veri İletişimi C SINIF 3: PROGRAMI A GRUBU B GRUBU C GRUBU D GRUBU 15:00 16:00 17:00 Nilüfer YURTAY 1102 18:00 19:00 20:00 Nejat YUMUŞAK 1104 15:00 16:00 17:00 Nilüfer YURTAY 1202 İbrahim ÖZÇELİK 1107 10:00 11:00 12:00 1108 17:00 18:00 19:00 Ferhat DİKBIYIK 1108 09:00 10:00 11:00 1107 15:00 16:00 17:00 Murat İSKEFİYELİ 1104 18:00 19:00 20:00 Cüneyt BAYILMIŞ 1108 Ferhat DİKBIYIK 1105 Nevzat TAŞBAŞI 1205 09:10 10:00 11:00 1107 Gömülü Sistemler Nesnelerin İnterneti ve Uygulamaları IoT and Applications Mobil Uygulama Geliştirme PERŞEMBE SALI ÇARŞAMBA Kuyruk Teorisi Finansal BT Yönetimi Uygulanabilir Makine Öğrenmesi ve Büyük Veri Tıbbi İstatistik ve Tıp Bilişimine Giriş İnternet Mühendisliği PAZARTESİ Optimizasyon Bulanık Mantık ve Yapay Sinir Ağları SINIF 4: PROGRAMI Mobil İletişimde LTE ve Sonrası CUMA.",
+    "source": "2.Ogretim_.pdf",
+    "chunk_index": 3,
+    "metadata": {
+      "source_file": "2.Ogretim_.pdf",
+      "total_chunks": 4
+    }
+  },
+  {
+    "id": "1.Ogretim_.pdf_0",
+    "text": "07:00 08:00 İnternet 09:00 10:00 Cemil ÖZ 1102 Cüneyt BAYILMIŞ 1201 11:00 12:00 FİLİZ ERTUĞRAL Mehmet BEKTAŞOĞLU Tamer TONGUÇ 07:00 08:00 İnternet 09:00 10:00 Mahpeyker ÖZTÜRK KM4 Ömer Faruk GÖZÜKIZIL KM6 Elman HAZAR 1202 11:00 12:00 Cemil ÖZ 1106 09:00 10:00 Elman HAZAR KM6 Mehmet Ali GÜNGÖR KM4 Ömer Faruk GÖZÜKIZIL 1104 11:00 12:00 Cemil ÖZ 1103 Celal ÇEKEN 1209 Cüneyt BAYILMIŞ 1104 09:00 10:00 Mahpeyker ÖZTÜRK KM4 Ömer Faruk GÖZÜKIZIL KM6 Elman HAZAR 1202 11:00 12:00 Celal ÇEKEN 1106 13:00 14:00 Cemil ÖZ 1106 09:00 10:00 11:00 Filiz ERTUĞRAL KM4 Mehmet BEKTAŞOĞLU KM6 Tamer TONGUÇ 1202 12:00 13:00 14:00 KM4 CUMA Bilgisayar Mühendisliğine Giriş Fizik I - A Fizik I - B Fizik I - C PERŞEMBE Matematik I - A Matematik I - B Matematik I - C Intrduction to Programming Programlamaya Giriş B Programlamaya Giriş A Programlamaya Giriş B Programlamaya Giriş C Intrduction to Programming Lineer Cebir C Programlamaya Giriş C Fizik I - Lab C Matematik I - C Programlamaya Giriş A Türk Dili Fizik I -",
+    "source": "1.Ogretim_.pdf",
+    "chunk_index": 0,
+    "metadata": {
+      "source_file": "1.Ogretim_.pdf",
+      "total_chunks": 4
+    }
+  },
+  {
+    "id": "1.Ogretim_.pdf_1",
+    "text": "gramlamaya Giriş A Programlamaya Giriş B Programlamaya Giriş C Intrduction to Programming Lineer Cebir C Programlamaya Giriş C Fizik I - Lab C Matematik I - C Programlamaya Giriş A Türk Dili Fizik I - Lab A Fizik I - Lab B SINIF 1: PROGRAMI PAZARTESİ SALI ÇARŞAMBA A GRUBU B GRUBU C GRUBU D GRUBU Türk Dili Matematik I - A Lineer Cebir A Lineer Cebir B Matematik I - B 07:00 08:00 İnternet 09:00 10:00 11:00 Yüksel YURTAY 1109 07:00 08:00 İnternet 09:00 10:00 11:00 Ali GÜLBAĞ 1108 Cüneyt BAYILMIŞ 1105 12:00 13:00 Nevzat TAŞBAŞI 1102 09:00 10:00 11:00 Sinan İLYAS 1201 Devrim AKGÜN 1202 Nevzat TAŞBAŞI 1102 10:00 11:00 Nevzat TAŞBAŞI 1102 Baran KAYNAK 1201 12:00 13:00 Kürşat AYAN 1201 Serap KAZAN 1109 14:00 Ali GÜLBAĞ 1102 15:00 16:00 17:00 Ferhat DİKBIYIK 1105 09:00 10:00 Kürşat AYAN 1109 11:00 Yüksel YURTAY 1103 Sinan İLYAS 1201 12:00 Nevzat TAŞBAŞI 1102 13:00 14:00 Nevzat TAŞBAŞI 1102 Baran KAYNAK 1201 ATATÜRK İLKELERİ VE İNK. TAR. Elektrik Devre Temelleri A Elektrik Devre Temelleri C Veri Yapıları A Veri Yapıları C ÇARŞAMBA SINIF 2: PROGRAMI A GRUBU B GRUBU C GRUBU D GRUBU ATATÜRK İLKELERİ VE İNK. TAR.",
+    "source": "1.Ogretim_.pdf",
+    "chunk_index": 1,
+    "metadata": {
+      "source_file": "1.Ogretim_.pdf",
+      "total_chunks": 4
+    }
+  },
+  {
+    "id": "1.Ogretim_.pdf_2",
+    "text": "ÜRK İLKELERİ VE İNK. TAR. Elektrik Devre Temelleri A Elektrik Devre Temelleri C Veri Yapıları A Veri Yapıları C ÇARŞAMBA SINIF 2: PROGRAMI A GRUBU B GRUBU C GRUBU D GRUBU ATATÜRK İLKELERİ VE İNK. TAR. Web Programlama C Sayısal Analiz A Mantık Devreleri C CUMA Elektrik Devre Temelleri B Web Programlama B Web Programlama A Mantık Devreleri B PERŞEMBE Web Programlama A Web Programlama C Veri Yapıları B Web Programlama B SALI Mantık Devreleri A Sayısal Analiz C PAZARTESİ Sayısal Analiz B Logic Circuits 09:00 10:00 11:00 Nevzat TAŞBAŞI 1104 Celal Çeken 1105 Devrim AKGÜN 1106 12:00 13:00 14:00 İbrahim ÖZÇELİK 1102 Murat İSKEFİYELİ 1201 09:00 10:00 11:00 İbrahim ÖZÇELİK 1201 Murat İSKEFİYELİ 1103 12:00 13:00 14:00 Celal Çeken 1105 Devrim AKGÜN 1108 Veysel Harun ŞAHİN 1107 09:00 10:00 11:00 12:00 Kürşat AYAN 1105 Ahmet ZENGİN 1106 Seçkin ARI 1107 09:00 10:00 11:00 Ahmet ÖZMEN 1103 Seçkin ARI 1105 Ahmet ZENGİN 1108 PERŞEMBE İşletim Sistemleri A İşaretler ve Sistemler B İşletim Sistemleri C Data Communications ÇARŞAMBA İşaretler ve Sistemler A İşletim Sistemleri B İşaretler ve Sistemler C Veritabanı Yönetim Sistemleri A Veritabanı Yönetim Sis. C Biçimsel Diller ve Soyut Mak.",
+    "source": "1.Ogretim_.pdf",
+    "chunk_index": 2,
+    "metadata": {
+      "source_file": "1.Ogretim_.pdf",
+      "total_chunks": 4
+    }
+  },
+  {
+    "id": "1.Ogretim_.pdf_3",
+    "text": "Sistemleri C Data Communications ÇARŞAMBA İşaretler ve Sistemler A İşletim Sistemleri B İşaretler ve Sistemler C Veritabanı Yönetim Sistemleri A Veritabanı Yönetim Sis. C Biçimsel Diller ve Soyut Mak. A Veritabanı Yönetim Sistemleri B Biçimsel Diller ve Soyut Mak. C Veri İletişimi A Veri İletişimi C SALI Veri İletişimi B Biçimsel Diller ve Soyut Mak. B A GRUBU B GRUBU C GRUBU D GRUBU PAZARTESİ SINIF 3: PROGRAMI 12:00 13:00 14:00 Cüneyt BAYILMIŞ 1103 09:00 10:00 11:00 Nevzat TAŞBAŞI 1104 Nilüfer YURTAY 1102 12:00 13:00 14:00 Ferhat DİKBIYIK 1109 09:00 10:00 11:00 12:00 1108 09:00 10:00 11:00 1107 18:00 19:00 20:00 Ferhat DİKBIYIK 1105 09:00 10:00 11:00 1107 CUMA Mobil İletişimde LTE ve Sonrası IoT and Applications PERŞEMBE Finansal BT Yönetimi ÇARŞAMBA Uygulanabilir Makine Öğrenmesi ve Büyük Veri SINIF 4: PROGRAMI Kuyruk Teorisi SALI Mobil Uygulama Geliştirme Optimizasyon PAZARTESİ Nesnelerin İnterneti ve Uygulamaları.",
+    "source": "1.Ogretim_.pdf",
+    "chunk_index": 3,
+    "metadata": {
+      "source_file": "1.Ogretim_.pdf",
+      "total_chunks": 4
+    }
   }
 ]
