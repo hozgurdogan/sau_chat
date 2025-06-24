@@ -152,54 +152,192 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     try: payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM]); user = payload.get("sub"); assert user
     except: raise exc
     return {"username": user}
+import torch # torch'u import ettiğinizden emin olun
+
+# ... (diğer importlarınız) ...
 
 async def _generate_chat_response(
     query_data: ChatQuery, current_hf_model: AutoModelForCausalLM, current_hf_tokenizer: AutoTokenizer,
     db_path_val: str, is_anonymous: bool = False, username: Optional[str] = None
-) -> Tuple[str, str, List[str]]: # model_answer, retrieved_context, sources döndürür
-    # ... (Bu fonksiyonun içeriği bir önceki cevaptaki "REVİZE EDİLMİŞ PROMPT YAPISI" ile aynı kalacak)
-    # ... (Sadece en sondaki "return ChatResponse(...)" yerine Tuple döndürecek)
+) -> Tuple[str, str, List[str]]:
     log_prefix = "[Anonim] " if is_anonymous else f"[{username if username else 'Kullanıcı'}] "
+    # ... (ret_result, base_persona, general_instructions, context_instructions, system_message_list kodları aynı kalacak) ...
     ret_result = retrieve_relevant_context(query=query_data.query, db_path=db_path_val, top_k=query_data.top_k, return_sources=True)
     ctx_text, sources = ret_result.get("text", "").strip(), ret_result.get("sources", [])
-    base_persona = ("Sen SAÜChat, Sakarya Üniversitesi'nin resmi Yapay Zeka Destek Asistanısın...")
-    general_instructions = ["Bilgi Kaynakları: Cevapların HER ZAMAN öncelikle sana <CONTEXT> etiketi içinde sağlanan bilgilere dayanmalıdır...",]
-    context_instructions = { "with_context": ("..."), "without_context_specific_inquiry": ("..."), "without_context_general_inquiry": ("..."), "clarification_needed": ("..."), "out_of_scope": ("...") } # Kısaltıldı, tam metinler önceki cevapta
-    system_message_list = [base_persona]; system_message_list.extend(general_instructions)
-    msgs = []; ret_ctx_resp = "İlgili yönetmelik bilgisi bulunamadı."
+    base_persona = ("Sen SAÜChat, Sakarya Üniversitesi'nin resmi Yapay Zeka Destek Asistanısın...") # Örnek, sizin metniniz daha uzun olabilir
+    general_instructions = ["Bilgi Kaynakları: Cevapların HER ZAMAN öncelikle sana <CONTEXT> etiketi içinde sağlanan bilgilere dayanmalıdır...",] # Örnek
+    context_instructions = {
+        "with_context": ("<CONTEXT> içinde verilen bilgilere dayanarak, kullanıcının sorusuna net, doğru ve öz bir cevap ver. Cevabında sadece sorulan konuyla ilgili bilgileri kullan, gereksiz detay verme. Eğer bağlamda cevap yoksa, bunu belirt ve spekülasyon yapma."),
+        "without_context_specific_inquiry": ("Kullanıcının sorusu spesifik bir konuyla ilgili görünüyor ancak elimde bu konuda bilgi yok. Nazikçe, bu konuda bilgi sahibi olmadığınızı veya yardımcı olamayacağınızı belirtin. Alternatif bilgi kaynakları önermeyin."),
+        "without_context_general_inquiry": ("Kullanıcının sorusu genel bir konuyla ilgili ve elimde spesifik bir bağlam yok. Soruyu anladığınızı gösteren, genel ve yardımcı bir cevap vermeye çalışın. Sakarya Üniversitesi ile ilgiliyse, genel bilgi verebilirsiniz. Bilmiyorsanız, bilmediğinizi belirtin."),
+        "clarification_needed": ("Kullanıcının sorusu belirsiz veya çok geniş. Cevap vermek için daha fazla detaya veya netleştirmeye ihtiyacınız olduğunu nazikçe belirtin. Kullanıcıdan sorusunu daha spesifik hale getirmesini isteyin."),
+        "out_of_scope": ("Kullanıcının sorusu Sakarya Üniversitesi yönetmelikleri veya genel üniversite işleyişi dışında bir konuyla ilgili. Bu konuda yardımcı olamayacağınızı nazikçe belirtin ve ana uzmanlık alanınızın üniversite yönetmelikleri olduğunu hatırlatın.")
+    }
+    system_message_list = [base_persona]
+    system_message_list.extend(general_instructions)
+    msgs = []
+    ret_ctx_resp = "İlgili yönetmelik bilgisi bulunamadı."
+
     if ctx_text:
         chosen_instruction = context_instructions["with_context"]
         final_system_content = "\n\n".join(system_message_list) + "\n\n" + chosen_instruction + f"\n\n<CONTEXT>\n{ctx_text}\n</CONTEXT>"
         ret_ctx_resp = ctx_text
     else:
-        if len(query_data.query.split()) < 4 or any(k in query_data.query.lower() for k in ["nedir","nasıl","ne zaman","nerede","kimdir"]): chosen_instruction = context_instructions["without_context_general_inquiry"]
-        else: chosen_instruction = context_instructions["without_context_specific_inquiry"]
+        if len(query_data.query.split()) < 4 or any(k in query_data.query.lower() for k in ["nedir","nasıl","ne zaman","nerede","kimdir"]):
+            chosen_instruction = context_instructions["without_context_general_inquiry"]
+        else:
+            chosen_instruction = context_instructions["without_context_specific_inquiry"]
         final_system_content = "\n\n".join(system_message_list) + "\n\n" + chosen_instruction
         sources = []
+
     msgs.append({"role": "system", "content": final_system_content})
     is_first_turn = not query_data.history or len(query_data.history) == 0
     if query_data.history:
-        for hist_msg in query_data.history: msgs.append({"role": hist_msg.role, "content": hist_msg.content})
+        for hist_msg in query_data.history:
+            msgs.append({"role": hist_msg.role, "content": hist_msg.content})
     msgs.append({"role": "user", "content": query_data.query})
-    try: prompt = current_hf_tokenizer.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
-    except: prompt = "Fallback prompt"
-    inputs = current_hf_tokenizer(prompt, return_tensors="pt", truncation=True, max_length=N_CTX_HF - query_data.max_new_tokens)
-    try: target_device = next(current_hf_model.parameters()).device
-    except: target_device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    input_ids_dev, attn_mask_dev = inputs["input_ids"].to(target_device), inputs["attention_mask"].to(target_device)
-    gen_kwargs = {"max_new_tokens": query_data.max_new_tokens, "pad_token_id": current_hf_tokenizer.eos_token_id, "eos_token_id": current_hf_tokenizer.eos_token_id}
-    if query_data.temperature > 0.001: gen_kwargs.update({"temperature": query_data.temperature, "do_sample": True, "top_p": query_data.top_p})
-    else: gen_kwargs["do_sample"] = False
-    if query_data.repetition_penalty and query_data.repetition_penalty > 1.0: gen_kwargs["repetition_penalty"] = query_data.repetition_penalty
-    with torch.no_grad(): out_seqs = current_hf_model.generate(input_ids=input_ids_dev, attention_mask=attn_mask_dev, **gen_kwargs)
-    answer = current_hf_tokenizer.decode(out_seqs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True).strip()
-    final_answer = answer
-    if is_first_turn and username:
-        greeting = f"Merhaba {username.capitalize()}"
-        if not answer.lower().startswith(greeting.lower().split(" ")[0].lower()): final_answer = f"{greeting}! {answer}"
-        elif not answer.lower().startswith(greeting.lower()): final_answer = f"{greeting}! {answer[len('Merhaba'):].lstrip(' !.')}"
-    return final_answer, ret_ctx_resp, sources
 
+    try:
+        prompt = current_hf_tokenizer.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
+    except Exception as e_template:
+        print(f"{log_prefix}Chat template apply hatası: {e_template}")
+        prompt = "Fallback prompt: Kullanıcı sorusu: " + query_data.query # Basit bir fallback
+
+    print(f"{log_prefix}DEBUG: Oluşturulan Prompt (ilk 200 karakter):\n{prompt[:200]}")
+
+    inputs = current_hf_tokenizer(prompt, return_tensors="pt", truncation=True, max_length=N_CTX_HF - query_data.max_new_tokens)
+
+    try:
+        target_device = next(current_hf_model.parameters()).device
+    except:
+        target_device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"{log_prefix}DEBUG: Hedef cihaz: {target_device}")
+
+    # --- TOKENIZER ÇIKTISI KONTROLÜ (Bir önceki mesajda önerilen) ---
+    print(f"{log_prefix}DEBUG: --- Tokenizer Çıktısı Kontrolü ---")
+    print(f"{log_prefix}DEBUG: inputs['input_ids'] shape: {inputs['input_ids'].shape}")
+    print(f"{log_prefix}DEBUG: inputs['input_ids'] dtype: {inputs['input_ids'].dtype}")
+    # print(f"{log_prefix}DEBUG: inputs['input_ids'] sample: {inputs['input_ids'][0, :30]}") # İlk 30 token'ı göster
+    print(f"{log_prefix}DEBUG: inputs['input_ids'] (CPU) min value: {inputs['input_ids'].cpu().min()}")
+    print(f"{log_prefix}DEBUG: inputs['input_ids'] (CPU) max value: {inputs['input_ids'].cpu().max()}")
+
+    print(f"{log_prefix}DEBUG: inputs['attention_mask'] shape: {inputs['attention_mask'].shape}")
+    print(f"{log_prefix}DEBUG: inputs['attention_mask'] dtype: {inputs['attention_mask'].dtype}")
+    # print(f"{log_prefix}DEBUG: inputs['attention_mask'] sample: {inputs['attention_mask'][0, :30]}") # İlk 30 maskeyi göster
+    print(f"{log_prefix}DEBUG: inputs['attention_mask'] (CPU) unique values: {torch.unique(inputs['attention_mask'].cpu())}")
+    print(f"{log_prefix}DEBUG: --- Kontrol Sonu ---")
+    # --- TOKENIZER ÇIKTISI KONTROLÜ SONU ---
+
+    input_ids_dev, attn_mask_dev = inputs["input_ids"].to(target_device), inputs["attention_mask"].to(target_device)
+    print(f"{log_prefix}DEBUG: input_ids_dev ve attn_mask_dev GPU'ya taşındı.")
+
+
+    gen_kwargs = {
+        "max_new_tokens": query_data.max_new_tokens,
+        "pad_token_id": current_hf_tokenizer.eos_token_id,
+        "eos_token_id": current_hf_tokenizer.eos_token_id
+    }
+    if query_data.temperature > 0.001: # Sıfıra çok yakınsa veya sıfırsa greedy olur
+        gen_kwargs.update({
+            "temperature": query_data.temperature,
+            "do_sample": True, # Sample almak için True olmalı
+            "top_p": query_data.top_p # top_p de sample için
+            # "top_k": query_data.top_k # Eğer top_k da kullanıyorsanız ekleyin
+        })
+    else: # Greedy decoding
+        gen_kwargs["do_sample"] = False
+        # Greedy için temperature, top_p, top_k genellikle ayarlanmaz veya etkisizdir.
+
+    if query_data.repetition_penalty and query_data.repetition_penalty > 1.0:
+        gen_kwargs["repetition_penalty"] = query_data.repetition_penalty
+
+    print(f"{log_prefix}DEBUG: Generation kwargs: {gen_kwargs}")
+
+    try:
+        with torch.no_grad():
+            # --- LOGIT VE PROBS KONTROLÜ (Bir önceki mesajda önerilen) ---
+            print(f"{log_prefix}DEBUG: --- Logit ve Probs Kontrolü Başlıyor ---")
+            # `generate` öncesi modelden bir adım logit alalım
+            # Bu, generate içindeki ilk token tahminine benzer bir durum yaratır.
+            # Not: Bu, generate'in içindeki tam döngüyü simüle etmez ama ilk adım hakkında fikir verir.
+            model_inputs_for_logit_check = {"input_ids": input_ids_dev, "attention_mask": attn_mask_dev}
+            outputs_for_logit_check = current_hf_model(**model_inputs_for_logit_check)
+            
+            # Son token pozisyonundaki logit'leri al (bir sonraki token için tahminler)
+            # Batch size 1 varsayımıyla [0] indeksi kullanılıyor.
+            next_token_logits = outputs_for_logit_check.logits[0, -1, :] 
+            print(f"{log_prefix}DEBUG: next_token_logits shape: {next_token_logits.shape}")
+
+            if torch.isnan(next_token_logits).any():
+                print(f"{log_prefix}DEBUG: ERROR - next_token_logits NaN içeriyor!")
+            if torch.isinf(next_token_logits).any():
+                print(f"{log_prefix}DEBUG: ERROR - next_token_logits Inf içeriyor!")
+            
+            # Sıcaklık ayarını uygula (eğer varsa)
+            current_temperature = gen_kwargs.get("temperature", 1.0)
+            if current_temperature > 0 and current_temperature != 1.0 and gen_kwargs.get("do_sample", False):
+                logits_after_temp = next_token_logits / current_temperature
+                print(f"{log_prefix}DEBUG: Logits after temperature ({current_temperature}): Applied")
+            else:
+                logits_after_temp = next_token_logits
+                print(f"{log_prefix}DEBUG: Logits after temperature: Not applied or temp=1.0/0")
+
+            # Softmax ile olasılıklara çevir
+            probs = torch.nn.functional.softmax(logits_after_temp, dim=-1)
+            print(f"{log_prefix}DEBUG: probs shape: {probs.shape}")
+
+            if torch.isnan(probs).any():
+                print(f"{log_prefix}DEBUG: ERROR - probs NaN içeriyor!")
+            if torch.isinf(probs).any():
+                print(f"{log_prefix}DEBUG: ERROR - probs Inf içeriyor!")
+            if (probs < 0).any(): # Normalde softmax sonrası negatif olmamalı
+                print(f"{log_prefix}DEBUG: ERROR - probs negatif değer içeriyor!")
+            # Olasılıkların toplamının 1'e yakın olup olmadığını kontrol et
+            if not torch.allclose(probs.sum(dim=-1), torch.tensor(1.0, device=probs.device), atol=1e-5): # Toleransı biraz artırdım
+                print(f"{log_prefix}DEBUG: UYARI - probs toplamı ({probs.sum(dim=-1).item()}) 1.0 değil!")
+            
+            print(f"{log_prefix}DEBUG: --- Logit ve Probs Kontrolü Bitti ---")
+            # --- LOGIT VE PROBS KONTROLÜ SONU ---
+
+            print(f"{log_prefix}DEBUG: current_hf_model.generate çağrılıyor...")
+            out_seqs = current_hf_model.generate(
+                input_ids=input_ids_dev,
+                attention_mask=attn_mask_dev,
+                **gen_kwargs
+            )
+            print(f"{log_prefix}DEBUG: current_hf_model.generate tamamlandı.")
+    
+    except RuntimeError as e_cuda:
+        print(f"{log_prefix}CUDA Runtime Hatası (generate sırasında): {e_cuda}")
+        # Hata burada oluşursa, yukarıdaki print'ler sorunu anlamada yardımcı olabilir.
+        raise e_cuda # Orijinal hatayı tekrar fırlat
+    except Exception as e_gen:
+        print(f"{log_prefix}Beklenmedik Hata (generate sırasında): {e_gen}")
+        raise e_gen
+
+    answer = current_hf_tokenizer.decode(out_seqs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True).strip()
+    
+    final_answer = answer
+    if is_first_turn and username: # Sadece giriş yapmış kullanıcıların ilk mesajına
+        greeting_base = "Merhaba" # Sabit selamlama bazı
+        greeting = f"{greeting_base} {username.capitalize()}"
+        
+        # Cevabın başında zaten bir selamlama olup olmadığını daha esnek kontrol et
+        # Örneğin, "Merhaba Hasan!", "Selam Hasan,", "Merhaba," gibi durumları yakalamak
+        answer_lower = answer.lower()
+        greeting_base_lower = greeting_base.lower()
+
+        # Eğer cevap zaten bir çeşit selamlama ile başlıyorsa, tekrar ekleme.
+        # Bu kısım daha sofistike hale getirilebilir. Şimdilik basit bir kontrol:
+        if not (answer_lower.startswith(greeting_base_lower) or \
+                answer_lower.startswith("selam") or \
+                answer_lower.startswith("iyi günler")): # vb.
+            final_answer = f"{greeting}! {answer}"
+        # Eğer cevap "Merhaba" ile başlıyorsa ama kullanıcı adı yoksa, onu ekleyebiliriz.
+        # Bu kısım şimdilik çıkarıldı, çünkü zaten yukarıdaki kontrol bunu bir ölçüde kapsıyor.
+
+    print(f"{log_prefix}Üretilen Cevap: {final_answer[:100]}...") # Cevabın başını logla
+    return final_answer, ret_ctx_resp, sources
 
 @app.post("/chat", response_model=ChatResponseAPI)
 async def chat_endpoint(q_data: ChatQuery, deps: tuple = Depends(get_hf_model_and_tokenizer), db_p: str = Depends(get_db_path_dependency), user: dict = Depends(get_current_user)):
