@@ -73,9 +73,10 @@ async def lifespan(app: FastAPI):
             llm_tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)
             # Modeli float16 olarak yüklemeyi deneyelim (Colab için genellikle daha iyi)
             # Eğer NaN sorunları devam ederse, test için torch_dtype=torch.float32 deneyebilirsiniz.
+
             llm_model = AutoModelForCausalLM.from_pretrained(
                 MODEL_PATH,
-                torch_dtype=torch.float16, # VEYA torch.bfloat16 (eğer GPU destekliyorsa)
+                torch_dtype=torch.float32, # <<<--- float32 OLARAK DEĞİŞTİRDİK
                 device_map="auto",
                 trust_remote_code=True
             )
