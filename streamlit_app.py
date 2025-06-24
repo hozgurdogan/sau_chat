@@ -10,7 +10,7 @@ from datetime import datetime
 # Eğer streamlit_app.py ile aynı dizindeyse "logo.png" yeterlidir.
 # Colab'da çalıştırıyorsanız ve dosya /content/sau_chat/logo.png ise:
 # LOGO_FILE_PATH = "/content/sau_chat/logo.png"
-LOGO_FILE_PATH = "logo.png" # Varsayılan olarak streamlit_app.py ile aynı dizinde
+LOGO_FILE_PATH = "/content/sau_chat/logo/logo.png"
 
 # --- Sayfa Yapılandırması ---
 try:
