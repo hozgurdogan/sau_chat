@@ -12,6 +12,8 @@ import torch
 json_path = "yeniSoruCevap.json"
 
 # Veriyi oku
+
+
 with open(json_path, "r", encoding="utf-8") as f:
     raw_data = json.load(f)
 
