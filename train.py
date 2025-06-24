@@ -9,7 +9,7 @@ from peft import get_peft_model, LoraConfig, TaskType
 import torch
 
 # Veri yolu
-json_path = "/home/aisoft/projects/HasanProje/sau_chat/yeniSoruCevap.json"
+json_path = "yeniSoruCevap.json"
 
 # Veriyi oku
 with open(json_path, "r", encoding="utf-8") as f:
